@@ -1,0 +1,101 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.lds-dual-ring {
+  display: none;
+  width: 16px;
+  height: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 6px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: 2px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.5s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+</style>
+</head>
+<body>
+<h1>SteamID</h1>
+<p>
+Find your Steam64ID
+</p>
+<label for="steamname">Steam Name:</label><input id="steamname" type="text" /> 
+
+<label id="idlabel" for="id" style="display: none" >Steam ID: (<a id="DbCheck" href="http://steamcommunity.com/profiles/">Profile Link</a>)</label>
+<input id="id" type="text" style="display: none;" readonly />
+<br />
+<input  type="button" onclick="GetSteamId()" style="display: inline" value="Search" /><div id="loading" class="lds-dual-ring"></div>
+<input id="clear" type="button" onclick="Clear()" style="display: none;"  value="Clear" />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<iframe src="https://github.com/sponsors/daemonforge/button" title="Sponsor daemonforge" height="35" width="112" style="border: 0;"></iframe>
+
+<script>
+function GetSteamId(){
+	let element = document.getElementById("steamname");
+	let id = document.getElementById("id");
+	let idlabel = document.getElementById("idlabel");
+	let DbCheck = document.getElementById("DbCheck");
+	let clear = document.getElementById("clear");
+	let loading = document.getElementById("loading");
+	loading.style.display = "inline-block";
+	clear.style.display = "none";
+	//console.log("GetSteamID: " + element.value);
+	fetch("https://steamid.co/php/api.php?action=steamID&id=" + element.value)
+	.then(res => {
+		return res.json();
+	})
+	.then(data => {
+		//console.log(data);
+		id.style.display = "block";
+		if (data.error !== undefined){
+			id.value = data.error;
+		} 
+		if (data.steamID64 !== undefined){
+			id.value = data.steamID64;
+			DbCheck.href = "http://steamcommunity.com/profiles/" + data.steamID64;
+			console.log(data);
+		}
+		idlabel.style.display = "block";
+		clear.style.display = "inline";
+		loading.style.display = "none";
+	});
+}
+
+ function Clear(){
+	let element = document.getElementById("steamname");
+	let id = document.getElementById("id");
+	let idlabel = document.getElementById("idlabel");
+	let clear = document.getElementById("clear");
+	element.value = "";
+	id.value = "";
+	id.style.display = "none";
+	idlabel.style.display = "none";
+	clear.style.display = "none";
+ }
+</script>
+
+</body>
