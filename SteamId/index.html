@@ -41,7 +41,7 @@ Find your Steam64ID
 <label for="steamname">Steam Name:</label><input id="steamname" type="text" /> 
 
 <label id="idlabel" for="id" style="display: none" >Steam ID: (<a id="DbCheck" href="http://steamcommunity.com/profiles/">Profile Link</a>)</label>
-<input id="id" type="text" style="display: none;" readonly />
+<input id="id" type="text" style="display: none;" readonly /><input id="copyText" type="button" onclick="CopyId()" style="display: none;"  value="Copy" />
 <br />
 <input  type="button" onclick="GetSteamId()" style="display: inline" value="Search" /><div id="loading" class="lds-dual-ring"></div>
 <input id="clear" type="button" onclick="Clear()" style="display: none;"  value="Clear" />
@@ -61,6 +61,7 @@ function GetSteamId(){
 	let DbCheck = document.getElementById("DbCheck");
 	let clear = document.getElementById("clear");
 	let loading = document.getElementById("loading");
+	let copyText = document.getElementById("copyText");
 	loading.style.display = "inline-block";
 	clear.style.display = "none";
 	//console.log("GetSteamID: " + element.value);
@@ -70,14 +71,16 @@ function GetSteamId(){
 	})
 	.then(data => {
 		//console.log(data);
-		id.style.display = "block";
+		id.style.display = "inline-block";
 		if (data.error !== undefined){
 			id.value = data.error;
+			copyText.style.display = "none";
 		} 
 		if (data.steamID64 !== undefined){
 			id.value = data.steamID64;
 			DbCheck.href = "http://steamcommunity.com/profiles/" + data.steamID64;
 			console.log(data);
+			copyText.style.display = "inline-block";
 		}
 		idlabel.style.display = "block";
 		clear.style.display = "inline";
@@ -90,12 +93,27 @@ function GetSteamId(){
 	let id = document.getElementById("id");
 	let idlabel = document.getElementById("idlabel");
 	let clear = document.getElementById("clear");
+	let copyText = document.getElementById("copyText");
 	element.value = "";
 	id.value = "";
+	copyText.style.display = "none";
 	id.style.display = "none";
 	idlabel.style.display = "none";
 	clear.style.display = "none";
  }
+ 
+ function CopyId() {
+  /* Get the text field */
+  var copyText = document.getElementById("id");
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+}
 </script>
 
 </body>
