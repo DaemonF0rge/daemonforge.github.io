@@ -21,6 +21,7 @@
   margin: auto;
   padding: 10px;
   padding-top: 30px;
+  vertical-align: bottom;
   
 }
 @keyframes loader {
@@ -30,6 +31,7 @@
 #box {
   width: 30px;
   height: 30px;
+  margin: 10px;
   background: #fff;
   animation: animate .5s linear infinite;
   border-radius: 3px;
@@ -45,11 +47,11 @@
   100% { transform: translateY(0) rotate(90deg); }
 } 
 #shadow { 
+  margin: auto;
   width: 30px;
   height: 5px;
   background: #000;
-  opacity: 0.1;
-  position: absolute;
+  opacity: 0.5;
   top: 59px;
   left: 0;
   border-radius: 50%;
@@ -66,8 +68,8 @@
 <br />
 <br />
  <div id="loader">
-  <div id="shadow"></div>
   <div id="box"></div>
+  <div id="shadow"></div>
 </div>
 <br />
 <br />
