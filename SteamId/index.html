@@ -1,138 +1,134 @@
 <html>
-<head>
-<title>Find SteamId</title>
-<meta name="description" content="Find your Steam Id using your steam name.">
-  <meta name="keywords" content="Steam, SteamID, Steam64ID">
-  <meta name="author" content="Daemon Forge">
-<link rel="apple-touch-icon" sizes="180x180" href="/SteamId/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/SteamId/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/SteamId/favicon-16x16.png">
-<link rel="manifest" href="/SteamId/site.webmanifest">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#333333">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-.lds-dual-ring {
-  display: none;
-  width: 16px;
-  height: 16px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 6px;
-}
-.lds-dual-ring:after {
-  content: " ";
-  display: block;
-  width: 12px;
-  height: 12px;
-  margin: 2px;
-  border-radius: 50%;
-  border: 4px solid #fff;
-  border-color: #fff transparent #fff transparent;
-  animation: lds-dual-ring 1.5s linear infinite;
-}
-@keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.avatar {
-  vertical-align: middle;
-  margin-left: 6px;
-  width: 38px;
-  height: 38px;
-  border-radius: 25%;
-  border: solid 1px #161f27;
-}
-</style>
-</head>
-<body>
-<h1>SteamID</h1>
-<p>
-Find your Steam64ID
-</p>
-<label for="steamname">Steam Name:</label>
-<div>
-<input id="steamname" type="text" style="display: inline-block" /><img id="SteamAvatar" class="avatar" style="display: none" src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/63/634f9e34f9859082dbb32765814f7af7beb9a8d1_medium.jpg" alt="Steam Profile Avatar" />
-</div>
-<label id="idlabel" for="id" style="display: none" >Steam ID: (<a id="DbCheck" target="_blank" href="http://steamcommunity.com/profiles/">Profile Link</a>)</label>
-<input id="id" type="text" style="display: none;" readonly /><input id="copyText" type="button" onclick="CopyId()" style="display: none;"  value="Copy" />
-<br />
-<input  type="button" onclick="GetSteamId()" style="display: inline" value="Search" /><div id="loading" class="lds-dual-ring"></div>
-<input id="clear" type="button" onclick="Clear()" style="display: none;"  value="Clear" />
-<br />
-<br />
-<br />
-<div class="footer">
-<p style="font-size: 12px;" >Page created by <a href="https://github.com/sponsors/daemonforge">Daemonge Forge</a></p>
-</div>
-<script>
-let element = document.getElementById("steamname");
-let id = document.getElementById("id");
-let idlabel = document.getElementById("idlabel");
-let DbCheck = document.getElementById("DbCheck");
-let clear = document.getElementById("clear");
-let loading = document.getElementById("loading");
-let copyText = document.getElementById("copyText");
-let SteamAvatar = document.getElementById("SteamAvatar");
-	
-function GetSteamId(){
-	loading.style.display = "inline-block";
-	clear.style.display = "none";
-	SteamAvatar.style.display = "none";
-	//console.log("GetSteamID: " + element.value);
-	fetch("https://steamid.co/php/api.php?action=steamID&id=" + element.value)
-	.then(res => {
-		return res.json();
-	})
-	.then(data => {
-		//console.log(data);
-		id.style.display = "inline-block";
-		if (data.error !== undefined){
-			id.value = data.error;
-			copyText.style.display = "none";
-		} 
-		if (data.steamID64 !== undefined){
-			id.value = data.steamID64;
-			DbCheck.href = "http://steamcommunity.com/profiles/" + data.steamID64;
-			console.log(data);
-			copyText.style.display = "inline-block";
-			
-		}
-		if (data.avatarMedium !== undefined){
-			SteamAvatar.src = data.avatarMedium;
-			SteamAvatar.style.display = "inline-block";
-		}
-		idlabel.style.display = "block";
-		clear.style.display = "inline";
-		loading.style.display = "none";
-	});
-}
-
- function Clear(){
-	element.value = "";
-	id.value = "";
-	copyText.style.display = "none";
-	id.style.display = "none";
-	idlabel.style.display = "none";
-	clear.style.display = "none";
-	SteamAvatar.style.display = "none";
- }
- 
- function CopyId() {
-
-  /* Select the text field */
-  id.select();
-  id.setSelectionRange(0, 99999); /* For mobile devices */
-
-  /* Copy the text inside the text field */
-  document.execCommand("copy");
-
-}
-</script>
-
-</body>
+	<head>
+		<title>Find SteamId</title>
+		<meta name="description" content="Find your Steam Id using your steam name." />
+		<meta name="keywords" content="Steam, SteamID, Steam64ID" />
+		<meta name="author" content="Daemon Forge" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/SteamId/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/SteamId/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/SteamId/favicon-16x16.png" />
+		<link rel="manifest" href="/SteamId/site.webmanifest" />
+		<meta name="msapplication-TileColor" content="#161f27" />
+		<meta name="theme-color" content="#202b38" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<style>
+			.lds-dual-ring {
+				display: none;
+				width: 16px;
+				height: 16px;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				padding-left: 6px;
+			}
+			.lds-dual-ring:after {
+				content: " ";
+				display: block;
+				width: 12px;
+				height: 12px;
+				margin: 2px;
+				border-radius: 50%;
+				border: 4px solid #fff;
+				border-color: #fff transparent #fff transparent;
+				animation: lds-dual-ring 1.5s linear infinite;
+			}
+			@keyframes lds-dual-ring {
+				0% {
+					transform: rotate(0deg);
+				}
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+			.avatar {
+				vertical-align: middle;
+				margin-left: 6px;
+				width: 38px;
+				height: 38px;
+				border-radius: 25%;
+				border: solid 1px #161f27;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>SteamID</h1>
+		<p>
+			Find your Steam64ID
+		</p>
+		<label for="steamname">Steam Name:</label>
+		<div>
+			<input id="steamname" type="text" style="display: inline-block"/>
+			<img id="SteamAvatar" class="avatar" style="display: none" src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/63/634f9e34f9859082dbb32765814f7af7beb9a8d1_medium.jpg" alt="Steam Profile Avatar"/>
+		</div>
+		<label id="idlabel" for="id" style="display: none">Steam ID: (<a id="DbCheck" target="_blank" href="http://steamcommunity.com/profiles/">Profile Link</a>)</label>
+		<input id="id" type="text" style="display: none;" readonly />
+		<input id="copyText" type="button" onclick="CopyId()" style="display: none;" value="Copy"/>
+		<br/>
+		<input type="button" onclick="GetSteamId()" style="display: inline" value="Search"/>
+		<div id="loading" class="lds-dual-ring"/>
+		<input id="clear" type="button" onclick="Clear()" style="display: none;" value="Clear"/>
+		<br/>
+		<br/>
+		<br/>
+		<div class="footer">
+			<p style="font-size: 12px;">Page created by <a href="https://github.com/sponsors/daemonforge">Daemonge Forge</a></p>
+		</div>
+		<script>
+			let element = document.getElementById("steamname");
+			let id = document.getElementById("id");
+			let idlabel = document.getElementById("idlabel");
+			let DbCheck = document.getElementById("DbCheck");
+			let clear = document.getElementById("clear");
+			let loading = document.getElementById("loading");
+			let copyText = document.getElementById("copyText");
+			let SteamAvatar = document.getElementById("SteamAvatar");
+			function GetSteamId(){
+				loading.style.display = "inline-block";
+				clear.style.display = "none";
+				SteamAvatar.style.display = "none";
+				//console.log("GetSteamID: " + element.value);
+				fetch("https://steamid.co/php/api.php?action=steamID&id=" + element.value)
+				.then(res => {
+					return res.json();
+				})
+				.then(data => {
+					//console.log(data);
+					id.style.display = "inline-block";
+					if (data.error !== undefined){
+						id.value = data.error;
+						copyText.style.display = "none";
+					}
+					if (data.steamID64 !== undefined){
+						id.value = data.steamID64;
+						DbCheck.href = "http://steamcommunity.com/profiles/" + data.steamID64;
+						console.log(data);
+						copyText.style.display = "inline-block";
+					}
+					if (data.avatarMedium !== undefined){
+						SteamAvatar.src = data.avatarMedium;
+						SteamAvatar.style.display = "inline-block";
+					}
+					idlabel.style.display = "block";
+					clear.style.display = "inline";
+					loading.style.display = "none";
+				});
+			}
+			function Clear(){
+				element.value = "";
+				id.value = "";
+				copyText.style.display = "none";
+				id.style.display = "none";
+				idlabel.style.display = "none";
+				clear.style.display = "none";
+				SteamAvatar.style.display = "none";
+			}
+			function CopyId() {
+				/* Select the text field */
+				id.select();
+				id.setSelectionRange(0, 99999); /* For mobile devices */
+				/* Copy the text inside the text field */
+				document.execCommand("copy");
+			}
+		</script>
+	</body>
+</html>
