@@ -40,6 +40,14 @@
     transform: rotate(360deg);
   }
 }
+.avatar {
+  vertical-align: middle;
+  margin-left: 6px;
+  width: 38px;
+  height: 38px;
+  border-radius: 25%;
+  border: solid 1px #161f27;
+}
 </style>
 </head>
 <body>
@@ -47,8 +55,10 @@
 <p>
 Find your Steam64ID
 </p>
-<label for="steamname">Steam Name:</label><input id="steamname" type="text" /> 
-
+<label for="steamname">Steam Name:</label>
+<div>
+<input id="steamname" type="text" style="display: inline-block" /><img id="SteamAvatar" class="avatar" style="display: none" src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/63/634f9e34f9859082dbb32765814f7af7beb9a8d1_medium.jpg" alt="Steam Profile Avatar" />
+</div>
 <label id="idlabel" for="id" style="display: none" >Steam ID: (<a id="DbCheck" href="http://steamcommunity.com/profiles/">Profile Link</a>)</label>
 <input id="id" type="text" style="display: none;" readonly /><input id="copyText" type="button" onclick="CopyId()" style="display: none;"  value="Copy" />
 <br />
@@ -61,16 +71,19 @@ Find your Steam64ID
 <p style="font-size: 12px;" >Page created by <a href="https://github.com/sponsors/daemonforge">Daemonge Forge</a></p>
 </div>
 <script>
+let element = document.getElementById("steamname");
+let id = document.getElementById("id");
+let idlabel = document.getElementById("idlabel");
+let DbCheck = document.getElementById("DbCheck");
+let clear = document.getElementById("clear");
+let loading = document.getElementById("loading");
+let copyText = document.getElementById("copyText");
+let SteamAvatar = document.getElementById("SteamAvatar");
+	
 function GetSteamId(){
-	let element = document.getElementById("steamname");
-	let id = document.getElementById("id");
-	let idlabel = document.getElementById("idlabel");
-	let DbCheck = document.getElementById("DbCheck");
-	let clear = document.getElementById("clear");
-	let loading = document.getElementById("loading");
-	let copyText = document.getElementById("copyText");
 	loading.style.display = "inline-block";
 	clear.style.display = "none";
+	SteamAvatar.style.display = "none";
 	//console.log("GetSteamID: " + element.value);
 	fetch("https://steamid.co/php/api.php?action=steamID&id=" + element.value)
 	.then(res => {
@@ -88,6 +101,11 @@ function GetSteamId(){
 			DbCheck.href = "http://steamcommunity.com/profiles/" + data.steamID64;
 			console.log(data);
 			copyText.style.display = "inline-block";
+			
+		}
+		if (data.avatarMedium !== undefined){
+			SteamAvatar.src = data.avatarMedium;
+			SteamAvatar.style.display = "inline-block";
 		}
 		idlabel.style.display = "block";
 		clear.style.display = "inline";
@@ -96,26 +114,20 @@ function GetSteamId(){
 }
 
  function Clear(){
-	let element = document.getElementById("steamname");
-	let id = document.getElementById("id");
-	let idlabel = document.getElementById("idlabel");
-	let clear = document.getElementById("clear");
-	let copyText = document.getElementById("copyText");
 	element.value = "";
 	id.value = "";
 	copyText.style.display = "none";
 	id.style.display = "none";
 	idlabel.style.display = "none";
 	clear.style.display = "none";
+	SteamAvatar.style.display = "none";
  }
  
  function CopyId() {
-  /* Get the text field */
-  var copyText = document.getElementById("id");
 
   /* Select the text field */
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+  id.select();
+  id.setSelectionRange(0, 99999); /* For mobile devices */
 
   /* Copy the text inside the text field */
   document.execCommand("copy");
