@@ -14,6 +14,21 @@
 		<meta name="msapplication-TileColor" content="#161f27"/>
 		<meta name="theme-color" content="#202b38"/>
 		<style>
+			.logoBlock{
+				display: block; 
+				height: 50px;
+				margin: 12px;
+				float: left;
+			}
+			.logoImage{
+				display: block-inline;
+				vertical-align: center; 
+				height: 100%; 
+				float: left;
+			}
+			section{
+				
+			}
 		</style>
 	</head>
 	<body>
@@ -21,25 +36,34 @@
 		<p>
 			This is just a place for me to host some static pages :)
 		</p>
-		<div style="display: block; vertical-align: center; height: 64;">
+	<section>
+		<ul>
+		<li><h3>
+			<a href="./Calc/">Territories Permission Calculator</a>
+		</h3></li>
+		<li><h3>
+			<a href="./SteamId/">Find SteamId</a>
+		</h3></li>
+		</ul>
+	</section>
+		<br/>
+		<br/>
+	<section>
+		<div >
+			<iframe src="https://github.com/sponsors/daemonforge/button" title="Sponsor daemonforge" height="35" width="116" style="border: 0; margin: 8px;" ></iframe>
+		</div>
+	</section>
+		<br/>
+	<section>
+		<div class="logoBlock" >
+			<a href="./Discord/">
+				<img src="./Discord/logo.png" alt="Discord Logo" class="logoImage"  />
+			</a>
+		</div><div class="logoBlock">
 			<a href="./GitHub/">
-				<h1 style="display: block; float: left; margin-top: auto; margin-bottom: auto; height: 32px;">My GitHub</h1>
-				<img src="./GitHub/logo.png" alt="GitHub Logo" style="display: block; float: left;" width="50px"/>
+				<img src="./GitHub/logo.png" alt="GitHub Logo" class="logoImage" /><h1 style="display: block; float: left; margin-top: auto; margin-bottom: auto;">GitHub</h1>
 			</a>
 		</div>
 	</section>
-	<section>
-		<h2>
-			<a href="./Calc/">Territories Permission Calculator</a>
-		</h2>
-		<h2>
-			<a href="./SteamId/">Find SteamId</a>
-		</h2>
-	</section>
-	<section>
-		<br/>
-		<section>
-			<iframe src="https://github.com/sponsors/daemonforge/button" title="Sponsor daemonforge" height="35" width="116" style="border: 0; margin: 8px;"/>
-		</section>
 	</body>
 </html>
