@@ -4,12 +4,8 @@
 	<meta name="description" content="Find your Steam Id using your steam name.">
 	<meta name="keywords" content="Steam, SteamID, Steam64ID">
 	<meta name="author" content="Daemon Forge">
-	<link rel="apple-touch-icon" sizes="180x180" href="/SteamId/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/SteamId/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/SteamId/favicon-16x16.png">
-	<link rel="manifest" href="/SteamId/site.webmanifest">
-	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="theme-color" content="#333333">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
 	<style>
 	@keyframes border-pulsate {
@@ -86,7 +82,7 @@
 	<form>
 		<label for="steamname">Steam Name:</label>
 		<div>
-			<input id="steamname" type="text" style="display: inline-block; border: 2px solid rgba(255, 0, 0, 0.0);" /><img id="SteamAvatar" class="avatar" style="display: none" src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/63/634f9e34f9859082dbb32765814f7af7beb9a8d1_medium.jpg" alt="Steam Profile Avatar" />
+			<input id="steamname" type="text" style="display: inline-block; border: 2px solid rgba(255, 0, 0, 0.0);" /><img id="SteamAvatar" class="avatar" style="display: none" src="" alt="Steam Profile Avatar" />
 		</div>
 		<label id="idlabel" for="id" style="display: none" >Steam ID: <span id="plink">(<a id="DbCheck" target="_blank" href="http://steamcommunity.com/profiles/">Profile Link</a>)</span></label>
 		<input id="id" type="text" style="display: none;" readonly /><input id="copyText" type="button" onclick="CopyId()" style="display: none;"  value="Copy" />
