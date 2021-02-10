@@ -25,6 +25,7 @@ function GetSteamId(){
 		.then(data => {
 			//console.log(data);
 			id.style.display = "inline-block";
+			console.log(data);
 			if (data.error !== undefined){
 				
 				id.value = data.error;
