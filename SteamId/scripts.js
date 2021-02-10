@@ -18,7 +18,7 @@ function GetSteamId(){
 		SteamAvatar.style.display = "none";
 		copyText.style.display = "none";
 		//console.log("GetSteamID: " + element.value);
-		fetch("https://steamid.co/php/api.php?action=steamID&id=" + element.value)
+		fetch("https://daemonforge.dev/steamid/api/?name=" + element.value)
 		.then(res => {
 			return res.json();
 		})
@@ -84,7 +84,7 @@ element.addEventListener("keydown", function(event) {
  function GenerateGUID(theId){
     
     let hash = CryptoJS.SHA256(theId);
-    
-    return hash.toString(CryptoJS.enc.Base64);
+    var text = hash.toString(CryptoJS.enc.Base64);
+    return text.replace('+', '-').replace('/', '_');
     
 }
