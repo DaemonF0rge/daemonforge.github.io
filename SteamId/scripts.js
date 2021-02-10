@@ -25,7 +25,7 @@ function GetSteamId(){
 		.then(data => {
 			//console.log(data);
 			id.style.display = "inline-block";
-			console.log(data);
+			//console.log(data);
 			if (data.error !== undefined){
 				
 				id.value = data.error;
@@ -36,7 +36,7 @@ function GetSteamId(){
 				id.value = data.steamid;
 				DbCheck.href = data.profileurl;
 				copyText.style.display = "inline-block";
-				console.log(GenerateGUID(data.steamid));
+				console.log("GUID:" + GenerateGUID(data.steamid));
 			}
 			if (data.avatarmedium !== undefined){
 				SteamAvatar.src = data.avatarmedium;
