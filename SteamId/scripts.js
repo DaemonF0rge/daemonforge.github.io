@@ -30,15 +30,15 @@ function GetSteamId(){
 				id.value = data.error;
 				copyText.style.display = "none";
 			} 
-			if (data.steamID64 !== undefined){
+			if (data.steamid !== undefined){
 				plink.style.display = "inline";
-				id.value = data.steamID64;
-				DbCheck.href = "http://steamcommunity.com/profiles/" + data.steamID64;
+				id.value = data.steamid;
+				DbCheck.href = data.profileurl;
 				copyText.style.display = "inline-block";
-				console.log(GenerateGUID(data.steamID64));
+				console.log(GenerateGUID(data.steamid));
 			}
-			if (data.avatarMedium !== undefined){
-				SteamAvatar.src = data.avatarMedium;
+			if (data.avatarmedium !== undefined){
+				SteamAvatar.src = data.avatarmedium;
 				SteamAvatar.style.display = "inline-block";
 			}
 			idlabel.style.display = "block";
