@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css" media="print" onload="this.media='all'">
 	<script async src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous"></script>
 	<script async src="https://kit.fontawesome.com/63bc495439.js" crossorigin="anonymous"></script>
+    <link href="./css/flag-icon.css" rel="stylesheet" media="print" onload="this.media='all'">
 	<script async src="scripts.js"></script>
 	<style>
 	@keyframes border-pulsate {
@@ -78,13 +79,34 @@
 	div{
 		margin-top: 10px;
 	}
+	dialog::backdrop {
+		background: rgba(0,0,0,.61);
+		-webkit-backdrop-filter: blur(4px);
+		backdrop-filter: blur(4px);
+		position: fixed;
+		top: 0px;
+		right: 0px;
+		bottom: 0px;
+		left: 0px;
+	}
+	dialog {
+	  background-color: var(--background-alt);
+	  color: var(--text-main);
+	  border: none;
+	  border-radius: 6px;
+	  border-color: var(--border);
+	  padding: 10px 30px;
+	}
 	</style>
 </head>
-<body style="background: #202b38; color: #dbdbdb;">
+<body style="background: #202b38; color: #dbdbdb; max-width: 600px; min-width: 400px;">
 	<h1>Steam ID</h1>
 	<p>
 		Find your Steam64ID
 	</p>
+	<div>
+	<dialog id="dialog"> <header id="DialogHeader">ERROR</header> <p id="DialogText">Invalid Text</p><button onclick="CloseDialog()">Close</button></dialog>
+	</div>
 	<form>
 		<label for="steamname">Steam Name:</label>
 		<div>
@@ -99,15 +121,23 @@
 		<input id="clear" type="button" onclick="Clear()" style="display: none;"  value="Clear" />
 		</div>
 	</form>
-	<br />
 	<button onclick="LoginSteam()">
 	<i class="fa fa-steam"></i> Login
 	</button>
 	<br />
+	<div>
+	<details id="MoreDetails" style="width: 380px; d" > 
+	<summary>More Details</summary> 
+		<label for="guid">GUID:</label> 
+		<input id="guid" type="text" style="display: inline-block; width: 350px" readonly />
+		<div>Country:</div><div style="background-color: var(--background); padding: 10px; width: 330px; margin-right: 6px; margin-bottom: 6px; padding: 10px; border: none; border-radius: 6px; outline: none;"> <span id="countryflag" class="flag-icon flag-icon-ca" ></span> <span id="countrycode">CA</span></div>
+	</details>
+	</div>
+	<br />
 	<br />
 	<br />
 	<div class="footer">
-		<p style="font-size: 12px;" >No infromation is saved to any server. Page created by <a href="https://github.com/sponsors/daemonforge">Daemonge Forge</a></p>
+		<p style="font-size: 12px;" >No steam infromation is saved to any server.<br />Page created by <a href="https://github.com/sponsors/daemonforge">Daemonge Forge</a></p>
 	</div>
 <script>
 

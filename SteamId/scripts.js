@@ -7,6 +7,13 @@ let loading = document.getElementById("loading");
 let copyText = document.getElementById("copyText");
 let SteamAvatar = document.getElementById("SteamAvatar");
 let plink = document.getElementById("plink");
+let MoreDetails = document.getElementById("MoreDetails");
+let Theguid = document.getElementById("guid");
+let CountryCode = document.getElementById("countrycode");
+let CountryFlag = document.getElementById("countryflag");
+let dialog = document.getElementById("dialog");
+let DialogHeader = document.getElementById("DialogHeader");
+let DialogText = document.getElementById("DialogText");
 	
 function GetSteamId(){
 	element.style.animation = null;
@@ -18,7 +25,7 @@ function GetSteamId(){
 		SteamAvatar.style.display = "none";
 		copyText.style.display = "none";
 		//console.log("GetSteamID: " + element.value);
-		fetch("https://daemonforge.dev/steamid/api/?name=" + element.value)
+		fetch("https://daemonforge.dev/SteamId/api/?name=" + element.value)
 		.then(res => {
 			return res.json();
 		})
@@ -37,10 +44,17 @@ function GetSteamId(){
 				DbCheck.href = data.profileurl;
 				copyText.style.display = "inline-block";
 				console.log("GUID:" + GenerateGUID(data.steamid));
+				MoreDetails.style.display = "block";
+				Theguid.value = GenerateGUID(sid);
 			}
 			if (data.avatarmedium !== undefined){
 				SteamAvatar.src = data.avatarmedium;
 				SteamAvatar.style.display = "inline-block";
+			}
+			if (data.loccountrycode !== undefined){
+				let cCode = data.loccountrycode;
+				CountryCode.innerHTML = cCode.ToUpper();
+				CountryFlag.className = "flag-icon flag-icon-" + cCode.ToLower();
 			}
 			idlabel.style.display = "block";
 			clear.style.display = "inline";
@@ -83,7 +97,7 @@ element.addEventListener("keydown", function(event) {
 });
 
 function LoginSteam(){
-	let url = "https://steamcommunity.com/openid/login?openid.ns=http://specs.openid.net/auth/2.0&openid.mode=checkid_setup&openid.return_to=https://daemonforge.dev/SteamId/&openid.realm=https://daemonforge.dev&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select";
+	let url = "https://steamcommunity.com/openid/login?openid.ns=http://specs.openid.net/auth/2.0&openid.mode=checkid_setup&openid.return_to=https://daemonforge.dev/SteamId/Login/&openid.realm=https://daemonforge.dev&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select";
 	setTimeout(function(){window.location = url;}, 300);
 }
 
@@ -95,51 +109,49 @@ function GenerateGUID(theId){
     
 }
 
+function CloseDialog(){
+	dialog.close();
+}
+
 let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
-if (urlParams.has("openid.identity")){
-	let sid = urlParams.get("openid.identity");
-	let idurl = new URL(sid);
-	let theID = idurl.pathname;
-	theID = theID.replace(/\//g, '')
-	theID = theID.replace(/[a-zA-Z]/g, '')
-	console.log(theID);
-	if (theID.length == 17){
-		loading.style.display = "inline-block";
-		plink.style.display = "none";
-		id.value = theID;
-		clear.style.display = "none";
-		SteamAvatar.style.display = "none";
-		copyText.style.display = "none";
-		//console.log("GetSteamID: " + element.value);
-		fetch("https://daemonforge.dev/steamid/id/?id=" + theID)
-		.then(res => {
-			return res.json();
-		})
-		.then(data => {
-			//console.log(data);
-			id.style.display = "inline-block";
-			//console.log(data);
-			if (data.error !== undefined){
-				
-				id.value = data.error;
-				copyText.style.display = "none";
-			} 
-			if (data.steamid !== undefined){
-				plink.style.display = "inline";
-				id.value = data.steamid;
-				DbCheck.href = data.profileurl;
-				copyText.style.display = "inline-block";
-				console.log("GUID:" + GenerateGUID(data.steamid));
-			}
-			if (data.avatarmedium !== undefined){
-				SteamAvatar.src = data.avatarmedium;
-				SteamAvatar.style.display = "inline-block";
-			}
-			idlabel.style.display = "block";
-			clear.style.display = "inline";
-			loading.style.display = "none";
-		});
+if (urlParams.has("SteamId")){
+	
+	//console.log(data);
+	id.style.display = "inline-block";
+	//console.log(data);
+	if (data.error !== undefined){
 		
+		id.value = data.error;
+		copyText.style.display = "none";
+	} 
+	if (urlParams.has("SteamId")){
+		let sid = searchParams.get("SteamId");
+		plink.style.display = "inline";
+		id.value = sid;
+		DbCheck.href = "https://steamcommunity.com/id/"+ sid + "/";
+		copyText.style.display = "inline-block";
+		MoreDetails.style.display = "block";
+		Theguid.value = GenerateGUID(sid);
 	}
+	if (urlParams.has("Avatar")){
+		SteamAvatar.src = urlParams.get("Avatar");
+		SteamAvatar.style.display = "inline-block";
+	}
+	if (urlParams.has("Name")){
+		element.value = urlParams.get("Name");
+		SteamAvatar.style.display = "inline-block";
+	}
+	if (urlParams.has("country")){
+		let cCode = urlParams.get("country");
+		CountryCode.innerHTML = cCode.ToUpper();
+		CountryFlag.className = "flag-icon flag-icon-" + cCode.ToLower();
+	}
+	idlabel.style.display = "block";
+	clear.style.display = "inline";
+	loading.style.display = "none";
+}
+if (urlParams.has("error")){
+	dialog.showModal();
+	DialogText.innerHTML = urlParams.get("error");
 }
