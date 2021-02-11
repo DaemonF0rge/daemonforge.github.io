@@ -120,11 +120,6 @@ if (urlParams.has("SteamId")){
 	//console.log(data);
 	id.style.display = "inline-block";
 	//console.log(data);
-	if (data.error !== undefined){
-		
-		id.value = data.error;
-		copyText.style.display = "none";
-	} 
 	if (urlParams.has("SteamId")){
 		let sid = searchParams.get("SteamId");
 		plink.style.display = "inline";
