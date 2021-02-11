@@ -82,6 +82,11 @@ element.addEventListener("keydown", function(event) {
   }
 });
 
+function LoginSteam(){
+	let url = "https://steamcommunity.com/openid/login?openid.ns=http://specs.openid.net/auth/2.0&openid.mode=checkid_setup&openid.return_to=https://daemonforge.dev/SteamId/&openid.realm=https://daemonforge.dev&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select";
+	setTimeout(function(){window.location = url;}, 300);
+}
+
 function GenerateGUID(theId){
     
     let hash = CryptoJS.SHA256(theId);
@@ -97,7 +102,43 @@ if (urlParams.has("openid.identity")){
 	console.log(sid);
 	let idurl = new URL(sid);
 	let theID = idurl.pathname;
-	theID.replace('/', '')
-	theID.replace('openid', '')
-	console.log(theID);
+	theID = theID.replace(/\//g, '')
+	theID = theID.replace(/[a-zA-Z]/g, '')
+	if (theID.length == 17){
+		plink.style.display = "none";
+		id.value = "";
+		clear.style.display = "none";
+		SteamAvatar.style.display = "none";
+		copyText.style.display = "none";
+		//console.log("GetSteamID: " + element.value);
+		fetch("https://daemonforge.dev/steamid/id/?id=" + element.value)
+		.then(res => {
+			return res.json();
+		})
+		.then(data => {
+			//console.log(data);
+			id.style.display = "inline-block";
+			//console.log(data);
+			if (data.error !== undefined){
+				
+				id.value = data.error;
+				copyText.style.display = "none";
+			} 
+			if (data.steamid !== undefined){
+				plink.style.display = "inline";
+				id.value = data.steamid;
+				DbCheck.href = data.profileurl;
+				copyText.style.display = "inline-block";
+				console.log("GUID:" + GenerateGUID(data.steamid));
+			}
+			if (data.avatarmedium !== undefined){
+				SteamAvatar.src = data.avatarmedium;
+				SteamAvatar.style.display = "inline-block";
+			}
+			idlabel.style.display = "block";
+			clear.style.display = "inline";
+			loading.style.display = "none";
+		});
+		
+	}
 }
