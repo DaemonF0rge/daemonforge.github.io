@@ -53,7 +53,7 @@ function GetSteamId(){
 	}
 }
 
- function Clear(){
+function Clear(){
 	element.value = "";
 	id.value = "";
 	copyText.style.display = "none";
@@ -64,7 +64,7 @@ function GetSteamId(){
 	SteamAvatar.style.display = "none";
  }
  
- function CopyId() {
+function CopyId() {
 
   /* Select the text field */
   id.select();
@@ -82,10 +82,22 @@ element.addEventListener("keydown", function(event) {
   }
 });
 
- function GenerateGUID(theId){
+function GenerateGUID(theId){
     
     let hash = CryptoJS.SHA256(theId);
     var text = hash.toString(CryptoJS.enc.Base64);
     return text.replace('+', '-').replace('/', '_');
     
+}
+
+let queryString = window.location.search;
+let urlParams = new URLSearchParams(queryString);
+if (urlParams.has("openid.identity")){
+	let sid = urlParams.get("openid.identity");
+	console.log(sid);
+	let idurl = new URL(sid);
+	let theID = idurl.pathname;
+	theID.replace('/', '')
+	theID.replace('openid', '')
+	console.log(theID);
 }
