@@ -99,19 +99,19 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 if (urlParams.has("openid.identity")){
 	let sid = urlParams.get("openid.identity");
-	console.log(sid);
 	let idurl = new URL(sid);
 	let theID = idurl.pathname;
 	theID = theID.replace(/\//g, '')
 	theID = theID.replace(/[a-zA-Z]/g, '')
+	console.log(theID);
 	if (theID.length == 17){
 		plink.style.display = "none";
-		id.value = "";
+		id.value = theID;
 		clear.style.display = "none";
 		SteamAvatar.style.display = "none";
 		copyText.style.display = "none";
 		//console.log("GetSteamID: " + element.value);
-		fetch("https://daemonforge.dev/steamid/id/?id=" + element.value)
+		fetch("https://daemonforge.dev/steamid/id/?id=" + theID)
 		.then(res => {
 			return res.json();
 		})
