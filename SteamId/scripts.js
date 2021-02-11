@@ -105,6 +105,7 @@ if (urlParams.has("openid.identity")){
 	theID = theID.replace(/[a-zA-Z]/g, '')
 	console.log(theID);
 	if (theID.length == 17){
+		loading.style.display = "inline-block";
 		plink.style.display = "none";
 		id.value = theID;
 		clear.style.display = "none";
