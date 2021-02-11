@@ -117,6 +117,14 @@
 		<input id="id" type="text" style="display: none;" readonly /><input id="copyText" type="button" onclick="CopyId()" style="display: none;"  value="Copy" />
 		</div>
 		<div>
+			<details id="MoreDetails" style="width: 380px; display: none;" > 
+			<summary>More Details</summary> 
+				<label for="guid">GUID:</label> 
+				<input id="guid" type="text" style="display: inline-block; width: 350px" readonly />
+				<div>Country:</div><div style="background-color: var(--background); padding: 10px; width: 330px; margin-right: 6px; margin-bottom: 6px; padding: 10px; border: none; border-radius: 6px; outline: none;"> <span id="countryflag" class="flag-icon flag-icon-ca" ></span> <span id="countrycode">CA</span></div>
+			</details>
+		</div>
+		<div>
 		<input  type="button" onclick="GetSteamId()" style="display: inline" value="Search" /><div id="loading" class="lds-dual-ring"></div>
 		<input id="clear" type="button" onclick="Clear()" style="display: none;"  value="Clear" />
 		</div>
@@ -125,14 +133,6 @@
 	<i class="fa fa-steam"></i> Login
 	</button>
 	<br />
-	<div>
-	<details id="MoreDetails" style="width: 380px; display: none;" > 
-	<summary>More Details</summary> 
-		<label for="guid">GUID:</label> 
-		<input id="guid" type="text" style="display: inline-block; width: 350px" readonly />
-		<div>Country:</div><div style="background-color: var(--background); padding: 10px; width: 330px; margin-right: 6px; margin-bottom: 6px; padding: 10px; border: none; border-radius: 6px; outline: none;"> <span id="countryflag" class="flag-icon flag-icon-ca" ></span> <span id="countrycode">CA</span></div>
-	</details>
-	</div>
 	<br />
 	<br />
 	<br />

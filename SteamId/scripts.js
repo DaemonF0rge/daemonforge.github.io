@@ -20,6 +20,9 @@ function GetSteamId(){
 	if (element.value != "" && element.value.length > 1){
 		plink.style.display = "none";
 		id.value = "";
+		CountryCode.innerHTML = "";
+		CountryFlag.className = "";
+		Theguid.value = "";
 		loading.style.display = "inline-block";
 		clear.style.display = "none";
 		SteamAvatar.style.display = "none";
@@ -76,6 +79,11 @@ function Clear(){
 	//idlabel.style.display = "none";
 	clear.style.display = "none";
 	SteamAvatar.style.display = "none";
+	MoreDetails.style.display = "none";
+	CountryCode.innerHTML = "";
+	CountryFlag.className = "";
+	Theguid.value = "";
+	
  }
  
 function CopyId() {
