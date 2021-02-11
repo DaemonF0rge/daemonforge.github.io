@@ -96,6 +96,16 @@ function CopyId() {
   document.execCommand("copy");
 
 }
+function Copyguid() {
+
+  /* Select the text field */
+  Theguid.select();
+  Theguid.setSelectionRange(0, 99999); /* For mobile devices */
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+}
 
 element.addEventListener("keydown", function(event) {
   element.style.animation = null;

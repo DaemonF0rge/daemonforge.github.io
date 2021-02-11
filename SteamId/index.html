@@ -99,7 +99,7 @@
 	}
 	</style>
 </head>
-<body style="background: #202b38; color: #dbdbdb; max-width: 600px; min-width: 400px;">
+<body style="background: #202b38; color: #dbdbdb; max-width: 500px; min-width: 360px;">
 	<h1>Steam ID</h1>
 	<p>
 		Find your Steam64ID
@@ -114,14 +114,16 @@
 		</div>
 		<div>
 		<label id="idlabel" for="id" style="display: none" >Steam ID: <span id="plink">(<a id="DbCheck" target="_blank" href="http://steamcommunity.com/profiles/">Profile Link</a>)</span></label>
-		<input id="id" type="text" style="display: none;" readonly /><input id="copyText" type="button" onclick="CopyId()" style="display: none;"  value="Copy" />
+		<input id="id" type="text" style="display: none;" readonly /><button id="copyText" type="button" onclick="CopyId()" style="display: none; padding: 10px"><i class="fa fa-copy"></i> </button>
 		</div>
 		<div>
-			<details id="MoreDetails" style="width: 380px; display: none;" > 
+			<details id="MoreDetails" style="width: 320px; " > 
 			<summary>More Details</summary> 
-				<label for="guid">GUID:</label> 
-				<input id="guid" type="text" style="display: inline-block; width: 350px" readonly />
-				<div>Country:</div><div style="background-color: var(--background); padding: 10px; width: 330px; margin-right: 6px; margin-bottom: 6px; padding: 10px; border: none; border-radius: 6px; outline: none;"> <span id="countryflag" class="flag-icon flag-icon-ca" ></span> <span id="countrycode">CA</span></div>
+				<label for="guid">GUID:</label>
+				<div>
+				<input id="guid" type="text" style="display: inline-block; width: 264px" readonly /> <button id="copyText" type="button" onclick="Copyguid()" style="padding: 10px" ><i class="fa fa-copy"></i> </button>
+				</div>
+				<div>Country:</div><div style="background-color: var(--background); padding: 10px; width: 244px; margin-right: 6px; margin-bottom: 6px; padding: 10px; border: none; border-radius: 6px; outline: none;"> <span id="countryflag" class="flag-icon flag-icon-ca" ></span> <span id="countrycode">CA</span></div>
 			</details>
 		</div>
 		<div>
@@ -136,6 +138,7 @@
 	<br />
 	<br />
 	<br />
+	
 	<div class="footer">
 		<p style="font-size: 12px;" >No steam infromation is saved to any server.<br />Page created by <a href="https://github.com/sponsors/daemonforge">Daemonge Forge</a></p>
 	</div>
