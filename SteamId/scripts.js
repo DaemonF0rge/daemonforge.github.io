@@ -45,7 +45,7 @@ function GetSteamId(){
 				copyText.style.display = "inline-block";
 				console.log("GUID:" + GenerateGUID(data.steamid));
 				MoreDetails.style.display = "block";
-				Theguid.value = GenerateGUID(sid);
+				Theguid.value = GenerateGUID(data.steamid);
 			}
 			if (data.avatarmedium !== undefined){
 				SteamAvatar.src = data.avatarmedium;
