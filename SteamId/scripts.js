@@ -121,7 +121,7 @@ if (urlParams.has("SteamId")){
 	id.style.display = "inline-block";
 	//console.log(data);
 	if (urlParams.has("SteamId")){
-		let sid = searchParams.get("SteamId");
+		let sid = urlParams.get("SteamId");
 		plink.style.display = "inline";
 		id.value = sid;
 		DbCheck.href = "https://steamcommunity.com/id/"+ sid + "/";
