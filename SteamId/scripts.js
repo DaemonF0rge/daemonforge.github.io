@@ -53,8 +53,8 @@ function GetSteamId(){
 			}
 			if (data.loccountrycode !== undefined){
 				let cCode = data.loccountrycode;
-				CountryCode.innerHTML = cCode.ToUpper();
-				CountryFlag.className = "flag-icon flag-icon-" + cCode.ToLower();
+				CountryCode.innerHTML = cCode.toUpperCase();
+				CountryFlag.className = "flag-icon flag-icon-" + cCode.toLowerCase();
 			}
 			idlabel.style.display = "block";
 			clear.style.display = "inline";
@@ -139,8 +139,8 @@ if (urlParams.has("SteamId")){
 	}
 	if (urlParams.has("country")){
 		let cCode = urlParams.get("country");
-		CountryCode.innerHTML = cCode.ToUpper();
-		CountryFlag.className = "flag-icon flag-icon-" + cCode.ToLower();
+		CountryCode.innerHTML = cCode.toUpperCase();
+		CountryFlag.className = "flag-icon flag-icon-" + cCode.toLowerCase();
 	}
 	idlabel.style.display = "block";
 	clear.style.display = "inline";
