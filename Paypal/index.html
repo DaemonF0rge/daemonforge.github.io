@@ -8,8 +8,13 @@
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"/>
 		<meta name="msapplication-TileColor" content="#161f27"/>
 		<meta name="theme-color" content="#202b38"/>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css" media="print" onload="this.media='all'">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css"/>
 		<style>
+			.center {
+				text-align: center;
+				margin: auto;
+				padding: 10px;
+			}
 			#loader {
 				width: 50px;
 				height: 50px;
@@ -56,35 +61,26 @@
 					transform: scale(1.2,1);
 				}
 			}
-			.center {
-				text-align: center;
-
-				padding: 10px;
-			}
 		</style>
 	</head>
-	<body style="background: #202b38; color: #dbdbdb;">
-  		<main>
-			<br/>
-			<div>
-				<div id="loader">
-					<div id="box"></div>
-					<div id="shadow"></div>
-				</div>
-			</div>
-			<br/>
-			<br/>
-			<p class="center">
-				You will be Redirected to <a href="https://github.com/daemonforge">github.com/daemonforge</a>
-				<span id="time">in 2 seconds</span>
-			</p>
-  		</main>
+	<body>
+		<br/>
+		<br/>
+		<div id="loader">
+			<div id="box"></div>
+			<div id="shadow"></div>
+		</div>
+		<br/>
+		<br/>
+		<p class="center">You will be Redirected to <a href="https://paypal.me/DaemonForge">paypal.me/DaemonForge</a>
+			<span id="time">in 2 seconds</span>
+		</p>
 		<script>
 			// Simulate an HTTP redirect:
 			let element = document.getElementById("time");
 			setTimeout(() => {  element.innerHTML  = "in 1 second"; }, 1000);
 			setTimeout(() => {  element.innerHTML  = "now"; }, 1950);
-			setTimeout(() => {  window.location.replace("https://github.com/daemonforge"); }, 2100);
+			setTimeout(() => {  window.location.replace("https://paypal.me/DaemonForge"); }, 2100);
 		</script>
 	</body>
 </html>

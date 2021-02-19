@@ -16,7 +16,7 @@
 		<meta name="theme-color" content="#202b38"/>
 		<style>
 			.logoBlock{
-				display: block; 
+				display: inline-block; 
 				height: 50px;
 				margin: 12px;
 				float: left;
@@ -28,16 +28,44 @@
 				float: left;
 			}
 			section{
-				
+				display: inline-block; 
+				padding: 15px; 
+				width: 100%;
 			}
 		</style>
 	</head>
-	<body>
-		<h1>Hello</h1>
+	<body style="min-width: 300px; max-width: 640px;">
+		<h1>Welcome</h1>
 		<p>
-			This is just a place for me to host some static pages :)
+			I am DaemonForge I make shit for DayZ to learn more see any of the below
 		</p>
-	<section>
+	<section >
+		<h2>Where to find my shit</h2>
+		<div>
+			<div class="logoBlock" >
+				<a href="./Discord/">
+					<button style="padding: 5px 14px;  height: 52px">
+					<img src="./Discord/logo.png" alt="Discord Logo" class="logoImage" style="margin-top: 3px;" />
+					</button>
+				</a>
+			</div>
+			<div class="logoBlock" >
+				<a href="./GitHub/">
+					<button style="padding: 7px 14px; font-size: 28px; height: 52px">
+					<img src="./GitHub/logo.png" alt="GitHub Logo" class="logoImage" /><span style="display: block; float: left; margin-top: auto; margin-bottom: auto;"><strong>GitHub</strong></span>
+					</button>
+				</a>
+			</div>
+			<div class="logoBlock">
+				
+				<a href="./Steam/">
+					<button style="padding: 10px 16px; font-size: 24px; height: 52px">
+				<i class="fa fa-steam" style="padding-right: 5px" ></i> <strong>Workshop</strong></button></a>
+			</div>
+		</div>
+	</section>
+	<section >
+		<h2>Some Other Tools:</h2>
 		<ul>
 		<li><h3>
 			<a href="./Calc/">Territories Permission Calculator</a>
@@ -47,28 +75,15 @@
 		</h3></li>
 		</ul>
 	</section>
-		<br/>
-		<br/>
-	<section>
-		<div >
-			<iframe src="https://github.com/sponsors/daemonforge/button" title="Sponsor daemonforge" height="35" width="116" style="border: 0; margin: 8px;" ></iframe>
+	<section >
+		<h2>How to support me</h2>
+		<div class="logoBlock">
+			<a href="./Paypal/">
+				<button style="padding: 7px 14px; font-size: 18px">
+			<i class="fa fa-paypal" style="padding-right: 5px" ></i> <strong>Paypal</strong></button></a>
 		</div>
-	</section>
-		<br/>
-	<section>
-		<div class="logoBlock" >
-			<a href="./Discord/">
-				<img src="./Discord/logo.png" alt="Discord Logo" class="logoImage"  />
-			</a>
-		</div><div class="logoBlock">
-			<a href="./GitHub/">
-				<img src="./GitHub/logo.png" alt="GitHub Logo" class="logoImage" /><h1 style="display: block; float: left; margin-top: auto; margin-bottom: auto;">GitHub</h1>
-			</a>
-		</div><div class="logoBlock">
-			
-			<a href="./Steam/">
-				<button style="padding: 10px 16px; font-size: 24px">
-			<i class="fa fa-steam" style="padding-right: 5px" ></i> <strong>Workshop</strong></button></a>
+		<div class="logoBlock" style="vertical-align: center">
+			<iframe src="https://github.com/sponsors/daemonforge/button" title="Sponsor daemonforge" height="35" width="116" style="border: 0; margin: 2px;" ></iframe>
 		</div>
 	</section>
 	</body>
