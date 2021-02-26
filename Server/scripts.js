@@ -36,6 +36,8 @@ function updateHtml(element, text){
     if (DomObj !== undefined && DomObj !== null){
         if (text === true){
             DomObj.innerHTML = "yes";
+        } else if (text === false){
+            DomObj.innerHTML = "no";
         } else {
             DomObj.innerHTML = text;
         }
