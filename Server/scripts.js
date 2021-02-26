@@ -68,6 +68,7 @@ function ValidatePort(port)
     return (false)
 }
 async function LookUpServer(){
+    ip.style.animation = null;
     loading.style.display="inline-block";
     lookup.style.display="none";
     let theIp = ip.value;
@@ -75,7 +76,7 @@ async function LookUpServer(){
     if (thePort == ""){
         thePort = "27016";
     }
-    if (ValidateIPaddress(theIp) && ValidatePort(thePort)){
+    if (theIp != "" && ValidateIPaddress(theIp) && ValidatePort(thePort)){
         try{
             let data = await fetch("https://api.daemonforge.dev/server/" +theIp+"/"+thePort+"/full" ) .then( response => response.json() );
             Clear();
