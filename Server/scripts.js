@@ -179,7 +179,7 @@ function bytesToSize(bytes) {
     return  size + ' ' + sizes[i];
  }
 
-function ParseMarkup(text)
+function ParseMarkup(text) {
            text = text.replace(/\[[Uu][Rr][Ll][=](.*)[\]]((.|\n)*)\[\/[Uu][Rr][Ll]\]/gm, function(x){return x.replace(/\[[Uu][Rr][Ll][=]/, "<a style=\"display: inline;\" target=\"_blank\" href=\"").replace(/\[[\/][Uu][Rr][Ll]\]/, "</a>").replace(/\]/, "\" >")});
 
            text = text.replace(/[\[][Tt][Aa][Bb][Ll][Ee][\]]((.|\r\n)*)[\[][\/][Tt][Aa][Bb][Ll][Ee][\]]/gm,  function(x){ 
