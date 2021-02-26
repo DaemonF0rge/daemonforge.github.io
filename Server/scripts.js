@@ -35,9 +35,9 @@ function updateHtml(element, text){
     let DomObj = document.getElementById(element);
     if (DomObj !== undefined && DomObj !== null){
         if (text === true){
-            DomObj.innerHTML = "yes";
+            DomObj.innerHTML = "Yes";
         } else if (text === false){
-            DomObj.innerHTML = "no";
+            DomObj.innerHTML = "No";
         } else {
             DomObj.innerHTML = text;
         }
@@ -71,6 +71,7 @@ function ValidatePort(port)
 }
 async function LookUpServer(){
     ip.style.animation = null;
+    port.style.animation = null;
     loading.style.display="inline-block";
     lookup.style.display="none";
     let theIp = ip.value;
@@ -106,41 +107,7 @@ async function LookUpServer(){
                 let contents = "";
                 for(mod of data.mods){
                     //console.log(mod)
-                    let description = mod.description;
-                    description = description.replace(/\[[Uu][Rr][Ll][=](.*)[\]]((.|\n)*)\[\/[Uu][Rr][Ll]\]/gm, function(x){return x.replace(/\[[Uu][Rr][Ll][=]/, "<a style=\"display: inline;\" target=\"_blank\" href=\"").replace(/\[[\/][Uu][Rr][Ll]\]/, "</a>").replace(/\]/, "\" >")});
-
-                    description = description.replace(/[\[][Tt][Aa][Bb][Ll][Ee][\]]((.|\r\n)*)[\[][\/][Tt][Aa][Bb][Ll][Ee][\]]/gm,  function(x){ 
-                        console.log("TableFound");
-                        //console.log(x);
-                        x = x.replace(/(\r\n)/g, "");
-                        x = x.replace(/\[\/[Tt][Aa][Bb][Ll][Ee]\]/g, "</table>");
-                        x = x.replace(/\[[Tt][Aa][Bb][Ll][Ee]\]/g,"<table style=\"margin: 3px 2%; width: 96%;\">")
-                        x = x.replace(/\[\/{0,1}[Tt][Hh]\]/g,function(x){
-                            return x.replace("[","<").replace(/[Tt][Hh]\]/g,"td>")
-                        });
-                        x = x.replace(/\[\/{0,1}[Tt][Dd]\]/g,function(x){
-                            return x.replace("[","<").replace(/[Tt][Dd]\]/g,"td>")
-                        });
-                        x = x.replace(/\[[\/]{0,1}[Tt][Rr]\]/g,function(x){
-                            return x.replace("[","<").replace(/[Tt][Rr]\]/g,"tr>")
-                        });
-
-                        //console.log(x);
-                        return x;
-                    });
-                    description = description.replace(/(\r\n){3,5}/g, "\n<br />\n<br />");
-                    description = description.replace(/(\r\n)/g, "\n<br />");
-                    description = description.replace(/\[[\/]{0,1}[hH]{1}[1-6]\]/g,function(x){return x.replace("[","<").replace("]",">").replace("6","8").replace("5","7").replace("4","6").replace("3","5").replace("2","4").replace("1","3")});
-                    description = description.replace(/\[[\/]{0,1}[bB]{1}\]/g, function(x){return x.replace("[","<").replace(/[bB]\]/g,"strong>")});
-                    description = description.replace(/\[[\/]{0,1}[iI]{1}\]/g,function(x){return x.replace("[","<").replace(/[iI]\]/g,"em>")});
-                    description = description.replace(/\[[\/]{0,1}[Uu]{1}\]/g,function(x){return x.replace("[","<").replace(/[Uu]\]/g,"u>")});
-                    description = description.replace(/\[[hH][rR]\][ ]{0,1}\[\/[hH][rR]\]/g, "<hr />");
-                    description = description.replace(/\[[Ii][Mm][Gg]\]/g,function(x){return x.replace(/\[[Ii][Mm][Gg]\]/g,"<img src=\"")});
-                    description = description.replace(/\[[\/][Ii][Mm][Gg]\]/g,function(x){return x.replace(/\[[\/][Ii][Mm][Gg]\]/g,"\" />")});
-                    description = description.replace(/\[[\/]{0,1}[Cc][Oo][Dd][Ee]{1}\]/g,function(x){return x.replace("[","<").replace(/[Cc][Oo][Dd][Ee]\]/g,"code>")});
-                    description = description.replace(/\[[\/]{0,1}[Ss][Tt][Rr][Ii][Kk][Ke]\]/g,function(x){return x.replace("[","<").replace(/[Ss][Tt][Rr][Ii][Kk][Ke]\]/g,"strike>")});
-                    description = description.replace(/\[[\/][Ss][Pp][Oo][Ii][Ll][Ee][Rr]\]/g,function(x){return x.replace("[","<").replace(/[Ss][Pp][Oo][Ii][Ll][Ee][Rr]\]/g,"span>")});
-                    description = description.replace(/\[[Ss][Pp][Oo][Ii][Ll][Ee][Rr]\]/g,function(x){return x.replace("[","<").replace(/[Ss][Pp][Oo][Ii][Ll][Ee][Rr]\]/g,"span class=\"spoiler\">")});
+                    let description = ParseMarkup(mod.description);
                     
                     let niceSize = bytesToSize(mod.size);
                     
@@ -205,8 +172,47 @@ function CloseDialog(){
 }
 
 function bytesToSize(bytes) {
-    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    let sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
     if (bytes == 0) return '0 Byte';
-    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+    let i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+    let size = Math.round(bytes / Math.pow(1024, i) * 10, 2) / 10
+    return  size + ' ' + sizes[i];
  }
+
+function ParseMarkup(text)
+           text = text.replace(/\[[Uu][Rr][Ll][=](.*)[\]]((.|\n)*)\[\/[Uu][Rr][Ll]\]/gm, function(x){return x.replace(/\[[Uu][Rr][Ll][=]/, "<a style=\"display: inline;\" target=\"_blank\" href=\"").replace(/\[[\/][Uu][Rr][Ll]\]/, "</a>").replace(/\]/, "\" >")});
+
+           text = text.replace(/[\[][Tt][Aa][Bb][Ll][Ee][\]]((.|\r\n)*)[\[][\/][Tt][Aa][Bb][Ll][Ee][\]]/gm,  function(x){ 
+                     //console.log("TableFound");
+                     //console.log(x);
+                     x = x.replace(/(\r\n)/g, "");
+                     x = x.replace(/\[\/[Tt][Aa][Bb][Ll][Ee]\]/g, "</table>");
+                     x = x.replace(/\[[Tt][Aa][Bb][Ll][Ee]\]/g,"<table style=\"margin: 3px 2%; width: 96%;\">")
+                     x = x.replace(/\[\/{0,1}[Tt][Hh]\]/g,function(x){
+                          return x.replace("[","<").replace(/[Tt][Hh]\]/g,"td>")
+                     });
+                     x = x.replace(/\[\/{0,1}[Tt][Dd]\]/g,function(x){
+                          return x.replace("[","<").replace(/[Tt][Dd]\]/g,"td>")
+                     });
+                     x = x.replace(/\[[\/]{0,1}[Tt][Rr]\]/g,function(x){
+                          return x.replace("[","<").replace(/[Tt][Rr]\]/g,"tr>")
+                     });
+
+                     //console.log(x);
+                     return x;
+        });
+        text = description.replace(/(\r\n){3,5}/g, "\n<br />\n<br />");
+        text = text.replace(/(\r\n)/g, "\n<br />");
+        text = text.replace(/\[[\/]{0,1}[hH]{1}[1-6]\]/g,function(x){return x.replace("[","<").replace("]",">").replace("6","8").replace("5","7").replace("4","6").replace("3","5").replace("2","4").replace("1","3")});
+        text = text.replace(/\[[\/]{0,1}[bB]{1}\]/g, function(x){return x.replace("[","<").replace(/[bB]\]/g,"strong>")});
+        text = text.replace(/\[[\/]{0,1}[iI]{1}\]/g,function(x){return x.replace("[","<").replace(/[iI]\]/g,"em>")});
+        text = text.replace(/\[[\/]{0,1}[Uu]{1}\]/g,function(x){return x.replace("[","<").replace(/[Uu]\]/g,"u>")});
+        text = text.replace(/\[[hH][rR]\][ ]{0,1}\[\/[hH][rR]\]/g, "<hr />");
+        text = text.replace(/\[[Ii][Mm][Gg]\]/g,function(x){return x.replace(/\[[Ii][Mm][Gg]\]/g,"<img src=\"")});
+        text = text.replace(/\[[\/][Ii][Mm][Gg]\]/g,function(x){return x.replace(/\[[\/][Ii][Mm][Gg]\]/g,"\" />")});
+        text = text.replace(/\[[\/]{0,1}[Cc][Oo][Dd][Ee]{1}\]/g,function(x){return x.replace("[","<").replace(/[Cc][Oo][Dd][Ee]\]/g,"code>")});
+        text = text.replace(/\[[\/]{0,1}[Ss][Tt][Rr][Ii][Kk][Ke]\]/g,function(x){return x.replace("[","<").replace(/[Ss][Tt][Rr][Ii][Kk][Ke]\]/g,"strike>")});
+        text = text.replace(/\[[\/][Ss][Pp][Oo][Ii][Ll][Ee][Rr]\]/g,function(x){return x.replace("[","<").replace(/[Ss][Pp][Oo][Ii][Ll][Ee][Rr]\]/g,"span>")});
+        text = text.replace(/\[[Ss][Pp][Oo][Ii][Ll][Ee][Rr]\]/g,function(x){return x.replace("[","<").replace(/[Ss][Pp][Oo][Ii][Ll][Ee][Rr]\]/g,"span class=\"spoiler\">")});
+        return text;
+}
