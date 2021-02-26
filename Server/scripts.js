@@ -183,25 +183,25 @@ function ParseMarkup(text)
            text = text.replace(/\[[Uu][Rr][Ll][=](.*)[\]]((.|\n)*)\[\/[Uu][Rr][Ll]\]/gm, function(x){return x.replace(/\[[Uu][Rr][Ll][=]/, "<a style=\"display: inline;\" target=\"_blank\" href=\"").replace(/\[[\/][Uu][Rr][Ll]\]/, "</a>").replace(/\]/, "\" >")});
 
            text = text.replace(/[\[][Tt][Aa][Bb][Ll][Ee][\]]((.|\r\n)*)[\[][\/][Tt][Aa][Bb][Ll][Ee][\]]/gm,  function(x){ 
-                     //console.log("TableFound");
-                     //console.log(x);
-                     x = x.replace(/(\r\n)/g, "");
-                     x = x.replace(/\[\/[Tt][Aa][Bb][Ll][Ee]\]/g, "</table>");
-                     x = x.replace(/\[[Tt][Aa][Bb][Ll][Ee]\]/g,"<table style=\"margin: 3px 2%; width: 96%;\">")
-                     x = x.replace(/\[\/{0,1}[Tt][Hh]\]/g,function(x){
+                   //console.log("TableFound");
+                   //console.log(x);
+                   x = x.replace(/(\r\n)/g, "");
+                   x = x.replace(/\[\/[Tt][Aa][Bb][Ll][Ee]\]/g, "</table>");
+                   x = x.replace(/\[[Tt][Aa][Bb][Ll][Ee]\]/g,"<table style=\"margin: 3px 2%; width: 96%;\">")
+                   x = x.replace(/\[\/{0,1}[Tt][Hh]\]/g,function(x){
                           return x.replace("[","<").replace(/[Tt][Hh]\]/g,"td>")
-                     });
-                     x = x.replace(/\[\/{0,1}[Tt][Dd]\]/g,function(x){
+                   });
+                   x = x.replace(/\[\/{0,1}[Tt][Dd]\]/g,function(x){
                           return x.replace("[","<").replace(/[Tt][Dd]\]/g,"td>")
-                     });
-                     x = x.replace(/\[[\/]{0,1}[Tt][Rr]\]/g,function(x){
+                   });
+                   x = x.replace(/\[[\/]{0,1}[Tt][Rr]\]/g,function(x){
                           return x.replace("[","<").replace(/[Tt][Rr]\]/g,"tr>")
-                     });
+                   });
 
-                     //console.log(x);
-                     return x;
+                   //console.log(x);
+                   return x;
         });
-        text = description.replace(/(\r\n){3,5}/g, "\n<br />\n<br />");
+        text = text.replace(/(\r\n){3,5}/g, "\n<br />\n<br />");
         text = text.replace(/(\r\n)/g, "\n<br />");
         text = text.replace(/\[[\/]{0,1}[hH]{1}[1-6]\]/g,function(x){return x.replace("[","<").replace("]",">").replace("6","8").replace("5","7").replace("4","6").replace("3","5").replace("2","4").replace("1","3")});
         text = text.replace(/\[[\/]{0,1}[bB]{1}\]/g, function(x){return x.replace("[","<").replace(/[bB]\]/g,"strong>")});
