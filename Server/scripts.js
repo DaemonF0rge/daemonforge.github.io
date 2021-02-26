@@ -20,8 +20,17 @@ let allOfTheDom = [
                 "dlc_enabled",
                 "modcount",
                 "filesize",
-                "ModData"
+                "ModData",
+                "day_acceleration",
+                "night_acceleration"
             ];
+
+const NightRef = {
+    namalsk: 16,
+    chernarus: 14.765,
+    chernarusplus: 14.765,
+    epochs: 12.035
+};
 
 
 let ServerData = document.getElementById("ServerData");
@@ -93,6 +102,19 @@ async function LookUpServer(){
                     updateHtml("modcount", "Mods Count: " + data.mods.length);
                     let NiceModsDownloadSize = bytesToSize(data.ModsDownloadSize);
                     updateHtml("filesize", "Total Mods Size: " + NiceModsDownloadSize);
+                    if (NightRef[data.map.toLowerCase()] !== undefined){
+                        let NightHours = NightRef[data.map.toLowerCase()];
+                        let DayTimeHours = 24 - NightRef[data.map];
+                        let dayAcceleration = Math.round(DayTimeHours / data.day_time_acceleration * 100) / 100;
+                        let nightAcceleration = Math.round(NightHours / data.day_time_acceleration / data.night_time_acceleration * 100) / 100;
+                        let dayhr = Math.floor(dayAcceleration);
+                        let daymin = Math.floor(((dayAcceleration) % 1) * 60);
+                        let nighthr = Math.floor(nightAcceleration);
+                        let nightmin = Math.floor(((nightAcceleration) % 1) * 60);
+                        updateHtml("day_acceleration", `Aprox.: ${dayhr}hr ${daymin}min` );
+                        updateHtml("night_acceleration", `Aprox.:  ${nighthr}hr ${nightmin}min`);
+                    }
+
                 } else {
                     statusicon.style.color = "red";
                     updateHtml("servername", "Server Not Found Or Offline");
@@ -115,7 +137,7 @@ async function LookUpServer(){
                     
                     var DateCreated = new Date(mod.created * 1000);
                     var LastUpdated = new Date(mod.updated * 1000);
-                    contents+= `<details style="width: 100%; margin: 0px;"> 
+                    contents+= `<details style="width: 98%; margin: 2px;"> 
                     <summary>${mod.name}</summary> 
                     <img class="modimage" src="${mod.image_url}"/>
                     <table style="1px solid #dbdbdb">
