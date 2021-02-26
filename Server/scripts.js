@@ -26,10 +26,11 @@ let allOfTheDom = [
             ];
 
 const NightRef = {
-    namalsk: 16,
+    namalsk: 14.765,
     chernarus: 14.765,
     chernarusplus: 14.765,
-    epochs: 12.035
+    epochs: 12.035,
+    deerilse: 11.68
 };
 
 
@@ -111,8 +112,8 @@ async function LookUpServer(){
                         let daymin = Math.floor(((dayAcceleration) % 1) * 60);
                         let nighthr = Math.floor(nightAcceleration);
                         let nightmin = Math.floor(((nightAcceleration) % 1) * 60);
-                        updateHtml("day_acceleration", `Aprox.: ${dayhr}hr ${daymin}min` );
-                        updateHtml("night_acceleration", `Aprox.:  ${nighthr}hr ${nightmin}min`);
+                        updateHtml("day_acceleration", `Aprox.: ${dayhr}hr ${daymin}min<sup><a href="#timeinfo">1</a></sup>` );
+                        updateHtml("night_acceleration", `Aprox.:  ${nighthr}hr ${nightmin}min<sup><a href="#timeinfo">1</a></sup>`);
                     }
 
                 } else {
