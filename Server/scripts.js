@@ -22,11 +22,13 @@ let allOfTheDom = [
                 "filesize",
                 "ModData",
                 "day_acceleration",
-                "night_acceleration"
+                "night_acceleration",
+                "rawdata",
+                "rawRequest"
             ];
 
 const NightRef = {
-    namalsk: 14.765,
+    namalsk: 15.90, //Same as chenarus but since the init.c by default reset the months to winter i rounded closered to january averages 
     chernarus: 14.765,
     chernarusplus: 14.765,
     epochs: 12.035,
@@ -91,7 +93,10 @@ async function LookUpServer(){
     }
     if (theIp != "" && ValidateIPaddress(theIp) && ValidatePort(thePort)){
         try{
-            let data = await fetch("https://api.daemonforge.dev/server/" +theIp+"/"+thePort+"/full" ) .then( response => response.json() );
+            let headers = new Headers();
+            let data = await fetch("https://api.daemonforge.dev/server/" +theIp+"/"+thePort+"/full", {
+                headers: headers
+            } ) .then( response => response.json() );
             Clear();
             console.log(data);
             if (data.status !== undefined){
@@ -129,6 +134,7 @@ async function LookUpServer(){
                 }
                 let contents = "";
                 let i = 0;
+                let newMods = [];
                 for(mod of data.mods){
                     i++;
                     //console.log(mod)
@@ -138,45 +144,55 @@ async function LookUpServer(){
                     
                     var DateCreated = new Date(mod.created * 1000);
                     var LastUpdated = new Date(mod.updated * 1000);
-                    contents+= `<details style="width: 98%; margin: 2px;"> 
-                    <summary>${mod.name}</summary> 
-                    <img class="modimage" src="${mod.image_url}"/>
-                    <table style="1px solid #dbdbdb">
-                        <tr>
-                            <td>Creator</td>
-                            <td colspan="2" id="creator${i}" >${mod.creator}</td>
-                        </tr>
-                        <tr>
-                            <td>Mod Id</td>
-                            <td colspan="2" >${mod.id}</td>
-                        </tr>
-                        <tr>
-                          <td>File Size</td>
-                          <td colspan="2" >${niceSize}</td>
-                        </tr>
-                        <tr>
-                          <td>Created</td>
-                          <td colspan="2" >${FormatTheDate(DateCreated)}</td>
-                        </tr>
-                        <tr>
-                          <td>Last Updated</td>
-                          <td colspan="2" >${FormatTheDate(LastUpdated)}</td>
-                        </tr>
-                        <tr>
-                          <td>Subscriptions</td>
-                          <td colspan="2" >${mod.subscriptions}</td>
-                        </tr>
-                    </table>
-                    <p>
-                        ${description}
-                    </p>
-                </details>
-                `
-                let creatorid = "creator"+i;
-                fetch(`https://api.daemonforge.dev/user/${mod.creator}`).then( userresponse => userresponse.json().then( userdata => updateCreator(creatorid, userdata) ).catch(e=>console.log(e))).catch( e => console.log(e))
+                    contents+= `
+                    <details style="width: 98%; margin: 2px;"> 
+                        <summary>${mod.name}</summary> 
+                        <img class="modimage" src="${mod.image_url}"/>
+                        <table style="1px solid #dbdbdb">
+                            <tr>
+                                <td>Creator</td>
+                                <td colspan="2" id="creator${i}" >${mod.creator}</td>
+                            </tr>
+                            <tr>
+                                <td>Mod Id</td>
+                                <td colspan="2" >${mod.id}</td>
+                            </tr>
+                            <tr>
+                            <td>File Size</td>
+                            <td colspan="2" >${niceSize}</td>
+                            </tr>
+                            <tr>
+                            <td>Created</td>
+                            <td colspan="2" >${FormatTheDate(DateCreated)}</td>
+                            </tr>
+                            <tr>
+                            <td>Last Updated</td>
+                            <td colspan="2" >${FormatTheDate(LastUpdated)}</td>
+                            </tr>
+                            <tr>
+                            <td>Subscriptions</td>
+                            <td colspan="2" >${mod.subscriptions}</td>
+                            </tr>
+                        </table>
+                        <article>
+                            ${description}
+                        </article>
+                    </details>
+                    `;
+                    newMods.push({id: mod.id, name: mod.name});
+                    let creatorid = "creator"+i;
+                    fetch(`https://api.daemonforge.dev/user/${mod.creator}`, {
+                        headers: headers
+                    }).then( userresponse => userresponse.json().then( userdata => updateCreator(creatorid, userdata) ).catch(e=>console.log(e))).catch( e => console.log(e))
 
                 }
+                data.mods = newMods; //Just to remove extra bloat from the resonses and to not encourch un nessasary use of /full
+                delete data.ModsDownloadSize;
                 updateHtml("ModData", contents);
+                let str = JSON.stringify(data, null, 2);
+                
+                updateHtml("rawdata", syntaxHighlight(str));
+                updateHtml("rawRequest", "https://api.daemonforge.dev/server/" +theIp+"/"+thePort);
                 loading.style.display="none";
                 lookup.style.display="inline-block";
             } else {
@@ -215,12 +231,18 @@ function bytesToSize(bytes) {
     return  size + ' ' + sizes[i];
  }
 
-function ParseMarkup(text) {
-           text = text.replace(/\[[Uu][Rr][Ll]=(.*)\]((.|\n)*)\[\/[Uu][Rr][Ll]\]/gm, function(x){
-               return x.replace(/\[[Uu][Rr][Ll]=/, "<a style=\"display: inline;\" target=\"_blank\" href=\"").replace(/\[[\/][Uu][Rr][Ll]\]/, "</a>").replace(/\]/, "\" >")
-            });
+function ParseMarkup(intext) {
+    intext = intext.replace(/</g, '&lt;');
 
-           text = text.replace(/[\[][Tt][Aa][Bb][Ll][Ee][\]]((.|\r\n)*)[\[][\/][Tt][Aa][Bb][Ll][Ee][\]]/gm,  function(x){ 
+        intext = intext.replace(/\[[Ii][Mm][Gg]\]((.|\r\n)*)\[\/[Ii][Mm][Gg]\]/g,function(x){
+            x = x.replace(/\[[Ii][Mm][Gg]\]/g,function(x){
+                return x.replace(/\[[Ii][Mm][Gg]\]/g,"<img src=\"")
+            });
+            x = x.replace(/\[[\/][Ii][Mm][Gg]\]/g,function(x){return x.replace(/\[\/[Ii][Mm][Gg]\]/g,"\" />")});
+            return x
+        });
+
+            intext = intext.replace(/[\[][Tt][Aa][Bb][Ll][Ee][\]]((.|\r\n)*)[\[][\/][Tt][Aa][Bb][Ll][Ee][\]]/gm,  function(x){ 
                    //console.log("TableFound");
                    //console.log(x);
                    x = x.replace(/(\r\n)/g, "");
@@ -239,36 +261,92 @@ function ParseMarkup(text) {
                    //console.log(x);
                    return x;
         });
-        text = text.replace(/\[[Cc][Oo][Dd][Ee]\]((.|\r\n)*)\[\/[Cc][Oo][Dd][Ee]\]/g,function(x){
+        intext = intext.replace(/\[[Cc][Oo][Dd][Ee]\]((.|\r\n)*)\[\/[Cc][Oo][Dd][Ee]\]/g,function(x){
             x = x.replace(/(\r\n)}/g, "\n");
-            x = x.replace(/(\t)}/g, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-            x = x.replace(/[ ]/g, "&nbsp;");
+            x = x.replace(/(\t)}/g, " &nbsp; &nbsp;&nbsp;");
+            x = x.replace(/[ ]{2}/g, " &nbsp;");
             return x.replace(/\[[\/]{0,1}[Cc][Oo][Dd][Ee]{1}\]/g,function(x){
                 return x.replace("[","<").replace(/[Cc][Oo][Dd][Ee]\]/g,"code>")
             });
         });
-        text = text.replace(/\[[Ss][Pp][Oo][Ii][Ll][Ee][Rr]\]((.|\r\n)*)\[\/[Ss][Pp][Oo][Ii][Ll][Ee][Rr]\]/g,function(x){
+        intext = intext.replace(/\[[Ss][Pp][Oo][Ii][Ll][Ee][Rr]\]((.|\r\n)*)\[\/[Ss][Pp][Oo][Ii][Ll][Ee][Rr]\]/g, function(x){
             x = x.replace("\[[Ss][Pp][Oo][Ii][Ll][Ee][Rr]\]","<span class=\"spoiler\">")
             return x.replace(/\[[\/][Ss][Pp][Oo][Ii][Ll][Ee][Rr]{1}\]/g, "</span>");
         });
-        text = text.replace(/(\r\n){3,5}/g, "\n<br />\n<br />");
-        text = text.replace(/(\r\n)/g, "\n<br />");
         
-        text = text.replace(/\[[hH]{1}[1-6]\]((.|\r\n)*)\[[\/][hH]{1}[1-5]\]/g,function(x){return x.replace(/\[[\/]{0,1}[hH]{1}[1-5]\]/g,function(x){return x.replace("[","<").replace("]",">").replace("5","6").replace("4","6").replace("3","5").replace("2","4").replace("1","3")});});
-        text = text.replace(/\[[\/]{0,1}[bB]{1}\]/g, function(x){return x.replace("[","<").replace(/[bB]\]/g,"strong>")});
-        text = text.replace(/\[[\/]{0,1}[iI]{1}\]/g,function(x){return x.replace("[","<").replace(/[iI]\]/g,"em>")});
-        text = text.replace(/\[[\/]{0,1}[Uu]{1}\]/g,function(x){return x.replace("[","<").replace(/[Uu]\]/g,"u>")});
-        text = text.replace(/\[[hH][rR]\][ ]{0,1}\[\/[hH][rR]\]/g, "<hr />");
-        text = text.replace(/\[[Ii][Mm][Gg]\]((.|\r\n)*)\[[\/][Ii][Mm][Gg]\]/g,function(x){
-            x = x.replace(/\[[Ii][Mm][Gg]\]/g,function(x){
-                return x.replace(/\[[Ii][Mm][Gg]\]/g,"<img src=\"")
+        intext = intext.replace(/\[[hH][1-5]\]((.|\r\n)*)\[[\/][hH][1-5]\]/g,function(x){
+            return x.replace(/\[[\/]{0,1}[hH][1-5]\]/g,function(x){
+                return x.replace("[","<").replace("]",">").replace("5","6").replace("4","6").replace("3","5").replace("2","4").replace("1","3")
             });
-            x = x.replace(/\[[\/][Ii][Mm][Gg]\]/g,function(x){return x.replace(/\[[\/][Ii][Mm][Gg]\]/g,"\" />")});
-            return x
         });
+        intext = intext.replace(/\[[bB]\]((.|\r\n)*)\[[\/][bB]\]/g,function(x){
+            return x.replace(/\[[\/]{0,1}[bB]\]/g, function(x){
+                return x.replace("[","<").replace(/[bB]\]/g,"strong>")
+            });
+        });
+        intext = intext.replace(/\[[iI]\]((.|\r\n)*)\[[\/][iI]\]/g,function(x){
+            return x.replace(/\[[\/]{0,1}[iI]\]/g,function(x){
+                return x.replace("[","<").replace(/[iI]\]/g,"em>")
+            });
+        });
+        intext = intext.replace(/\[[Uu]{1}\]((.|\r\n)*)\[[\/][Uu]\]/g,function(x){
+            return x.replace(/\[[\/]{0,1}[Uu]\]/g,function(x){
+                return x.replace("[","<").replace(/[Uu]\]/g,"u>")
+            });
+        });
+        intext = intext.replace(/\[[hH][rR]\][ ]{0,3}\[\/[hH][rR]\]/g, "<hr />");
         
-        text = text.replace(/\[[\/]{0,1}[Ss][Tt][Rr][Ii][Kk][Ke]\]/g,function(x){return x.replace("[","<").replace(/[Ss][Tt][Rr][Ii][Kk][Ke]\]/g,"strike>")});
-        return text;
+        intext = intext.replace(/\[[Ss][Tt][Rr][Ii][Kk][Ke]\]((.|\r\n)*)\[\/[Ss][Tt][Rr][Ii][Kk][Ke]\]/g,function(x){
+            return x.replace(/\[\/{0,1}[Ss][Tt][Rr][Ii][Kk][Ke]\]/g,function(x){
+                return x.replace("[","<").replace(/[Ss][Tt][Rr][Ii][Kk][Ke]\]/g,"strike>")
+            });
+        });
+        intext = intext.replace(/\[[Uu][Rr][Ll]=(.)*\](.)*\[\/[Uu][Rr][Ll]\]/g, function(x){
+            //console.log("Phase 1: " + x);
+            x =  x.replace(/\[[Uu][Rr][Ll]=/, "<a style=\"display: inline;\" target=\"_blank\" href=\"")
+            x = x.replace(/\]/, "\" >");
+            x =  x.replace(/\[[\/][Uu][Rr][Ll]\]/, "</a>");
+            return x;
+        });
+            
+        intext = intext.replace(/\[[Uu][Rr][Ll]=(.)*\](.)*\[\/[Uu][Rr][Ll]\]/g, function(x){
+            //console.log("Phase 2: " + x);
+            x =  x.replace(/\[[Uu][Rr][Ll]=/, "<a style=\"display: inline;\" target=\"_blank\" href=\"")
+            x = x.replace(/\]/, "\" >");
+            x =  x.replace(/\[[\/][Uu][Rr][Ll]\]/, "</a>");
+            return x;
+        });
+
+        intext = intext.replace(/\[[Uu][Rr][Ll]=(.)*\](.)*\[\/[Uu][Rr][Ll]\]/g, function(x){
+            //console.log("Phase 3: " + x);
+            x =  x.replace(/\[[Uu][Rr][Ll]=/, "<a style=\"display: inline;\" target=\"_blank\" href=\"")
+            x = x.replace(/\]/, "\" >");
+            x =  x.replace(/\[[\/][Uu][Rr][Ll]\]/, "</a>");
+            return x;
+        });
+
+        intext = intext.replace(/\[[Uu][Rr][Ll]=(.)*\](.|\r\n)*\[\/[Uu][Rr][Ll]\]/gm, function(x){
+            //console.log("Phase 4: " + x);
+            x =  x.replace(/\[[Uu][Rr][Ll]=/, "<a style=\"display: inline;\" target=\"_blank\" href=\"")
+            x = x.replace(/\]/, "\" >");
+            x =  x.replace(/\[[\/][Uu][Rr][Ll]\]/, "</a>");
+            return x;
+        });
+
+        intext = intext.replace(/\[[Uu][Rr][Ll]=(.)*\](.|\r\n)*\[\/[Uu][Rr][Ll]\]/gm, function(x){
+            //console.log("Phase 5: " + x);
+            x =  x.replace(/\[[Uu][Rr][Ll]=/, "<a style=\"display: inline;\" target=\"_blank\" href=\"")
+            x = x.replace(/\]/, "\" >");
+            x =  x.replace(/\[[\/][Uu][Rr][Ll]\]/, "</a>");
+            return x;
+        });
+
+        intext = intext.replace(/(\r\n){3,5}/g, "\n<br />\n<br />");
+
+        intext = intext.replace(/(\r\n){1,2}/g, "\n<br />");
+
+        //console.log(intext);
+        return intext;
 }
 
 function FormatTheDate(date){
@@ -302,10 +380,32 @@ function FormatTheDate(date){
     const month = months[date.getMonth()]
     const hr = date.getHours()
     const min = date.getMinutes()
-    return `${dayoftheweek} ${month} ${day}, ${year} -  ${hr}:${min}`
+    return `${dayoftheweek}, ${month} ${day}, ${year} &nbsp; ${hr}:${min}`
 }
 
 async function updateCreator(creatorElement, userdata){
     updateHtml(creatorElement, `<a href="${userdata.profileurl}"><author>${userdata.name}</author></a>`)
 
+}
+
+function syntaxHighlight(json) {
+    if (typeof json != 'string') {
+         json = JSON.stringify(json, undefined, 2);
+    }
+    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        var cls = 'number';
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+                cls = 'key';
+            } else {
+                cls = 'string';
+            }
+        } else if (/true|false/.test(match)) {
+            cls = 'boolean';
+        } else if (/null/.test(match)) {
+            cls = 'null';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
 }
