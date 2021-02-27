@@ -374,12 +374,15 @@ function FormatTheDate(date){
         'December'
       ]
 
-    const year = date.getFullYear()
-    const day = date.getDate()
-    const dayoftheweek = days[date.getDay()]
-    const month = months[date.getMonth()]
-    const hr = date.getHours()
-    const min = date.getMinutes()
+    let year = date.getFullYear()
+    let day = date.getDate()
+    let dayoftheweek = days[date.getDay()]
+    let month = months[date.getMonth()]
+    let hr = date.getHours()
+    let min = date.getMinutes()
+    if (min < 10){
+       min = "0"+min;
+    }
     return `${dayoftheweek}, ${month} ${day}, ${year} &nbsp; ${hr}:${min}`
 }
 
