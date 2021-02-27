@@ -31,7 +31,9 @@ const NightRef = {
     namalsk: 15.90, //Same as chenarus but since the init.c by default reset the months to winter i rounded closered to january averages 
     chernarus: 14.765,
     chernarusplus: 14.765,
-    epochs: 12.035,
+    chernarusplusgloom: 14.765,
+    enoch: 12.035,
+    enochgloom: 12.035,
     deerilse: 11.68
 };
 
