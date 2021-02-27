@@ -95,7 +95,7 @@ async function LookUpServer(){
         try{
             let data = await fetch("https://api.daemonforge.dev/server/" +theIp+"/"+thePort+"/full", {
                 method: 'GET',
-                mode: 'no-cors'
+                mode: 'cors'
             } ) .then( response => response.json() );
             Clear();
             console.log(data);
@@ -183,7 +183,7 @@ async function LookUpServer(){
                     let creatorid = "creator"+i;
                     fetch(`https://api.daemonforge.dev/user/${mod.creator}`, {
                         method: 'GET',
-                        mode: 'no-cors'
+                        mode: 'cors'
                     }).then( userresponse => userresponse.json().then( userdata => updateCreator(creatorid, userdata) ).catch(e=>console.log(e))).catch( e => console.log(e))
 
                 }
