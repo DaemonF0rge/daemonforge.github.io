@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Json Validator</title>
+        <meta name="description" content="A simple Json Validator and Editor">
+        <meta name="keywords" content="Json Validator, Json Editor, Json">
+        <meta name="author" content="Daemon Forge">
+        <script async src="https://kit.fontawesome.com/63bc495439.js" crossorigin="anonymous"></script>
+        <script src="JsonEditor\jsoneditor.min.js" defer></script>
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' media="print" onload="this.media='all'"  />
+
+        <link rel="stylesheet" href="JsonEditor\jsoneditor.min.css">        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="scripts.js" defer></script>
+        <style>
+            .success, .error {
+                text-align: center;
+                border-radius: 10px;
+			    border: 1px solid;
+			    margin: 25px 25px;
+			    padding: 15px 25px 15px 25px;
+                font-size: 20px;
+		    }
+            .warning{
+		    	color: #D63301;
+            }
+		    .success {
+		    	color: #4e8b0d;
+		    	background-color: #DFF2BF;
+		    }
+		    .error{
+		    	color: #D63301;
+		    	background-color: #FFCCBA;
+		    }
+            body {
+                font-family: 'Roboto', sans-serif;
+                font-size: 16px;
+                background: #202b38; 
+                color: #dbdbdb;
+                max-width: 800px;
+                min-width: 420px;
+            }
+              div{
+                  margin-top: 10px;
+              }
+              dialog::backdrop {
+                  background: rgba(0,0,0,.61);
+                  -webkit-backdrop-filter: blur(4px);
+                  backdrop-filter: blur(4px);
+                  position: fixed;
+                  top: 0px;
+                  right: 0px;
+                  bottom: 0px;
+                  left: 0px;
+              }
+              dialog {
+                background-color: var(--background-alt);
+                color: var(--text-main);
+                border: none;
+                border-radius: 6px;
+                border-color: var(--border);
+                padding: 10px 30px;
+              }
+              
+	    @keyframes border-pulsate {
+            0%   { 
+                border: 2px solid rgba(180, 0, 0, 0.0);
+            }
+            10%  { 
+                border: 2px solid rgba(180, 0, 0, 0.70);
+            }
+            20%  { 
+                border: 2px solid rgba(180, 0, 0, 0.30);
+            }
+            30%  { 
+                border: 2px solid rgba(180, 0, 0, 0.60);
+            }
+            40%  { 
+                border: 2px solid rgba(180, 0, 0, 0.20);
+            }
+            50% { 
+                border: 2px solid rgba(180, 0, 0, 0.50);
+            }
+            60% { 
+                border: 2px solid rgba(180, 0, 0, 0.10);
+            }
+            75% { 
+                border: 2px solid rgba(180, 0, 0, 0.40);
+            }
+            100% { 
+                border: 2px solid rgba(180, 0, 0, 0.0);
+            }
+        }
+        .lds-dual-ring {
+            display: none;
+            width: 28px;
+            height: 28px;
+            padding-top: 10px;
+            padding-bottom: 12px;
+            padding-left: 6px;
+            vertical-align: bottom;
+        }
+        .lds-dual-ring:after {
+            content: " ";
+            display: block;
+            width: 16px;
+            height: 16px;
+            margin: 2px;
+            border-radius: 50%;
+            border: 6px solid #fff;
+            border-color: #fff transparent #fff transparent;
+            animation: lds-dual-ring 1.5s linear infinite;
+        }
+        @keyframes lds-dual-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+        }
+        .avatar {
+            vertical-align: middle;
+            margin-left: 6px;
+            width: 38px;
+            height: 38px;
+            border-radius: 25%;
+            border: solid 1px #161f27;
+        }
+        dialog::backdrop {
+            background: rgba(0,0,0,.61);
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+            position: fixed;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+        }
+        dialog {
+            background-color: var(--background-alt);
+            color: var(--text-main);
+            border: none;
+            border-radius: 6px;
+            border-color: var(--border);
+            padding: 10px 30px;
+        }
+        .string { color: #4CAF50; }
+        .number { color: #FFB74D; }
+        .boolean { color: #2196F3; }
+        .null { color: #CE93D8; }
+        .key { color: #FF6E40; }
+        code {
+            padding: 10px; 
+            margin: 0px; 
+            height: 100%; 
+            white-space: pre; 
+            width: 100%; 
+            display: block; 
+            text-align: left;
+        }
+        #jsoneditor {
+            min-width: 500px;
+            min-height: 500px;
+            height: fit-content;
+        }
+        /* dark styling of the editor */
+div.jsoneditor,
+div.jsoneditor-menu {
+  border-color: #4b4b4b;
+}
+div.jsoneditor-menu {
+  background-color: #4b4b4b;
+}
+div.jsoneditor-tree,
+div.jsoneditor textarea.jsoneditor-text {
+  background-color: #202b38;
+  color: #ffffff;
+}
+div.jsoneditor-field,
+div.jsoneditor-value {
+  color: #ffffff;
+}
+table.jsoneditor-search div.jsoneditor-frame {
+  background: #202b38; 
+}
+
+tr.jsoneditor-highlight,
+tr.jsoneditor-selected {
+  background-color: #808080;
+}
+
+div.jsoneditor-field[contenteditable=true]:focus,
+div.jsoneditor-field[contenteditable=true]:hover,
+div.jsoneditor-value[contenteditable=true]:focus,
+div.jsoneditor-value[contenteditable=true]:hover,
+div.jsoneditor-field.jsoneditor-highlight,
+div.jsoneditor-value.jsoneditor-highlight {
+  background-color: #202b38; 
+  border-color: #808080;
+}
+span.jsoneditor-treepath-seperator{
+    display: none !important;
+}
+span.jsoneditor-treepath-seperator::after{
+    font-family: "Font Awesome 5 Free" !important;
+    font-weight: 900;
+    content: "\f054" !important;
+}
+div.jsoneditor-field.highlight-active,
+div.jsoneditor-field.highlight-active:focus,
+div.jsoneditor-field.highlight-active:hover,
+div.jsoneditor-value.highlight-active,
+div.jsoneditor-value.highlight-active:focus,
+div.jsoneditor-value.highlight-active:hover {
+  background-color: #b1b1b1;
+  border-color: #b1b1b1;
+}
+
+div.jsoneditor-tree button:focus {
+  background-color: #808080;
+}
+
+/* coloring of JSON in tree mode */
+div.jsoneditor-readonly {
+  color: #dbdbdb; ;
+}
+div.jsoneditor td.jsoneditor-separator {
+  color: #dbdbdb;
+}
+div.jsoneditor-value.jsoneditor-string {
+  color: #4CAF50;
+}
+div.jsoneditor-value.jsoneditor-object,
+div.jsoneditor-value.jsoneditor-array {
+  color: #dbdbdb; 
+}
+div.jsoneditor-value.jsoneditor-number {
+  color: #FFB74D; 
+}
+div.jsoneditor-value.jsoneditor-boolean {
+  color: #ff8048;
+}
+div.jsoneditor-value.jsoneditor-null {
+  color: #2196F3;
+}
+button.jsoneditor-transform{
+    display: none;
+}
+div.jsoneditor-value.jsoneditor-invalid {
+  color: white;
+}
+div.jsoneditor-frame input{
+    display: inline-block !important;
+    color: #dbdbdb;
+}
+div.jsoneditor-navigation-bar{
+ height: fit-content;
+}
+        </style>
+    </head>
+    <body>
+        <main>
+        <h1>Json Validator</h1>
+        <section>
+            <button style="margin: 20px;" id="MakePretty" onclick="MakePretty()" disabled="true" >Make Pretty</button>
+            <button style="margin: 20px;" id="UseEditor" onclick="UseEditor()" disabled="true" >Editor</button>
+            <button style="margin: 20px;" id="GenerateJSON" onclick="GenerateJSON()" disabled="true" >Generate JSON</button>
+        
+        </section>
+        <section id="CodeEditor">
+            <div id="error" style="white-space: pre;">
+</div>
+<code id="codeblock" contenteditable="true">{ }
+</code>
+</section>
+<script>
+</script>
+<section id="objexplorer" style="display: none;">
+    <h2>Object Explorer</h2>
+    <div id="explorer">
+        
+<div id="jsoneditor"></div>
+    </div>
+</section>
+
+        </main>
+    </body>
+</html>

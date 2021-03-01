@@ -44,6 +44,7 @@ let port = document.getElementById("port");
 let lookup = document.getElementById("lookup");
 let loading = document.getElementById("loading");
 let statusicon = document.getElementById("statusicon");
+let codeblock = document.getElementById("rawdata");
 
 function updateHtml(element, text){
     let DomObj = document.getElementById(element);
@@ -415,3 +416,4 @@ function syntaxHighlight(json) {
         return '<span class="' + cls + '">' + match + '</span>';
     });
 }
+
