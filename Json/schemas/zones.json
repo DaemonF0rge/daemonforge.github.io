@@ -166,7 +166,7 @@
 						"type": "array",
 						"items": {
 							"type": "object",
-							"required": [],
+							"required": ["Affinity","MinPoints","MaxPoints"],
 							"properties": {
 								"Affinity": {
 									"type": "string"
@@ -396,7 +396,7 @@
 									"type": "array",
 									"items": {
 										"type": "object",
-										"required": [],
+										"required": ["Affinity","MinPoints","MaxPoints"],
 										"properties": {
 											"Affinity": {
 												"type": "string"
