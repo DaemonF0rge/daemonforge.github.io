@@ -209,6 +209,8 @@ function GenerateJSON(){
   codeeditor.style.display = "block";
   objexplorer.style.display = "none";
   generateJSONblock.disabled = "true";
+  generateJSONblock.style.display = "none";
+  editorblock.style.display = "inline-block";
   prettyblock.disabled = null;
   editorblock.disabled = null;
   let json = editor.get();
@@ -227,6 +229,8 @@ function UseEditor(){
       objexplorer.style.display = "block";
       prettyblock.disabled = "true";
       editorblock.disabled = "true";
+      generateJSONblock.style.display = "inline-block";
+      editorblock.style.display = "none";
       generateJSONblock.disabled = null;
       editor.set(jsonObj);
       document.getElementById('jsoneditor').scrollIntoView();

@@ -266,8 +266,7 @@
         <section>
             <button style="margin: 20px;" id="MakePretty" onclick="MakePretty()" disabled="true" >Make Pretty</button>
             <button style="margin: 20px;" id="UseEditor" onclick="UseEditor()" disabled="true" >Editor</button>
-            <button style="margin: 20px;" id="GenerateJSON" onclick="GenerateJSON()" disabled="true" >Generate JSON</button>
-        
+            <button style="margin: 20px; display: none;" id="GenerateJSON" onclick="GenerateJSON()" disabled="true"  >Code Block</button>
         </section>
         <section id="CodeEditor">
             <div id="error" style="white-space: pre;">
@@ -275,8 +274,6 @@
 <code id="codeblock" contenteditable="true">{ }
 </code>
 </section>
-<script>
-</script>
 <section id="objexplorer" style="display: none;">
     <h2>Object Explorer</h2>
     <div id="explorer">
