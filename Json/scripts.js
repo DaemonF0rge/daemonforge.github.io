@@ -6,6 +6,10 @@ let prettyblock = document.getElementById("MakePretty");
 let editorblock = document.getElementById("UseEditor");
 let generateJSONblock = document.getElementById("GenerateJSON");
 let objexplorer = document.getElementById("objexplorer");
+let copyFrom = document.getElementById("copyFrom");
+let copyJson = document.getElementById("CopyJson");
+
+let state = "code";
 
 const container = document.getElementById('jsoneditor')
 const options = {}
@@ -84,11 +88,13 @@ function DoUpdateSyntaxHighlight() {
             errorblock.className = "success";
             prettyblock.disabled = null;
             editorblock.disabled = null;
+            copyJson.disabled = null;
         } else {
             errorblock.innerHTML = "<i class=\"fas fa-exclamation-triangle\"></i> " + error;
             errorblock.className = "error";
             prettyblock.disabled = "true";
             editorblock.disabled = "true";
+            copyJson.disabled = "true";
             errpos = String(error).match(/[0-9]{1,10}/);
             console.log("errpos: " + errpos);
         }
@@ -213,6 +219,7 @@ function GenerateJSON(){
   editorblock.style.display = "inline-block";
   prettyblock.disabled = null;
   editorblock.disabled = null;
+  state = "code";
   let json = editor.get();
   let jsonText = JSON.stringify(json, undefined, 2);
   codeblock.innerHTML = syntaxHighlight(jsonText);
@@ -232,10 +239,31 @@ function UseEditor(){
       generateJSONblock.style.display = "inline-block";
       editorblock.style.display = "none";
       generateJSONblock.disabled = null;
+      state = "editor";
       editor.set(jsonObj);
       document.getElementById('jsoneditor').scrollIntoView();
   } catch (e){
       console.log(e);
   }
 
+}
+
+function CopyJson(){
+  let jsonText = "";
+  if (state == "code"){
+    jsonText = codeblock.innerHTML;
+    jsonText = jsonText.replace(/(<([^>]+)>)/gi, "");
+  }
+
+  if (state == "editor"){
+    let json = editor.get();
+    jsonText = JSON.stringify(json, undefined, 2);
+  }
+  copyFrom.value = jsonText;
+  /* Select the text field */
+  copyFrom.select();
+  copyFrom.setSelectionRange(0, 99999); /* For mobile devices */
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
 }
