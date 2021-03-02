@@ -21,8 +21,12 @@
 		},
 		"WarningMessageColor": {
 			"type": "array",
+            "maxItems": 4,
+            "minItems": 4,
 			"items": {
-				"type": "number"
+				"type": "number",
+				"maximum": 255,
+				"minimum": 0
 			}
 		},
 		"NotificationMessageTime": {
@@ -111,6 +115,8 @@
 					},
 					"WelcomeMessageColor": {
 						"type": "array",
+						"maxItems": 4,
+						"minItems": 4,
 						"items": {
 							"type": "number",
 							"maximum": 255,
@@ -339,6 +345,8 @@
 								},
 								"WelcomeMessageColor": {
 									"type": "array",
+									"maxItems": 4,
+									"minItems": 4,
 									"items": {
 										"type": "number",
 										"maximum": 255,
