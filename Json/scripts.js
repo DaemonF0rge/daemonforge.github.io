@@ -8,12 +8,18 @@ let generateJSONblock = document.getElementById("GenerateJSON");
 let objexplorer = document.getElementById("objexplorer");
 let copyFrom = document.getElementById("copyFrom");
 let copyJson = document.getElementById("CopyJson");
+let ExtraEditors = document.getElementById("ExtraEditors");
 
 let state = "code";
 
 const container = document.getElementById('jsoneditor')
-const options = {}
-const editor = new JSONEditor(container, options)
+const Options = {
+  mode: 'tree'
+};
+
+let editor = new JSONEditor(container, Options)
+
+
 
 //codeblock.innerHTML = "{}"
 let CodeTimestamp;
@@ -21,7 +27,8 @@ codeblock.addEventListener("input", updateSyntaxHighlight);
 
 codeblock.addEventListener("keydown", function(e){
     //console.log(e);
-    if (e.code === "Enter" && e.shiftKey === false) {
+    let x = e.which || e.keyCode;
+    if ((x == 13 || e.code === "Enter") && e.shiftKey === false) {
         e.preventDefault()
         document.execCommand("insertLineBreak");
         return false;
@@ -57,7 +64,7 @@ function syntaxHighlight(json, errorindex) {
         //console.log(match + " offset: " + offset)
         if (errorindex !== undefined && errorindex !== -1){
             let endIndex = match.length + offset;
-            console.log("ErrorIndex: " + errorindex + " Start Index: " + offset + " endIndex: " + endIndex);
+            //console.log("ErrorIndex: " + errorindex + " Start Index: " + offset + " endIndex: " + endIndex);
             if (errorindex > offset && errorindex <= endIndex){
                 notFound = false;
                 cls+= " warning"
@@ -89,11 +96,13 @@ function DoUpdateSyntaxHighlight() {
             prettyblock.disabled = null;
             editorblock.disabled = null;
             copyJson.disabled = null;
+            ExtraEditors.style.display = "inline-block";
         } else {
             errorblock.innerHTML = "<i class=\"fas fa-exclamation-triangle\"></i> " + error;
             errorblock.className = "error";
             prettyblock.disabled = "true";
             editorblock.disabled = "true";
+            ExtraEditors.style.display = "none";
             copyJson.disabled = "true";
             errpos = String(error).match(/[0-9]{1,10}/);
             console.log("errpos: " + errpos);
@@ -219,6 +228,7 @@ function GenerateJSON(){
   editorblock.style.display = "inline-block";
   prettyblock.disabled = null;
   editorblock.disabled = null;
+  ExtraEditors.style.display = "inline-block";
   state = "code";
   let json = editor.get();
   let jsonText = JSON.stringify(json, undefined, 2);
@@ -239,6 +249,7 @@ function UseEditor(){
       generateJSONblock.style.display = "inline-block";
       editorblock.style.display = "none";
       generateJSONblock.disabled = null;
+      ExtraEditors.style.display = "none";
       state = "editor";
       editor.set(jsonObj);
       document.getElementById('jsoneditor').scrollIntoView();
@@ -266,4 +277,26 @@ function CopyJson(){
 
   /* Copy the text inside the text field */
   document.execCommand("copy");
+}
+
+function UseUniversalEditor(){
+  delete editor;
+  container.innerHTML = "";
+  editor = new JSONEditor(container, Options);
+  UseEditor();
+}
+
+async function UseZonesEditor(){
+  let ZonesSchema = await fetch("schemas/zones.json")
+  .then(response => {
+     return response.json().catch( e => console.log(e));
+  }).catch( e => console.log(e))
+  let ZonesOptions = {
+    mode: 'tree',
+    schema: ZonesSchema
+  }
+  delete editor;
+  container.innerHTML = "";
+  editor = new JSONEditor(container, ZonesOptions);
+  UseEditor();
 }

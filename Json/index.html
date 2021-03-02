@@ -181,7 +181,7 @@
             }
             div.jsoneditor-field,
             div.jsoneditor-value {
-                color: #ffffff;
+                color: #FF6E40;
             }
             table.jsoneditor-search div.jsoneditor-frame {
                 background: #202b38; 
@@ -241,10 +241,10 @@
                 color: #FFB74D; 
             }
             div.jsoneditor-value.jsoneditor-boolean {
-                color: #ff8048;
+                color: #2196F3;
             }
             div.jsoneditor-value.jsoneditor-null {
-                color: #2196F3;
+                color: #CE93D8;
             }
             button.jsoneditor-transform{
                 display: none;
@@ -265,10 +265,13 @@
         <main>
         <h1>Json Validator</h1>
         <section>
-            <button style="margin: 20px;" id="MakePretty" onclick="MakePretty()" disabled="true" >Make Pretty</button>
-            <button style="margin: 20px;" id="UseEditor" onclick="UseEditor()" disabled="true" >Editor</button>
-            <button style="margin: 20px; display: none;" id="GenerateJSON" onclick="GenerateJSON()" disabled="true"  >Code Block</button>
+            <button style="margin: 10px;" id="MakePretty" onclick="MakePretty()" disabled="true" >Make Pretty</button>
+            <button style="margin: 10px;" id="UseEditor" onclick="UseUniversalEditor()" disabled="true" >Editor</button>
+            <button style="margin: 10px; display: none;" id="GenerateJSON" onclick="GenerateJSON()" disabled="true"  >Code Block</button>
             <textarea  id="copyFrom" style="display: block; position: absolute; left: -1000px; top: -1000px" ></textarea><button onclick="CopyJson()" style="margin: 20px; padding: 12px" title="Copy" id="CopyJson" ><i class="fas fa-copy"></i></button>
+            <div id="ExtraEditors" style="display: none;">
+                <button style="margin: 12px; margin-left: 36px" id="UseZonesEditor" onclick="UseZonesEditor()" >Zones Validator/Editor</button>
+            </div>
         </section>
         <section id="CodeEditor">
             <div id="error" style="white-space: pre;">

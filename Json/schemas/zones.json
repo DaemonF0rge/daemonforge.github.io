@@ -1,0 +1,507 @@
+{
+	"type": "object",
+	"required": [
+		"ConfigVersion",
+		"ZoneCheckTimer",
+		"AggressionReductionTickRate",
+		"WarningMessageColor",
+		"NotificationMessageTime",
+		"WarningMessageImagePath",
+		"Zones"
+	],
+	"properties": {
+		"ConfigVersion": {
+			"type": "string"
+		},
+		"ZoneCheckTimer": {
+			"type": "number"
+		},
+		"AggressionReductionTickRate": {
+			"type": "number"
+		},
+		"WarningMessageColor": {
+			"type": "array",
+			"items": {
+				"type": "number"
+			}
+		},
+		"NotificationMessageTime": {
+			"type": "number"
+		},
+		"WarningMessageImagePath": {
+			"type": "string"
+		},
+		"Zones": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": [
+					"Name",
+					"UID",
+					"X",
+					"Z",
+					"WarningRadius",
+					"KillRadius",
+					"MinHumanity",
+					"MaxHumanity",
+					"ShowWarningMsg",
+					"WarningMessage",
+					"ShowWelcomeMsg",
+					"WelcomeMessage",
+					"WelcomeIcon",
+					"WelcomeMessageColor",
+					"OverrideSafeZone",
+					"GodModPlayers",
+					"PreventWeaponRaise",
+					"PreventActions",
+					"BlockTrader",
+					"KillAggressors",
+					"AggressorThreshold",
+					"AggressorReduction",
+					"AggressorGlobal",
+					"Affinities",
+					"Guards",
+					"SubZones"
+				],
+				"properties": {
+					"Name": {
+						"type": "string"
+					},
+					"UID": {
+						"type": "string"
+					},
+					"X": {
+						"type": "number",
+						"minimum": 0
+					},
+					"Z": {
+						"type": "number",
+						"minimum": 0
+					},
+					"WarningRadius": {
+						"type": "number"
+					},
+					"KillRadius": {
+						"type": "number"
+					},
+					"MinHumanity": {
+						"type": "number"
+					},
+					"MaxHumanity": {
+						"type": "number"
+					},
+					"ShowWarningMsg": {
+						"type": "number",
+						"maximum": 1,
+						"minimum": 0
+					},
+					"WarningMessage": {
+						"type": "string"
+					},
+					"ShowWelcomeMsg": {
+						"type": "number",
+						"maximum": 1,
+						"minimum": 0
+					},
+					"WelcomeMessage": {
+						"type": "string"
+					},
+					"WelcomeIcon": {
+						"type": "string"
+					},
+					"WelcomeMessageColor": {
+						"type": "array",
+						"items": {
+							"type": "number",
+							"maximum": 255,
+							"minimum": 0
+						}
+					},
+					"OverrideSafeZone": {
+						"type": "number",
+						"maximum": 1,
+						"minimum": 0
+					},
+					"GodModPlayers": {
+						"type": "number",
+						"maximum": 1,
+						"minimum": 0
+					},
+					"PreventWeaponRaise": {
+						"type": "number",
+						"maximum": 1,
+						"minimum": 0
+					},
+					"PreventActions": {
+						"type": "number",
+						"maximum": 1,
+						"minimum": 0
+					},
+					"BlockTrader": {
+						"type": "number",
+						"maximum": 1,
+						"minimum": 0
+					},
+					"KillAggressors": {
+						"type": "number",
+						"maximum": 1,
+						"minimum": 0
+					},
+					"AggressorThreshold": {
+						"type": "number"
+					},
+					"AggressorReduction": {
+						"type": "number"
+					},
+					"AggressorGlobal": {
+						"type": "number"
+					},
+					"Affinities": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"required": [],
+							"properties": {
+								"Affinity": {
+									"type": "string"
+								},
+								"MinPoints": {
+									"type": "number"
+								},
+								"MaxPoints": {
+									"type": "number"
+								}
+							}
+						}
+					},
+					"Guards": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"required": [
+								"X",
+								"Y",
+								"Z",
+								"Orientation",
+								"ActionPrefix",
+								"Skin",
+								"WeaponInHands",
+								"WeaponInHandsMag",
+								"WeaponInHandsAttachments",
+								"GuardGear",
+								"GunSound",
+								"DamagePerTickMin",
+								"DamagePerTickRand",
+								"GunTickMulitplier",
+								"HitChance",
+								"RespawnTimer",
+								"CanBeKilled",
+								"RequireLineOfSight"
+							],
+							"properties": {
+								"X": {
+									"type": "number"
+								},
+								"Y": {
+									"type": "number"
+								},
+								"Z": {
+									"type": "number"
+								},
+								"Orientation": {
+									"type": "number"
+								},
+								"ActionPrefix": {
+									"type": "string"
+								},
+								"Skin": {
+									"type": "string"
+								},
+								"WeaponInHands": {
+									"type": "string"
+								},
+								"WeaponInHandsMag": {
+									"type": "string"
+								},
+								"WeaponInHandsAttachments": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								},
+								"GuardGear": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								},
+								"GunSound": {
+									"type": "string"
+								},
+								"DamagePerTickMin": {
+									"type": "number"
+								},
+								"DamagePerTickRand": {
+									"type": "number"
+								},
+								"GunTickMulitplier": {
+									"type": "number"
+								},
+								"HitChance": {
+									"type": "number"
+								},
+								"RespawnTimer": {
+									"type": "number"
+								},
+								"CanBeKilled": {
+									"type": "number",
+									"maximum": 1,
+									"minimum": 0
+								},
+								"RequireLineOfSight": {
+									"type": "number",
+									"maximum": 1,
+									"minimum": 0
+								}
+							}
+						}
+					},
+					"SubZones": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"required": [
+								"Name",
+								"UID",
+								"X",
+								"Z",
+								"WarningRadius",
+								"KillRadius",
+								"MinHumanity",
+								"MaxHumanity",
+								"ShowWarningMsg",
+								"WarningMessage",
+								"ShowWelcomeMsg",
+								"WelcomeMessage",
+								"WelcomeIcon",
+								"WelcomeMessageColor",
+								"OverrideSafeZone",
+								"GodModPlayers",
+								"PreventWeaponRaise",
+								"PreventActions",
+								"BlockTrader",
+								"KillAggressors",
+								"AggressorThreshold",
+								"AggressorReduction",
+								"AggressorGlobal",
+								"Affinities",
+								"Guards"
+							],
+							"properties": {
+								"Name": {
+									"type": "string"
+								},
+								"UID": {
+									"type": "string"
+								},
+								"X": {
+									"type": "number"
+								},
+								"Z": {
+									"type": "number"
+								},
+								"WarningRadius": {
+									"type": "number"
+								},
+								"KillRadius": {
+									"type": "number"
+								},
+								"MinHumanity": {
+									"type": "number"
+								},
+								"MaxHumanity": {
+									"type": "number"
+								},
+								"ShowWarningMsg": {
+									"type": "number"
+								},
+								"WarningMessage": {
+									"type": "string"
+								},
+								"ShowWelcomeMsg": {
+									"type": "number"
+								},
+								"WelcomeMessage": {
+									"type": "string"
+								},
+								"WelcomeIcon": {
+									"type": "string"
+								},
+								"WelcomeMessageColor": {
+									"type": "array",
+									"items": {
+										"type": "number",
+										"maximum": 255,
+										"minimum": 0
+									}
+								},
+								"OverrideSafeZone": {
+									"type": "number",
+									"maximum": 1,
+									"minimum": 0
+								},
+								"GodModPlayers": {
+									"type": "number",
+									"maximum": 1,
+									"minimum": 0
+								},
+								"PreventWeaponRaise": {
+									"type": "number",
+									"maximum": 1,
+									"minimum": 0
+								},
+								"PreventActions": {
+									"type": "number",
+									"maximum": 1,
+									"minimum": 0
+								},
+								"BlockTrader": {
+									"type": "number",
+									"maximum": 1,
+									"minimum": 0
+								},
+								"KillAggressors": {
+									"type": "number",
+									"maximum": 1,
+									"minimum": 0
+								},
+								"AggressorThreshold": {
+									"type": "number"
+								},
+								"AggressorReduction": {
+									"type": "number"
+								},
+								"AggressorGlobal": {
+									"type": "number"
+								},
+								"Affinities": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"required": [],
+										"properties": {
+											"Affinity": {
+												"type": "string"
+											},
+											"MinPoints": {
+												"type": "number"
+											},
+											"MaxPoints": {
+												"type": "number"
+											}
+										}
+									}
+								},
+								"Guards": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"required": [
+											"X",
+											"Y",
+											"Z",
+											"Orientation",
+											"ActionPrefix",
+											"Skin",
+											"WeaponInHands",
+											"WeaponInHandsMag",
+											"WeaponInHandsAttachments",
+											"GuardGear",
+											"GunSound",
+											"DamagePerTickMin",
+											"DamagePerTickRand",
+											"GunTickMulitplier",
+											"HitChance",
+											"RespawnTimer",
+											"CanBeKilled",
+											"RequireLineOfSight"
+										],
+										"properties": {
+											"X": {
+												"type": "number",
+												"minimum": 0
+											},
+											"Y": {
+												"type": "number"
+											},
+											"Z": {
+												"type": "number"
+											},
+											"Orientation": {
+												"type": "number"
+											},
+											"ActionPrefix": {
+												"type": "string"
+											},
+											"Skin": {
+												"type": "string"
+											},
+											"WeaponInHands": {
+												"type": "string"
+											},
+											"WeaponInHandsMag": {
+												"type": "string"
+											},
+											"WeaponInHandsAttachments": {
+												"type": "array",
+												"items": {
+													"type": "string"
+												}
+											},
+											"GuardGear": {
+												"type": "array",
+												"items": {
+													"type": "string"
+												}
+											},
+											"GunSound": {
+												"type": "string"
+											},
+											"DamagePerTickMin": {
+												"type": "number"
+											},
+											"DamagePerTickRand": {
+												"type": "number"
+											},
+											"GunTickMulitplier": {
+												"type": "number"
+											},
+											"HitChance": {
+												"type": "number",
+												"maximum": 1,
+												"minimum": 0
+											},
+											"RespawnTimer": {
+												"type": "number"
+											},
+											"CanBeKilled": {
+												"type": "number",
+												"maximum": 1,
+												"minimum": 0
+											},
+											"RequireLineOfSight": {
+												"type": "number",
+												"maximum": 1,
+												"minimum": 0
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
