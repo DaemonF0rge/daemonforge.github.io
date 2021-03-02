@@ -1,0 +1,168 @@
+{
+    "type": "object",
+    "required": [
+        "ConfigVersion",
+        "WhiteList",
+        "ServerAdmins",
+        "TentRadius",
+        "TentCESpawnLifeTime",
+        "BuildBonusSledgeDamage",
+        "RequireTerritory",
+        "PublicPermissions",
+        "MemberPermissions",
+        "Notifications",
+        "NoBuildZones",
+        "NoBuildZoneMessage",
+        "TerritoryConflictMessage",
+        "WithinTerritoryWarning",
+        "DeSpawnWarningMessage",
+        "BuildPartWarningMessage",
+        "DismantleWarningMessage",
+        "LowerFlagWarningMessage",
+        "TerritoryRequiredWarningMessage",
+        "FlagRefreshFrequency",
+        "KitLifeTimes"
+    ],
+    "properties": {
+      "ConfigVersion": {
+        "type": "string",
+        "pattern": "[0-9]{1,2}"
+      },
+      "WhiteList": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "ServerAdmins": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "TentRadius": {
+        "type": "number",
+        "minimum": -1
+      },
+      "TentCESpawnLifeTime": {
+        "type": "number",
+        "minimum": 0
+      },
+      "BuildBonusSledgeDamage": {
+        "type": "number",
+        "minimum": 0
+      },
+      "RequireTerritory": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "PublicPermissions": {
+        "type": "number",
+        "examples": [
+            20
+         ]
+      },
+      "MemberPermissions": {
+        "type": "number",
+        "examples": [
+            30
+        ]
+      },
+      "Notifications": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "NoBuildZones": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["X","Z","R","DrawOnMap"],
+          "properties": {
+            "X": {
+              "type": "number",
+              "minimum": 0
+            },
+            "Z": {
+              "type": "number",
+              "minimum": 0
+            },
+            "R": {
+              "type": "number",
+              "minimum": 0
+            },
+            "DrawOnMap": {
+              "type": "number",
+              "maximum": 1,
+              "minimum": 0
+            }
+          }
+        }
+      },
+      "NoBuildZoneMessage": {
+        "type": "string",
+        "examples": [
+            "You can't build here, are trying to build in a designated no build zones"
+        ]
+      },
+      "TerritoryConflictMessage": {
+        "type": "string",
+        "examples": [
+            "Sorry you can't build a territory this close to another territory"
+        ]
+      },
+      "WithinTerritoryWarning": {
+        "type": "string",
+        "examples": [
+            "Sorry you can't build this close to an enemy territory"
+        ]
+      },
+      "DeSpawnWarningMessage": {
+        "type": "string",
+        "examples": [
+            "You are building outside a territory, $ITEMNAME$ will despawn in $LIFETIME$ without a Territory"
+        ]
+      },
+      "BuildPartWarningMessage": {
+        "type": "string",
+        "examples": [
+            "Sorry, you don't have permissions to build in this area."
+        ]
+      },
+      "DismantleWarningMessage": {
+        "type": "string",
+        "examples": [
+            "Sorry, you can't dismantle anything this close to a raised flag"
+        ]
+      },
+      "LowerFlagWarningMessage": {
+        "type": "string",
+        "examples": [
+            "Sorry, you do not have permissions to lower the flag in this territory"
+        ]
+      },
+      "TerritoryRequiredWarningMessage": {
+        "type": "string",
+        "examples": [
+            "Sorry, you are required to build a territory to be able to build"
+        ]
+      },
+      "FlagRefreshFrequency": {
+        "type": "number",
+        "default": 432000
+      },
+      "KitLifeTimes": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "watchtowerkit": {
+            "type": "number"
+          },
+          "fencekit": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }

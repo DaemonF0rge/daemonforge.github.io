@@ -1,0 +1,227 @@
+{
+    "type": "object",
+    "required": [
+        "ConfigVersion",
+        "Mode",
+        "NotificationMessageTime",
+        "KillFeed",
+        "SucideFeed",
+        "KillFeedMessageColor",
+        "CommandPrefix",
+        "AllowStatCommand",
+        "AllowHumanityCommand",
+        "AllowGUI",
+        "GUIHeading",
+        "HideKillsInGUI",
+        "BanditCanRemoveMask",
+        "BanditCanRemoveArmBand",
+        "BanditMasks",
+        "BanditArmBands",
+        "HeroCanRemoveMask",
+        "HeroCanRemoveArmBand",
+        "HeroMasks",
+        "HeroArmBands",
+        "AffintyCantGoBelowZero",
+        "ResetAffinitiesOnDeath",
+        "ResetStatsOnDeath",
+        "DodTags_EnableHumanityOnDogTags",
+        "DodTags_EnableAffinityOnDogTags",
+        "Expansion_EnableIconOnPlayerTag",
+        "Expansion_ImageTypePlayerTag",
+        "Expansion_HideNameOnPlayerTag",
+        "ExceptionLogs",
+        "VerboseLogs",
+        "DebugLogs",
+        "DebugCommand",
+        "BambiSkins",
+        "HeroSkins",
+        "BanditSkins"
+    ],
+    "properties": {
+      "ConfigVersion": {
+        "type": "string",
+        "pattern": "[0-9]{1,2}"
+      },
+      "Mode": {
+        "type": "number",
+        "maximum": 2,
+        "minimum": 0
+      },
+      "NotificationMessageTime": {
+        "type": "number",
+        "minimum": 0
+      },
+      "KillFeed": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "SucideFeed": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "KillFeedMessageColor": {
+        "type": "array",
+        "maxItems": 4,
+        "minItems": 4,
+        "items": {
+          "type": "number",
+          "maximum": 255,
+          "minimum": 0
+        }
+      },
+      "CommandPrefix": {
+        "type": "string",
+        "pattern": "(.){1}"
+      },
+      "AllowStatCommand": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "AllowHumanityCommand": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "AllowGUI": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "GUIHeading": {
+        "type": "string"
+      },
+      "HideKillsInGUI": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "BanditCanRemoveMask": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "BanditCanRemoveArmBand": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "BanditMasks": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "BanditArmBands": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "HeroCanRemoveMask": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "HeroCanRemoveArmBand": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "HeroMasks": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "HeroArmBands": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "AffintyCantGoBelowZero": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "ResetAffinitiesOnDeath": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "ResetStatsOnDeath": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "DodTags_EnableHumanityOnDogTags": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "DodTags_EnableAffinityOnDogTags": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "Expansion_EnableIconOnPlayerTag": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "Expansion_ImageTypePlayerTag": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "Expansion_HideNameOnPlayerTag": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "ExceptionLogs": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "VerboseLogs": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "DebugLogs": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "DebugCommand": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "BambiSkins": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["SurvivorM_Boris", "SurvivorM_Hassan", "SurvivorF_Frida", "SurvivorM_Jose", "SurvivorM_Cyril", "SurvivorF_Gabi", "SurvivorM_Indar","SurvivorM_Lewis","SurvivorF_Linda","SurvivorM_Taiki","SurvivorM_Mirek","SurvivorM_Oliver","SurvivorF_Irena","SurvivorF_Judy","SurvivorF_Keiko","SurvivorM_Niki","SurvivorM_Rolf","SurvivorM_Peter","SurvivorM_Kaito","SurvivorF_Naomi","SurvivorM_Francis","SurvivorM_Elias","SurvivorM_Manua","SurvivorM_Denis","SurvivorM_Quinn","SurvivorM_Guo","SurvivorM_Seth","SurvivorF_Maria","SurvivorF_Eva", "SurvivorF_Helga"]
+        }
+      },
+      "HeroSkins": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["SurvivorM_Boris", "SurvivorM_Hassan", "SurvivorF_Frida", "SurvivorM_Jose", "SurvivorM_Cyril", "SurvivorF_Gabi", "SurvivorM_Indar","SurvivorM_Lewis","SurvivorF_Linda","SurvivorM_Taiki","SurvivorM_Mirek","SurvivorM_Oliver","SurvivorF_Irena","SurvivorF_Judy","SurvivorF_Keiko","SurvivorM_Niki","SurvivorM_Rolf","SurvivorM_Peter","SurvivorM_Kaito","SurvivorF_Naomi","SurvivorM_Francis","SurvivorM_Elias","SurvivorM_Manua","SurvivorM_Denis","SurvivorM_Quinn","SurvivorM_Guo","SurvivorM_Seth","SurvivorF_Maria","SurvivorF_Eva", "SurvivorF_Helga"]
+        }
+      },
+      "BanditSkins": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["SurvivorM_Boris", "SurvivorM_Hassan", "SurvivorF_Frida", "SurvivorM_Jose", "SurvivorM_Cyril", "SurvivorF_Gabi", "SurvivorM_Indar","SurvivorM_Lewis","SurvivorF_Linda","SurvivorM_Taiki","SurvivorM_Mirek","SurvivorM_Oliver","SurvivorF_Irena","SurvivorF_Judy","SurvivorF_Keiko","SurvivorM_Niki","SurvivorM_Rolf","SurvivorM_Peter","SurvivorM_Kaito","SurvivorF_Naomi","SurvivorM_Francis","SurvivorM_Elias","SurvivorM_Manua","SurvivorM_Denis","SurvivorM_Quinn","SurvivorM_Guo","SurvivorM_Seth","SurvivorF_Maria","SurvivorF_Eva", "SurvivorF_Helga"]
+        }
+      }
+    }
+  }

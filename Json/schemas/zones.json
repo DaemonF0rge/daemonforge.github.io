@@ -11,7 +11,8 @@
 	],
 	"properties": {
 		"ConfigVersion": {
-			"type": "string"
+			"type": "string",
+			"pattern": "[0-9]{1,2}"
 		},
 		"ZoneCheckTimer": {
 			"type": "number"

@@ -1,0 +1,65 @@
+{
+    "type": "object",
+    "required": ["ConfigVersion","NotificationMessageTime","NotificationColor","Actions","AggressorActions"],
+    "properties": {
+      "ConfigVersion": {
+        "type": "string",
+        "pattern": "[0-9]{1,2}"
+      },
+      "NotificationMessageTime": {
+        "type": "number",
+        "minimum": 0
+      },
+      "NotificationColor": {
+        "type": "array",
+        "maxItems": 4,
+        "minItems": 4,
+        "items": {
+          "type": "number",
+          "maximum": 255,
+          "minimum": 0
+        }
+      },
+      "Actions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["Name","Affinity","SecondaryAffinity","Points","NotifiyPlayer"],
+          "properties": {
+            "Name": {
+              "type": "string"
+            },
+            "Affinity": {
+              "type": "string"
+            },
+            "SecondaryAffinity": {
+              "type": "string"
+            },
+            "Points": {
+              "type": "number"
+            },
+            "NotifiyPlayer": {
+              "type": "number",
+              "maximum": 1,
+              "minimum": 0
+            }
+          }
+        }
+      },
+      "AggressorActions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["Name","Amount"],
+          "properties": {
+            "Name": {
+              "type": "string"
+            },
+            "Amount": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    }
+  }

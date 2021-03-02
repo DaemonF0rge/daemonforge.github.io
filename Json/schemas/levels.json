@@ -1,0 +1,177 @@
+{
+    "type": "object",
+    "required": [
+        "ConfigVersion",
+        "Levels",
+        "DefaultLevel",
+        "Affinities",
+        "DefaultAffinity",
+        "ShowLevelIcon",
+        "LevelIconLocation",
+        "NotifyLevelChange"
+    ],
+    "properties": {
+      "ConfigVersion": {
+        "type": "string",
+        "pattern": "[0-9]{1,2}"
+      },
+      "Levels": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "Name",
+            "Affinity",
+            "LevelImage",
+            "MinPoints",
+            "MaxPoints"
+          ],
+          "properties": {
+            "Name": {
+              "type": "string"
+            },
+            "Affinity": {
+              "type": "string"
+            },
+            "LevelImage": {
+              "type": "string"
+            },
+            "MinPoints": {
+              "type": "number"
+            },
+            "MaxPoints": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "DefaultLevel": {
+        "type": "object",
+        "required": [
+            "Name",
+            "Affinity",
+            "LevelImage",
+            "MinPoints",
+            "MaxPoints"
+        ],
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Affinity": {
+            "type": "string"
+          },
+          "LevelImage": {
+            "type": "string"
+          },
+          "MinPoints": {
+            "type": "number"
+          },
+          "MaxPoints": {
+            "type": "number"
+          }
+        }
+      },
+      "Affinities": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "Name",
+            "DisplayName",
+            "Image",
+            "ItemBlackList"
+          ],
+          "properties": {
+            "Name": {
+              "type": "string"
+            },
+            "DisplayName": {
+              "type": "string"
+            },
+            "Image": {
+              "type": "string"
+            },
+            "ItemBlackList": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                    "MinPoints",
+                    "MaxPoints",
+                    "Location",
+                    "Items"
+                ],
+                "properties": {
+                  "MinPoints": {
+                    "type": "number"
+                  },
+                  "MaxPoints": {
+                    "type": "number"
+                  },
+                  "Location": {
+                    "type": "string",
+                    "enum": ["all","inhands","attach"]
+                  },
+                  "Items": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "DefaultAffinity": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "DisplayName": {
+            "type": "string"
+          },
+          "Image": {
+            "type": "string"
+          },
+          "ItemBlackList": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "MinPoints": {
+                  "type": "number"
+                },
+                "MaxPoints": {
+                  "type": "number"
+                },
+                "Location": {
+                  "type": "string"
+                },
+                "Items": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ShowLevelIcon": {
+        "type": "number"
+      },
+      "LevelIconLocation": {
+        "type": "number"
+      },
+      "NotifyLevelChange": {
+        "type": "number"
+      }
+    }
+  }

@@ -1,0 +1,281 @@
+{
+    "type": "object",
+    "required": [
+        "ConfigVersion",
+        "UseSimple",
+        "KillFeed",
+        "SucideFeed",
+        "BanditCanRemoveMask",
+        "BanditCanRemoveArmBand",
+        "BanditMasks",
+        "BanditArmBands",
+        "HeroCanRemoveMask",
+        "HeroCanRemoveArmBand",
+        "HeroMasks",
+        "HeroArmBands",
+        "HeroOnlyItems",
+        "BanditOnlyItems",
+        "Expansion_EnableIconOnPlayerTag",
+        "Levels",
+        "Actions",
+        "Zones"
+    ],
+    "properties": {
+      "ConfigVersion": {
+        "type": "string",
+        "pattern": "[0-9]{1,2}"
+      },
+      "UseSimple": {
+        "type": "number",
+        "maximum": 2,
+        "minimum": 0
+      },
+      "KillFeed": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "SucideFeed": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "BanditCanRemoveMask": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "BanditCanRemoveArmBand": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "BanditMasks": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "BanditArmBands": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "HeroCanRemoveMask": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "HeroCanRemoveArmBand": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "HeroMasks": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "HeroArmBands": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "HeroOnlyItems": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "BanditOnlyItems": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "Expansion_EnableIconOnPlayerTag": {
+        "type": "number",
+        "maximum": 1,
+        "minimum": 0
+      },
+      "Levels": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["Name", "Humanity"],
+          "properties": {
+            "Name": {
+              "type": "string"
+            },
+            "Humanity": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "Actions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["Name","Humanity"],
+          "properties": {
+            "Name": {
+              "type": "string"
+            },
+            "Humanity": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "Zones": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "Name",
+            "X",
+            "Z",
+            "Radius",
+            "MinHumanity",
+            "MaxHumanity",
+            "WelcomeMessage",
+            "WarningMessage",
+            "OverrideSafeZone",
+            "GodModPlayers",
+            "PreventWeaponRaise",
+            "PreventActions",
+            "PreventTrade",
+            "KillAggressors",
+            "RespawnTimer",
+            "GuardDifficulty",
+            "Guards"
+            ],
+          "properties": {
+            "Name": {
+              "type": "string"
+            },
+            "X": {
+              "type": "number",
+              "minimum": 0
+            },
+            "Z": {
+              "type": "number",
+              "minimum": 0
+            },
+            "Radius": {
+              "type": "number",
+              "minimum": 0
+            },
+            "MinHumanity": {
+              "type": "number"
+            },
+            "MaxHumanity": {
+              "type": "number"
+            },
+            "WelcomeMessage": {
+              "type": "string"
+            },
+            "WarningMessage": {
+              "type": "string"
+            },
+            "OverrideSafeZone": {
+              "type": "number",
+              "maximum": 1,
+              "minimum": 0
+            },
+            "GodModPlayers": {
+              "type": "number",
+              "maximum": 1,
+              "minimum": 0
+            },
+            "PreventWeaponRaise": {
+              "type": "number",
+              "maximum": 1,
+              "minimum": 0
+            },
+            "PreventActions": {
+              "type": "number",
+              "maximum": 1,
+              "minimum": 0
+            },
+            "PreventTrade": {
+              "type": "number",
+              "maximum": 1,
+              "minimum": 0
+            },
+            "KillAggressors": {
+              "type": "number",
+              "maximum": 1,
+              "minimum": 0
+            },
+            "RespawnTimer": {
+              "type": "number",
+              "minimum": 0
+            },
+            "GuardDifficulty": {
+              "type": "number",
+              "maximum": 5,
+              "minimum": 1
+            },
+            "Guards": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                    "X",
+                    "Y",
+                    "Z",
+                    "Orientation",
+                    "Skin",
+                    "WeaponInHands",
+                    "WeaponInHandsAttachments",
+                    "GuardGear"
+                ],
+                "properties": {
+                  "X": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "Y": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "Z": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "Orientation": {
+                    "type": "number"
+                  },
+                  "Skin": {
+                    "type": "string",
+                    "enum": ["SurvivorM_Boris", "SurvivorM_Hassan", "SurvivorF_Frida", "SurvivorM_Jose", "SurvivorM_Cyril", "SurvivorF_Gabi", "SurvivorM_Indar","SurvivorM_Lewis","SurvivorF_Linda","SurvivorM_Taiki","SurvivorM_Mirek","SurvivorM_Oliver","SurvivorF_Irena","SurvivorF_Judy","SurvivorF_Keiko","SurvivorM_Niki","SurvivorM_Rolf","SurvivorM_Peter","SurvivorM_Kaito","SurvivorF_Naomi","SurvivorM_Francis","SurvivorM_Elias","SurvivorM_Manua","SurvivorM_Denis","SurvivorM_Quinn","SurvivorM_Guo","SurvivorM_Seth","SurvivorF_Maria","SurvivorF_Eva", "SurvivorF_Helga"]
+                  },
+                  "WeaponInHands": {
+                    "type": "string",
+                    "enum": ["M4A1","M4A1_Green","M4A1_Black","AK74","AK74_Black","AK74_Green","UMP45","SKS","SKS_Black","SVD","FAL","Expansion_AWM","Expansion_G36","ussr_m200","ussr_m200_black"]
+                  },
+                  "WeaponInHandsAttachments": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "GuardGear": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

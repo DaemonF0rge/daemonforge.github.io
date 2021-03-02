@@ -264,16 +264,25 @@
     <body>
         <main>
         <h1>Json Validator</h1>
-        <section>
-            <button style="margin: 10px;" id="MakePretty" onclick="MakePretty()" disabled="true" >Make Pretty</button>
-            <button style="margin: 10px;" id="UseEditor" onclick="UseUniversalEditor()" disabled="true" >Editor</button>
-            <button style="margin: 10px; display: none;" id="GenerateJSON" onclick="GenerateJSON()" disabled="true"  >Code Block</button>
-            <textarea  id="copyFrom" style="display: block; position: absolute; left: -1000px; top: -1000px" ></textarea><button onclick="CopyJson()" style="margin: 20px; padding: 12px" title="Copy" id="CopyJson" ><i class="fas fa-copy"></i></button>
-            <div id="ExtraEditors" style="display: none;">
-                <button style="margin: 12px; margin-left: 36px" id="UseZonesEditor" onclick="UseZonesEditor()" >HaB Zones Validator/Editor</button>
+        <section style="width: 100%; min-height: 86px;">
+            <div style="display: inline-block;">
+                <button style="margin: 10px;" id="MakePretty" onclick="MakePretty()" disabled="true" >Make Pretty</button>
+                <select id="SelectedEditor" style="margin: 10px 6px;  display: inline-block;" disabled="true" >
+                    <option value="" selected="true">No Schema</option>
+                    <option value="schemas/simple.json">Heroes And Bandits - simple.json</option>
+                    <option value="schemas/habsettings.json">Heroes And Bandits - settings.json</option>
+                    <option value="schemas/levels.json" >Heroes And Bandits - levels.json</option>
+                    <option value="schemas/actions.json" >Heroes And Bandits - actions.json</option>
+                    <option value="schemas/zones.json" >Heroes And Bandits - zones.json</option>
+                    <option value="schemas/btsettings.json" >Basic Territories - settings.json</option>
+                    <option value="schemas/raidhandler.json" >Basic Territories - raidhandler.json</option>
+                </select>
+                <button style="margin: 10px; display: none;" id="GenerateJSON" onclick="GenerateJSON()" disabled="true"  >Code Block</button>
+                <button style="margin: 6px 10px;" id="UseEditor" onclick="UseSelectedEditor()" disabled="true" >Editor</button>
+                <textarea  id="copyFrom" style="display: block; position: absolute; left: -1000px; top: -1000px" ></textarea><button onclick="CopyJson()" style="margin: 10px; margin-left: 20px; padding: 12px" title="Copy" id="CopyJson" ><i class="fas fa-copy"></i></button>
             </div>
         </section>
-        <section id="CodeEditor">
+        <section id="CodeEditor" style="width: 100%;">
             <div id="error" style="white-space: pre;">
             </div>
 <code id="codeblock" contenteditable="true">{ }

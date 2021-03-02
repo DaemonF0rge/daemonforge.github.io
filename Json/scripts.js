@@ -8,8 +8,7 @@ let generateJSONblock = document.getElementById("GenerateJSON");
 let objexplorer = document.getElementById("objexplorer");
 let copyFrom = document.getElementById("copyFrom");
 let copyJson = document.getElementById("CopyJson");
-let ExtraEditors = document.getElementById("ExtraEditors");
-
+let SelectedEditor = document.getElementById("SelectedEditor");
 let state = "code";
 
 const container = document.getElementById('jsoneditor')
@@ -96,13 +95,13 @@ function DoUpdateSyntaxHighlight() {
             prettyblock.disabled = null;
             editorblock.disabled = null;
             copyJson.disabled = null;
-            ExtraEditors.style.display = "inline-block";
+            SelectedEditor.disabled = null;
         } else {
             errorblock.innerHTML = "<i class=\"fas fa-exclamation-triangle\"></i> " + error;
             errorblock.className = "error";
             prettyblock.disabled = "true";
             editorblock.disabled = "true";
-            ExtraEditors.style.display = "none";
+            SelectedEditor.disabled = "true";
             copyJson.disabled = "true";
             errpos = String(error).match(/[0-9]{1,10}/);
             console.log("errpos: " + errpos);
@@ -228,7 +227,7 @@ function GenerateJSON(){
   editorblock.style.display = "inline-block";
   prettyblock.disabled = null;
   editorblock.disabled = null;
-  ExtraEditors.style.display = "inline-block";
+  SelectedEditor.disabled = null;
   state = "code";
   let json = editor.get();
   let jsonText = JSON.stringify(json, undefined, 2);
@@ -246,10 +245,10 @@ function UseEditor(){
       objexplorer.style.display = "block";
       prettyblock.disabled = "true";
       editorblock.disabled = "true";
+      SelectedEditor.disabled = "true";
       generateJSONblock.style.display = "inline-block";
       editorblock.style.display = "none";
       generateJSONblock.disabled = null;
-      ExtraEditors.style.display = "none";
       state = "editor";
       editor.set(jsonObj);
       document.getElementById('jsoneditor').scrollIntoView();
@@ -286,17 +285,22 @@ function UseUniversalEditor(){
   UseEditor();
 }
 
-async function UseZonesEditor(){
-  let ZonesSchema = await fetch("schemas/zones.json")
-  .then(response => {
-     return response.json().catch( e => console.log(e));
-  }).catch( e => console.log(e))
-  let ZonesOptions = {
-    mode: 'tree',
-    schema: ZonesSchema
+async function UseSelectedEditor(){
+  let selectedVal =SelectedEditor.options[SelectedEditor.selectedIndex].value;
+  if (selectedVal !== undefined && selectedVal != ""){
+    let ZonesSchema = await fetch(selectedVal)
+    .then(response => {
+      return response.json().catch( e => console.log(e));
+    }).catch( e => console.log(e))
+    let ZonesOptions = {
+      mode: 'tree',
+      schema: ZonesSchema
+    }
+    delete editor;
+    container.innerHTML = "";
+    editor = new JSONEditor(container, ZonesOptions);
+    UseEditor();
+  } else {
+    UseUniversalEditor();
   }
-  delete editor;
-  container.innerHTML = "";
-  editor = new JSONEditor(container, ZonesOptions);
-  UseEditor();
 }
