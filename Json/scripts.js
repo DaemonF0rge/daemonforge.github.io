@@ -99,7 +99,7 @@ function DoUpdateSyntaxHighlight() {
             console.log("errpos: " + errpos);
         }
         codeblock.innerHTML = syntaxHighlight(json, errpos);
-        SetCaretPosition(codeblock,pos[0])
+        SetCaretPosition(codeblock,pos)
     }
   }
 // node_walk: walk the element tree, stop when func(node) returns false
@@ -147,8 +147,8 @@ function node_walk(node, func) {
       }
     }
     if(cum_length[0] <= cum_length[1])
-      return cum_length;
-    return [cum_length[1], cum_length[0]];
+      return cum_length[0];
+    return cum_length[1];
   }
 
   function SetCaretPosition(el, pos){
