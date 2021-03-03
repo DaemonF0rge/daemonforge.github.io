@@ -3,6 +3,7 @@
     "items": {
       "type": "object",
       "required": ["playerId","playerPerms"],
+      "additionalProperties": false,
       "properties": {
         "playerId": {
           "type": "string",
@@ -11,6 +12,7 @@
         "playerPerms": {
           "type": "object",
           "required": ["CanOpenLocks","CanChangePasscodes","CanRemoveLocks"],
+          "additionalProperties": false,
           "properties": {
             "CanOpenLocks": {
               "type": "string",

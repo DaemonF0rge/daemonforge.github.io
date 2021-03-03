@@ -42,7 +42,8 @@
               "type": "number",
               "enum":[0,1]
             }
-          }
+          },
+          "additionalProperties": false
         }
       },
       "AggressorActions": {
@@ -57,8 +58,10 @@
             "Amount": {
               "type": "number"
             }
-          }
+          },
+          "additionalProperties": false
         }
       }
-    }
+    },
+    "additionalProperties": false
   }

@@ -1,12 +1,14 @@
 {
     "type": "object",
     "required": ["Locations"],
+    "additionalProperties": false,
     "properties": {
       "Locations": {
         "type": "array",
         "items": {
           "type": "object",
           "required": ["Name","Permission","Position","Radius"],
+          "additionalProperties": false,
           "properties": {
             "Name": {
               "type": "string"

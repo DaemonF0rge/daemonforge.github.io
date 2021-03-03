@@ -9,6 +9,7 @@
 		"WarningMessageImagePath",
 		"Zones"
 	],
+    "additionalProperties": false,
 	"properties": {
 		"ConfigVersion": {
 			"type": "string",
@@ -68,6 +69,7 @@
 					"Guards",
 					"SubZones"
 				],
+				"additionalProperties": false,
 				"properties": {
 					"Name": {
 						"type": "string"
@@ -160,6 +162,7 @@
 						"items": {
 							"type": "object",
 							"required": ["Affinity","MinPoints","MaxPoints"],
+							"additionalProperties": false,
 							"properties": {
 								"Affinity": {
 									"type": "string"
@@ -197,6 +200,7 @@
 								"CanBeKilled",
 								"RequireLineOfSight"
 							],
+							"additionalProperties": false,
 							"properties": {
 								"X": {
 									"type": "number",
@@ -301,6 +305,7 @@
 								"Affinities",
 								"Guards"
 							],
+							"additionalProperties": false,
 							"properties": {
 								"Name": {
 									"type": "string"
@@ -391,6 +396,7 @@
 									"items": {
 										"type": "object",
 										"required": ["Affinity","MinPoints","MaxPoints"],
+										"additionalProperties": false,
 										"properties": {
 											"Affinity": {
 												"type": "string"
@@ -428,6 +434,7 @@
 											"CanBeKilled",
 											"RequireLineOfSight"
 										],
+										"additionalProperties": false,
 										"properties": {
 											"X": {
 												"type": "number",

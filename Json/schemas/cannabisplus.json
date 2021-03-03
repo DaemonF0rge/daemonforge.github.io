@@ -53,6 +53,7 @@
         "weedRadBlurYPower",
         "weedRotBlurPow"
     ],
+    "additionalProperties": false,
     "properties": {
       "configVersion": {
         "type": "number"

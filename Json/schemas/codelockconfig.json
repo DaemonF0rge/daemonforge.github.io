@@ -17,6 +17,7 @@
         "CanOpenAnywhere",
         "CanCloseAnywhere"
     ],
+    "additionalProperties": false,
     "properties": {
       "ActionRateLimit": {
         "type": "number"

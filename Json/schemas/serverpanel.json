@@ -19,6 +19,7 @@
         "sServerTab2",
         "sServerTab3"
     ],
+    "additionalProperties": false,
     "properties": {
       "SERVERNAME": {
         "type": "string"

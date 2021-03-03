@@ -37,6 +37,7 @@
         "HeroSkins",
         "BanditSkins"
     ],
+    "additionalProperties": false,
     "properties": {
       "ConfigVersion": {
         "type": "string",

@@ -1,6 +1,7 @@
 {
     "type": "object",
     "required": ["ServerURL","ServerID","ServerAuth","QnAEnabled"],
+    "additionalProperties": false,
     "properties": {
       "ServerURL": {
         "type": "string",

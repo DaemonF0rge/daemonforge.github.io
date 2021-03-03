@@ -3,6 +3,7 @@
     "items": {
       "type": "object",
       "required": ["Name","Pos","Icon","Is3DMarker","Colour","Alpha"],
+      "additionalProperties": false,
       "properties": {
         "Name": {
           "type": "string"

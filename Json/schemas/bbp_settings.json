@@ -24,6 +24,7 @@
         "g_BBPCementMixerTime",
         "g_BBPCementMixerLocations"
     ],
+    "additionalProperties": false,
     "properties": {
       "g_BBPRequireLandClaim": {
         "type": "number",
@@ -119,6 +120,7 @@
         "items": {
           "type": "object",
           "required": ["position","orientation"],
+          "additionalProperties": false,
           "properties": {
             "position": {
               "type": "array",

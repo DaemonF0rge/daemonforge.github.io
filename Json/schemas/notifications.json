@@ -1,6 +1,7 @@
 {
     "type": "object",
     "required": ["ConfigVersion","EnableBattlEye","StopSpam","BattlEyeIcon","BattlEyeHeading","BattlEyeKeywords"],
+    "additionalProperties": false,
     "properties": {
       "ConfigVersion": {
         "type": "string",

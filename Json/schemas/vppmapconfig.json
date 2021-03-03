@@ -1,12 +1,14 @@
 {
     "type": "object",
     "required": ["M_STATIC_MARKER_ARRAY","m_CanUse3DMarkers","m_OwnPositionMarkerDisabled","m_ForceMapItemOnly"],
+    "additionalProperties": false,
     "properties": {
       "M_STATIC_MARKER_ARRAY": {
         "type": "array",
         "items": {
           "type": "object",
-          "required": [],
+          "required": ["M_MARKER_NAME","M_ICON_PATH","M_COLOR","M_POSITION","M_ISACTIVE","M_IS_3D_ACTIVE"],
+          "additionalProperties": false,
           "properties": {
             "M_MARKER_NAME": {
               "type": "string"

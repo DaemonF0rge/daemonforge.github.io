@@ -1,6 +1,7 @@
 {
     "type": "object",
-    "required": [],
+    "required": ["ConfigVersion","Icons","AllowPlayerMarkers","Allow3dMarkers", "ShowSelfOnMap","RequireMapItemInInventory", "OnlyOnOpenAction","RequirePenToMark","SaveMarkersToMapItem","RequireCompassToSeeSelf","RequireCompassToSee3d"],
+    "additionalProperties": false,
     "properties": {
       "ConfigVersion": {
         "type": "string",

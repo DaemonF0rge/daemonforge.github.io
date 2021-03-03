@@ -20,6 +20,7 @@
         "Actions",
         "Zones"
     ],
+    "additionalProperties": false,
     "properties": {
       "ConfigVersion": {
         "type": "string",
@@ -98,6 +99,7 @@
         "items": {
           "type": "object",
           "required": ["Name", "Humanity"],
+          "additionalProperties": false,
           "properties": {
             "Name": {
               "type": "string"
@@ -113,6 +115,7 @@
         "items": {
           "type": "object",
           "required": ["Name","Humanity"],
+          "additionalProperties": false,
           "properties": {
             "Name": {
               "type": "string"
@@ -220,6 +223,7 @@
                     "WeaponInHandsAttachments",
                     "GuardGear"
                 ],
+                "additionalProperties": false,
                 "properties": {
                   "X": {
                     "type": "number",

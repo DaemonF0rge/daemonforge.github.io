@@ -1,6 +1,7 @@
 {
     "type": "object",
     "required": ["logPartiesFrequencySeconds","verbosity","maxPartySize","sendInfoFrequencySeconds","sendMarkerFrequencySeconds","maxMarkers", "maxPartyRefreshRate","adminIds"],
+    "additionalProperties": false,
     "properties": {
       "logPartiesFrequencySeconds": {
         "type": "number"

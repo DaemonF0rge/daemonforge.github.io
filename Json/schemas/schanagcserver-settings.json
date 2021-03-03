@@ -1,10 +1,12 @@
 {
     "type": "object",
     "required": ["ColorDirect","ColorDirectPlayer","ColorGlobal","ColorGlobalPlayer","ColorServer","ColorAlert"],
+    "additionalProperties": false,
     "properties": {
       "ColorDirect": {
         "type": "object",
         "required": ["R", "G","B"],
+        "additionalProperties": false,
         "properties": {
           "R": {
             "type": "number",
@@ -26,6 +28,7 @@
       "ColorDirectPlayer": {
         "type": "object",
         "required": ["R", "G","B"],
+        "additionalProperties": false,
         "properties": {
           "R": {
             "type": "number",
@@ -47,6 +50,7 @@
       "ColorGlobal": {
         "type": "object",
         "required": ["R", "G","B"],
+        "additionalProperties": false,
         "properties": {
           "R": {
             "type": "number",
@@ -68,6 +72,7 @@
       "ColorGlobalPlayer": {
         "type": "object",
         "required": ["R", "G","B"],
+        "additionalProperties": false,
         "properties": {
           "R": {
             "type": "number",
@@ -89,6 +94,7 @@
       "ColorServer": {
         "type": "object",
         "required": ["R", "G","B"],
+        "additionalProperties": false,
         "properties": {
           "R": {
             "type": "number",
@@ -110,6 +116,7 @@
       "ColorAlert": {
         "type": "object",
         "required": ["R", "G","B"],
+        "additionalProperties": false,
         "properties": {
           "R": {
             "type": "number",

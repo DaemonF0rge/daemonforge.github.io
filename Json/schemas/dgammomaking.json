@@ -1,0 +1,28 @@
+{
+    "type": "object",
+    "required": ["ConfigVersion","CasingPercentChance","TipsPercentChanceInfected","TipsPercentChancePlayer"],
+    "additionalProperties": false,
+    "properties": {
+      "ConfigVersion": {
+        "type": "string",
+        "pattern": "[1]"
+      },
+      "CasingPercentChance": {
+        "type": "number",
+        "description": "The chance for casings to spawn when fired",
+        "default": 50,
+        "maximum": 100,
+        "minimum": 0
+      },
+      "TipsPercentChanceInfected": {
+        "type": "number",
+        "maximum": 100,
+        "minimum": 0
+      },
+      "TipsPercentChancePlayer": {
+        "type": "number",
+        "maximum": 100,
+        "minimum": 0
+      }
+    }
+  }

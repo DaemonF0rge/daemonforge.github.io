@@ -10,6 +10,7 @@
         "LevelIconLocation",
         "NotifyLevelChange"
     ],
+    "additionalProperties": false,
     "properties": {
       "ConfigVersion": {
         "type": "string",
@@ -26,6 +27,7 @@
             "MinPoints",
             "MaxPoints"
           ],
+          "additionalProperties": false,
           "properties": {
             "Name": {
               "type": "string"
@@ -54,6 +56,7 @@
             "MinPoints",
             "MaxPoints"
         ],
+        "additionalProperties": false,
         "properties": {
           "Name": {
             "type": "string"
@@ -128,6 +131,7 @@
       "DefaultAffinity": {
         "type": "object",
         "required": ["Name", "DisplayName", "Image","ItemBlackList"],
+        "additionalProperties": false,
         "properties": {
           "Name": {
             "type": "string"
@@ -143,6 +147,7 @@
             "items": {
               "type": "object",
               "required": ["MinPoints","MaxPoints","Location","Items"],
+              "additionalProperties": false,
               "properties": {
                 "MinPoints": {
                   "type": "number"

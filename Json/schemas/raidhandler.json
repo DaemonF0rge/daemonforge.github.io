@@ -3,6 +3,7 @@
     "items": {
       "type": "object",
       "required": ["TypeName","FireArms","Melee","Explosive","Other","ToolsFirst","PartModifier"],
+      "additionalProperties": false,
       "properties": {
         "TypeName": {
           "type": "string"
@@ -32,6 +33,7 @@
           "items": {
             "type": "object",
             "required": ["Part","Modifier","WhiteList","RequiredDestroyed"],
+            "additionalProperties": false,
             "properties": {
               "Part": {
                 "type": "string"
@@ -60,6 +62,7 @@
           "items": {
             "type": "object",
             "required": ["Tool","Modifier","MinDmg","MaxDmg","MaxDistance"],
+            "additionalProperties": false,
             "properties": {
               "Tool": {
                 "type": "string"

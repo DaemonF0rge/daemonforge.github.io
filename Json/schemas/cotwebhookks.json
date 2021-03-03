@@ -1,12 +1,14 @@
 {
     "type": "object",
     "required": ["Connections"],
+    "additionalProperties": false,
     "properties": {
       "Connections": {
         "type": "array",
         "items": {
           "type": "object",
           "required": ["Name", "ContextURL","Address","Types"],
+          "additionalProperties": false,
           "properties": {
             "Name": {
               "type": "string"
@@ -23,6 +25,7 @@
               "items": {
                 "type": "object",
                 "required": ["Name","Enabled"],
+                "additionalProperties": false,
                 "properties": {
                   "Name": {
                     "type": "string",

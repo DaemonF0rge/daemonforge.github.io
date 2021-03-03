@@ -6,6 +6,7 @@
         "HackableItems",
         "ScriptLogging"
     ],
+    "additionalProperties": false,
     "properties": {
       "ConfigVersion": {
         "type": "string",
@@ -27,6 +28,7 @@
             "TabletDamage",
             "ChanceOfInterrupt"
           ],
+          "additionalProperties": false,
           "properties": {
             "Type": {
               "type": "string"
