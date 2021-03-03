@@ -56,8 +56,7 @@
     },
     "custom_commands": {
       "type": "array",
-      "items": [
-        {
+      "items": {
           "type": "object",
           "properties": {
             "enabled": {
@@ -131,12 +130,10 @@
             "response"
           ]
         }
-      ]
     },
     "servers": {
       "type": "array",
-      "items": [
-        {
+      "items": {
           "type": "object",
           "properties": {
             "name": {
@@ -205,8 +202,7 @@
             },
             "scheduled_commands": {
               "type": "array",
-              "items": [
-                {
+              "items": {
                   "type": "object",
                   "properties": {
                     "command": {
@@ -233,7 +229,6 @@
                     "additionalProperties": false
                   }
                 }
-              ]
             }
           },
           "required": [
@@ -251,7 +246,6 @@
           ],
           "additionalProperties": false
         }
-      ]
     }
   },
   "required": [
