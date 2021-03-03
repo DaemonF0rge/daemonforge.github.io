@@ -1,5 +1,103 @@
 {
     "type": "object",
+    "default": {
+        "LastCapturePoint": -1,
+        "ConfigVersion": "2",
+        "Interval": 60.0,
+        "StartDelay": 60.0,
+        "CaptureTime": 60.0,
+        "EmptyEventTimeOut": 1800.0,
+        "CleanUpTime": 120.0,
+        "PreStartDelay": 60.0,
+        "Hills": [
+            {
+                "Name": "North West Airfield",
+                "X": 4681.490234375,
+                "Y": 339.0,
+                "Z": 10333.2001953125,
+                "CaptureRadius": 20.0,
+                "EventRadius": 80.0,
+                "ZombieCount": 10,
+                "Objects": [
+                    {
+                        "Item": "Land_Wreck_Uaz",
+                        "Position": [
+                            4675.490234375,
+                            339.0,
+                            10330.009765625
+                        ],
+                        "Orientation": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    },
+                    {
+                        "Item": "Land_Wreck_Uaz",
+                        "Position": [
+                            4685.490234375,
+                            339.0,
+                            10341.009765625
+                        ],
+                        "Orientation": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ]
+                    }
+                ]
+            }
+        ],
+        "RewardPools": [
+            {
+                "Name": "First Pool",
+                "RewardContainer": "SeaChest",
+                "Rewards": [
+                    {
+                        "Item": "M4A1",
+                        "ItemAttachments": [
+                            "M4_RISHndgrd",
+                            "M4_OEBttstck",
+                            "M68Optic"
+                        ]
+                    },
+                    {
+                        "Item": "PlateCarrierVest",
+                        "ItemAttachments": [
+                            "PlateCarrierHolster"
+                        ]
+                    },
+                    {
+                        "Item": "Mag_STANAGCoupled_30Rnd",
+                        "ItemAttachments": []
+                    },
+                    {
+                        "Item": "Mag_STANAGCoupled_30Rnd",
+                        "ItemAttachments": []
+                    },
+                    {
+                        "Item": "NVGoggles",
+                        "ItemAttachments": [
+                            "Battery9V"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "ZombiesClassNames": [
+            "ZmbM_PatrolNormal_PautRev",
+            "ZmbM_PatrolNormal_Autumn",
+            "ZmbM_PatrolNormal_Flat",
+            "ZmbM_PatrolNormal_Summer",
+            "ZmbM_SoldierNormal",
+            "ZmbM_usSoldier_normal_Woodland",
+            "ZmbM_usSoldier_normal_Desert"
+        ],
+      "NotificationsType": 1,
+        "FullMapCheckTimer": 5.0,
+        "EventTickTime": 1.0,
+        "Logging": 1
+    },
     "required": [
         "ConfigVersion",
         "Interval",

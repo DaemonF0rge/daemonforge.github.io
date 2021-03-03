@@ -9,6 +9,9 @@ let objexplorer = document.getElementById("objexplorer");
 let copyFrom = document.getElementById("copyFrom");
 let copyJson = document.getElementById("CopyJson");
 let SelectedEditor = document.getElementById("SelectedEditor");
+let dialog = document.getElementById("dialog");
+let DialogHeader = document.getElementById("DialogHeader");
+let DialogText = document.getElementById("DialogText");
 let state = "code";
 
 const container = document.getElementById('jsoneditor')
@@ -44,8 +47,11 @@ function syntaxHighlight(json, errorindex) {
     if (typeof json != 'string') {
          json = JSON.stringify(json, undefined, 2);
     }
-    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    let notFound = true;
+    //json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    if (errorindex !== undefined && errorindex !== null && errorindex > 0){
+      json = insertInto(json, errorindex, "!placeholder!!/placeholder!")
+    }
+
     let theReturn = json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match,  p1, p2, p3, p4, offset, string) {
         var cls = 'number';
         if (/^"/.test(match)) {
@@ -60,24 +66,10 @@ function syntaxHighlight(json, errorindex) {
             cls = 'null';
         }
         let returnVal = '<span class="' + cls + '">' + match + '</span>';
-        //console.log(match + " offset: " + offset)
-        if (errorindex !== undefined && errorindex !== -1){
-            let endIndex = match.length + offset;
-            //console.log("ErrorIndex: " + errorindex + " Start Index: " + offset + " endIndex: " + endIndex);
-            if (errorindex > offset && errorindex <= endIndex){
-                notFound = false;
-                cls+= " warning"
-                returnVal = '<span class="' + cls + '">' + match + '</span><svg class="svg-inline--fa fa-exclamation fa-w-6 warning" style="color: red; padding: 0px 6px; display: inline-block;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="exclamation" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg=""><path fill="currentColor" d="M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z"></path></svg>';
-            } else if(errorindex < endIndex && notFound){
-                notFound = false;
-                returnVal = '<svg class="svg-inline--fa fa-exclamation fa-w-6 warning" style="color: #D500F9; font-size: 26px; padding: 2px 6px; display: inline-block;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="exclamation" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg=""><path fill="currentColor" d="M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z"></path></svg><span class="' + cls + '">' + match + '</span>';
-            }
-            //console.log(returnVal)
-        }
         
         return returnVal;
     });
-    return theReturn;
+    return theReturn.replace("!placeholder!!/placeholder!", `<svg class="svg-inline--fa fa-exclamation fa-w-6 warning" style="color: #D500F9; font-size: 26px; padding: 2px 6px; display: inline-block;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="exclamation" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg=""><path fill="currentColor" d="M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z"></path></svg>`)
 }
 
 function DoUpdateSyntaxHighlight() {
@@ -289,19 +281,53 @@ function UseUniversalEditor(){
 async function UseSelectedEditor(){
   let selectedVal =SelectedEditor.options[SelectedEditor.selectedIndex].value;
   if (selectedVal !== undefined && selectedVal != ""){
-    let ZonesSchema = await fetch(selectedVal)
+    let TheSchema = await fetch(selectedVal)
     .then(response => {
       return response.json().catch( e => console.log(e));
     }).catch( e => console.log(e))
-    let ZonesOptions = {
+    let TheOptions = {
       mode: 'tree',
-      schema: ZonesSchema
+      schema: TheSchema
     }
     delete editor;
     container.innerHTML = "";
-    editor = new JSONEditor(container, ZonesOptions);
+    editor = new JSONEditor(container, TheOptions);
     UseEditor();
   } else {
     UseUniversalEditor();
   }
 }
+
+async function LoadDefault() {
+  let selectedVal = SelectedEditor.options[SelectedEditor.selectedIndex].value;
+  if (selectedVal !== undefined && selectedVal != ""){
+    let TheSchema = await fetch(selectedVal)
+    .then(response => {
+      return response.json().catch( e => console.log(e));
+    }).catch( e => console.log(e))
+    if (TheSchema.default !== undefined ){
+      let defaultValue = TheSchema.default;
+      if (state == "code"){
+        let jsonText = JSON.stringify(defaultValue, undefined, 2);
+        codeblock.innerHTML = syntaxHighlight(jsonText);
+      } else {
+        editor.set(defaultValue);
+      }
+    } else {
+      dialog.showModal();
+      DialogText.innerHTML = `Sorry no valid default json for the selected schema(${SelectedEditor.options[SelectedEditor.selectedIndex].innerHTML})`;
+    }
+  }
+}
+
+function CloseDialog(){
+	dialog.close();
+}
+
+function insertInto(txt, index, string) {
+  if (index > 0) {
+    return txt.substring(0, index) + string + txt.substr(index);
+  }
+
+  return string + txt;
+};

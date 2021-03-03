@@ -1,5 +1,11 @@
 {
     "type": "object",
+    "default": {
+        "ServerURL": "",
+        "ServerID": "1",
+        "ServerAuth": "",
+        "QnAEnabled": 0
+    },
     "required": ["ServerURL","ServerID","ServerAuth","QnAEnabled"],
     "additionalProperties": false,
     "properties": {

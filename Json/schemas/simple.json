@@ -1,5 +1,216 @@
 {
     "type": "object",
+    "default": {
+      "ConfigVersion": "7",
+      "UseSimple": 1,
+      "KillFeed": 1,
+      "SucideFeed": 0,
+      "BanditCanRemoveMask": 0,
+      "BanditCanRemoveArmBand": 1,
+      "BanditMasks": [
+          "BandanaMask_RedPattern",
+          "BandanaMask_BlackPattern",
+          "BandanaMask_CamoPattern",
+          "BandanaMask_GreenPattern",
+          "BandanaMask_PolkaPattern",
+          "Bandana_Blue",
+          "Bandana_Pink",
+          "Bandana_Yellow"
+      ],
+      "BanditArmBands": [],
+      "HeroCanRemoveMask": 1,
+      "HeroCanRemoveArmBand": 1,
+      "HeroMasks": [],
+      "HeroArmBands": [],
+      "HeroOnlyItems": [],
+      "BanditOnlyItems": [],
+      "Expansion_EnableIconOnPlayerTag": 1,
+      "Levels": [
+          {
+              "Name": "Hero Lv5",
+              "Humanity": 50001.0
+          },
+          {
+              "Name": "Hero Lv4",
+              "Humanity": 20001.0
+          },
+          {
+              "Name": "Hero Lv3",
+              "Humanity": 12001.0
+          },
+          {
+              "Name": "Hero Lv2",
+              "Humanity": 4001.0
+          },
+          {
+              "Name": "Hero Lv1",
+              "Humanity": 1001.0
+          },
+          {
+              "Name": "Bambi",
+              "Humanity": 0.0
+          },
+          {
+              "Name": "Bandit Lv1",
+              "Humanity": -1001.0
+          },
+          {
+              "Name": "Bandit Lv2",
+              "Humanity": -4001.0
+          },
+          {
+              "Name": "Bandit Lv3",
+              "Humanity": -12001.0
+          },
+          {
+              "Name": "Bandit Lv4",
+              "Humanity": -20001.0
+          },
+          {
+              "Name": "Bandit Lv5",
+              "Humanity": -50001.0
+          }
+      ],
+      "Actions": [
+          {
+              "Name": "ZombieKill",
+              "Humanity": 5.0
+          },
+          {
+              "Name": "heroSucide",
+              "Humanity": -100.0
+          },
+          {
+              "Name": "banditSucide",
+              "Humanity": 100.0
+          },
+          {
+              "Name": "heroVshero",
+              "Humanity": -150.0
+          },
+          {
+              "Name": "heroVsbambi",
+              "Humanity": -300.0
+          },
+          {
+              "Name": "heroVsbandit",
+              "Humanity": 250.0
+          },
+          {
+              "Name": "banditVshero",
+              "Humanity": -250.0
+          },
+          {
+              "Name": "banditVsbambi",
+              "Humanity": -125.0
+          },
+          {
+              "Name": "banditVsbandit",
+              "Humanity": -150.0
+          },
+          {
+              "Name": "bambiVshero",
+              "Humanity": -250.0
+          },
+          {
+              "Name": "bambiVsbambi",
+              "Humanity": -100.0
+          },
+          {
+              "Name": "bambiVsbandit",
+              "Humanity": 300.0
+          },
+          {
+              "Name": "CombinationLockRaid",
+              "Humanity": -150.0
+          },
+          {
+              "Name": "FencePartRaid",
+              "Humanity": -50.0
+          },
+          {
+              "Name": "WatchtowerPartRaid",
+              "Humanity": -30.0
+          },
+          {
+              "Name": "MedicBandagePlayer",
+              "Humanity": 50.0
+          },
+          {
+              "Name": "MedicGiveBlood",
+              "Humanity": 25.0
+          },
+          {
+              "Name": "MedicGiveSaline",
+              "Humanity": 25.0
+          },
+          {
+              "Name": "MedicGiveCPR",
+              "Humanity": 75.0
+          },
+          {
+              "Name": "MedicFeedTetracycline",
+              "Humanity": 15.0
+          },
+          {
+              "Name": "MedicFeedPainkiller",
+              "Humanity": 15.0
+          },
+          {
+              "Name": "MedicFeedCharcoal",
+              "Humanity": 15.0
+          },
+          {
+              "Name": "MedicFeedVitamin",
+              "Humanity": 10.0
+          },
+          {
+              "Name": "MedicSplintPlayer",
+              "Humanity": 100.0
+          }
+      ],
+      "Zones": [
+          {
+              "Name": "Default Zone",
+              "X": 11250.0,
+              "Z": 4300.0,
+              "Radius": 60.0,
+              "MinHumanity": -1000.0,
+              "MaxHumanity": 1000.0,
+              "WelcomeMessage": "Welcome to the Default Zone",
+              "WarningMessage": "!!Warning!! you are about to enter Default Zone if you continue you will be shot!",
+              "OverrideSafeZone": 0,
+              "GodModPlayers": 0,
+              "PreventWeaponRaise": 0,
+              "PreventActions": 0,
+              "PreventTrade": 0,
+              "KillAggressors": 0,
+              "RespawnTimer": 600.0,
+              "GuardDifficulty": 5,
+              "Guards": [
+                  {
+                      "X": 11250.0,
+                      "Y": 290.20001220703127,
+                      "Z": 4300.0,
+                      "Orientation": 0.0,
+                      "Skin": "SurvivorM_Hassan",
+                      "WeaponInHands": "M4A1",
+                      "WeaponInHandsAttachments": [
+                          "M4_RISHndgrd",
+                          "M4_OEBttstck",
+                          "M68Optic"
+                      ],
+                      "GuardGear": [
+                          "PlateCarrierVest",
+                          "JungleBoots_Black",
+                          "CargoPants_Black",
+                          "M65Jacket_Black"
+                      ]
+                  }
+              ]
+          }
+      ]
+  },
     "required": [
         "ConfigVersion",
         "UseSimple",
@@ -24,19 +235,23 @@
     "properties": {
       "ConfigVersion": {
         "type": "string",
+        "description": "This setting should not be changed this is what I use to help ensure the mod auto-updates the config values every time I update",
         "pattern": "[0-9]{1,2}"
       },
       "UseSimple": {
         "type": "number",
+        "description": "This is how you tell the mod to either use the simple config or use the advanced configs\n1 It will use the simple config file to load\n0 It will use the Advanced configs (if the advanced configs are not created yet it will create them as default values)\n2 This will convert your simple configs into advanced configs and also change the UseSimple to 0 so don't change this back to 2 unless you want to overwrite you advanced configs with the values in the default config",
         "enum":[0,1,2]
       },
       "KillFeed": {
         "type": "number",
+        "description": "This is a kill feed that notifies all players using the default notification system and provides you with a killfeed with the killer's affinity stated, also allows keeps track of if the killer was a guard\n\n1 Enableds the Killfeed\n0 Disables the Killfeed",
         "enum":[0,1]
       },
       "SucideFeed": {
         "type": "number",
-        "enum":[0,1]
+        "enum":[0,1],
+        "description": "This is a suicide feed notifying all players using the default notification system when a player kills them selfs\n\n1 Enableds the SucideFeed\n0 Disables the SucideFeed"
       },
       "BanditCanRemoveMask": {
         "type": "number",

@@ -1,5 +1,52 @@
 {
     "type": "object",
+    "default": {
+        "ConfigVersion": "1",
+        "Notification": 2,
+        "HackableItems": [
+            {
+                "Type": "tent",
+                "StartTime": 45.0,
+                "HackingTime": 600.0,
+                "Batteries": 1,
+                "TabletDamage": 15.0,
+                "ChanceOfInterrupt": 0.01
+            },
+            {
+                "Type": "fence",
+                "StartTime": 60.0,
+                "HackingTime": 600.0,
+                "Batteries": 2,
+                "TabletDamage": 15.0,
+                "ChanceOfInterrupt": 0.01
+            },
+            {
+                "Type": "bbp_t1",
+                "StartTime": 60.0,
+                "HackingTime": 900.0,
+                "Batteries": 2,
+                "TabletDamage": 15.0,
+                "ChanceOfInterrupt": 0.01
+            },
+            {
+                "Type": "bbp_t2",
+                "StartTime": 90.0,
+                "HackingTime": 1200.0,
+                "Batteries": 3,
+                "TabletDamage": 15.0,
+                "ChanceOfInterrupt": 0.01
+            },
+            {
+                "Type": "bbp_t3",
+                "StartTime": 120.0,
+                "HackingTime": 1800.0,
+                "Batteries": 5,
+                "TabletDamage": 15.0,
+                "ChanceOfInterrupt": 0.01
+            }
+        ],
+        "ScriptLogging": 0
+    },
     "required": [
         "ConfigVersion",
         "Notification",

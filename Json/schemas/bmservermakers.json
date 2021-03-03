@@ -1,5 +1,47 @@
 {
     "type": "array",
+    "default": [
+        {
+            "Name": "GREEN MOUNTAIN",
+            "Pos": [
+                3693.56005859375,
+                402.31201171875,
+                6010.0498046875
+            ],
+            "Icon": "BasicMap\\gui\\images\\marker.paa",
+            "Is3DMarker": 1,
+            "Colour": [
+                212,
+                138,
+                251
+            ],
+            "Alpha": 240,
+            "HideOnPanel": 0,
+            "HideOnMap": 0,
+            "MaxRenderDistance": -1.0,
+            "MinRenderDistance": -1.0
+        },
+        {
+            "Name": "KUMYRNA",
+            "Pos": [
+                8345.6103515625,
+                292.302001953125,
+                5985.93017578125
+            ],
+            "Icon": "BasicMap\\gui\\images\\marker.paa",
+            "Is3DMarker": 1,
+            "Colour": [
+                212,
+                138,
+                251
+            ],
+            "Alpha": 240,
+            "HideOnPanel": 0,
+            "HideOnMap": 0,
+            "MaxRenderDistance": -1.0,
+            "MinRenderDistance": -1.0
+        }
+    ],
     "items": {
       "type": "object",
       "required": ["Name","Pos","Icon","Is3DMarker","Colour","Alpha"],

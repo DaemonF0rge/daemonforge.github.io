@@ -1,5 +1,439 @@
 {
     "type": "object",
+    "default": {
+        "ConfigVersion": "7",
+        "NotificationMessageTime": 10,
+        "NotificationColor": [
+            200,
+            0,
+            200,
+            200
+        ],
+        "Actions": [
+            {
+                "Name": "ZombieKill",
+                "Affinity": "hero",
+                "SecondaryAffinity": "none",
+                "Points": 5.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "heroSucide",
+                "Affinity": "bandit",
+                "SecondaryAffinity": "none",
+                "Points": 100.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "banditSucide",
+                "Affinity": "hero",
+                "SecondaryAffinity": "none",
+                "Points": 100.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "bambiSucide",
+                "Affinity": "none",
+                "SecondaryAffinity": "none",
+                "Points": 0.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "heroVshero",
+                "Affinity": "bandit",
+                "SecondaryAffinity": "none",
+                "Points": 150.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "heroVsbambi",
+                "Affinity": "bandit",
+                "SecondaryAffinity": "none",
+                "Points": 300.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "heroVsbandit",
+                "Affinity": "hero",
+                "SecondaryAffinity": "none",
+                "Points": 250.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "banditVshero",
+                "Affinity": "bandit",
+                "SecondaryAffinity": "none",
+                "Points": 250.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "banditVsbambi",
+                "Affinity": "bandit",
+                "SecondaryAffinity": "none",
+                "Points": 125.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "banditVsbandit",
+                "Affinity": "bandit",
+                "SecondaryAffinity": "none",
+                "Points": 150.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "bambiVshero",
+                "Affinity": "bandit",
+                "SecondaryAffinity": "none",
+                "Points": 250.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "bambiVsbambi",
+                "Affinity": "bandit",
+                "SecondaryAffinity": "none",
+                "Points": 100.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "bambiVsbandit",
+                "Affinity": "hero",
+                "SecondaryAffinity": "none",
+                "Points": 300.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "CombinationLockRaid",
+                "Affinity": "bandit",
+                "SecondaryAffinity": "none",
+                "Points": 150.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "FencePartRaid",
+                "Affinity": "bandit",
+                "SecondaryAffinity": "none",
+                "Points": 50.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "WatchtowerPartRaid",
+                "Affinity": "bandit",
+                "SecondaryAffinity": "none",
+                "Points": 30.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "HacktentRaid",
+                "Affinity": "bandit",
+                "SecondaryAffinity": "none",
+                "Points": 100.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "HackfenceRaid",
+                "Affinity": "bandit",
+                "SecondaryAffinity": "none",
+                "Points": 200.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "Hackbbp_t1Raid",
+                "Affinity": "bandit",
+                "SecondaryAffinity": "none",
+                "Points": 200.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "Hackbbp_t2Raid",
+                "Affinity": "bandit",
+                "SecondaryAffinity": "none",
+                "Points": 250.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "Hackbbp_t3Raid",
+                "Affinity": "bandit",
+                "SecondaryAffinity": "none",
+                "Points": 300.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "MedicBandagePlayer",
+                "Affinity": "hero",
+                "SecondaryAffinity": "medic",
+                "Points": 50.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "MedicGiveBlood",
+                "Affinity": "hero",
+                "SecondaryAffinity": "medic",
+                "Points": 25.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "MedicGiveSaline",
+                "Affinity": "hero",
+                "SecondaryAffinity": "medic",
+                "Points": 25.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "MedicGiveCPR",
+                "Affinity": "hero",
+                "SecondaryAffinity": "medic",
+                "Points": 75.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "MedicFeedTetracycline",
+                "Affinity": "hero",
+                "SecondaryAffinity": "medic",
+                "Points": 15.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "MedicFeedPainkiller",
+                "Affinity": "hero",
+                "SecondaryAffinity": "medic",
+                "Points": 15.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "MedicFeedCharcoal",
+                "Affinity": "hero",
+                "SecondaryAffinity": "medic",
+                "Points": 15.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "MedicFeedVitamin",
+                "Affinity": "hero",
+                "SecondaryAffinity": "medic",
+                "Points": 10.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "MedicSplintPlayer",
+                "Affinity": "hero",
+                "SecondaryAffinity": "medic",
+                "Points": 100.0,
+                "NotifiyPlayer": 1
+            },
+            {
+                "Name": "HuntAnimal_BosTaurus_Brown",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_BosTaurus_White",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_BosTaurus_Spotted",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_BosTaurusF_Brown",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_BosTaurusF_White",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_BosTaurusF_Spotted",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_CanisLupus_Grey",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_CanisLupus_White",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_CapraHircus_Brown",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_CapraHircus_Black",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_CapraHircus_White",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_CapraHircusF",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_CapreolusCapreolus",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_CapreolusCapreolusF_Brown",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_CapreolusCapreolusF_Spotted",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_CapreolusCapreolusF_White",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_CervusElaphus",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_CervusElaphusF",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_GallusGallusDomesticus",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_GallusGallusDomesticusF",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_OvisAries",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_OvisAriesF",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_SusDomesticus",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_SusScrofa",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_LepusEuropaeus",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 25.0,
+                "NotifiyPlayer": 0
+            },
+            {
+                "Name": "HuntAnimal_UrsusArctos",
+                "Affinity": "hunter",
+                "SecondaryAffinity": "none",
+                "Points": 200.0,
+                "NotifiyPlayer": 0
+            }
+        ],
+        "AggressorActions": [
+            {
+                "Name": "ShotFired",
+                "Amount": 75.0
+            },
+            {
+                "Name": "HitZombie",
+                "Amount": -75.0
+            },
+            {
+                "Name": "HitAnimal",
+                "Amount": -75.0
+            },
+            {
+                "Name": "HitPlayer",
+                "Amount": 350.0
+            },
+            {
+                "Name": "KillPlayer",
+                "Amount": 1500.0
+            },
+            {
+                "Name": "HitGuard",
+                "Amount": 150.0
+            },
+            {
+                "Name": "KillGuard",
+                "Amount": 750.0
+            }
+        ]
+    },
     "required": ["ConfigVersion","NotificationMessageTime","NotificationColor","Actions","AggressorActions"],
     "properties": {
       "ConfigVersion": {

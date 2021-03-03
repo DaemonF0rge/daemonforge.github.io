@@ -281,10 +281,13 @@
     <body>
         <main>
         <h1>Json Validator</h1>
-        <section style="width: 100%; min-height: 86px;">
+        <div>
+        <dialog id="dialog"> <header id="DialogHeader">No Default for Schema</header> <p id="DialogText">Sorry no valid Default set for the selected schema.</p><button onclick="CloseDialog()">Close</button></dialog>
+        </div>
+        <section style="width: 100%;">
             <div style="display: inline-block;">
-                <button style="margin: 10px; margin-right: 16px;" id="MakePretty" onclick="MakePretty()" disabled="true" >Make Pretty</button>
-                <select id="SelectedEditor" style="margin: 10px 6px;  display: inline-block;" disabled="true" >
+                <button style="margin: 10px; margin-right: 16px;" id="MakePretty" onclick="MakePretty()">Make Pretty</button>
+                <select id="SelectedEditor" style="margin: 10px 6px;  display: inline-block;" >
                     <option value="" selected="true">No Schema Validation</option>
                     <option value="schemas/simple.json">Heroes And Bandits - simple.json</option>
                     <option value="schemas/habsettings.json">Heroes And Bandits - settings.json</option>
@@ -292,16 +295,16 @@
                     <option value="schemas/actions.json" >Heroes And Bandits - actions.json</option>
                     <option value="schemas/zones.json" >Heroes And Bandits - zones.json</option>
                     <option value="schemas/bbp_settings.json" >Base Building Plus - bbp_settings.json</option>
-                    <option value="schemas/btsettings.json" >Basic Territories - settings.json</option>
-                    <option value="schemas/raidhandler.json" >Basic Territories - raidhandler.json</option>
+                    <option value="https://raw.githubusercontent.com/daemonforge/BasicTerritories/main/JsonSchemas/settings.json" >Basic Territories - settings.json</option>
+                    <option value="https://raw.githubusercontent.com/daemonforge/BasicTerritories/main/JsonSchemas/raidhandler.json" >Basic Territories - raidhandler.json</option>
                     <option value="schemas/hackingmod.json" >Hacking Mod - HackingMod.json</option>
                     <option value="schemas/cannabisplus.json" >Cannabis Plus - CannabisPlus.json</option>
                     <option value="schemas/kingofthehill.json" >King Of The Hill - KingOfTheHill.json</option>
                     <option value="schemas/notifications.json" >Notifications - Notifications.json</option>
                     <option value="schemas/bmservermakers.json" >Basic Map - ServerMakers.json</option>
                     <option value="schemas/bmserversettings.json" >Basic Map - ServerSettings.json</option>
-                    <option value="schemas/bmservercirclemakers.json" >Basic Map - ServerCircleMakers.json</option>
-                    <option value="schemas/vppmapconfig.json" >VPP Map - VPPMapConfig.json</option>
+                    <option value="schemas/bmservercirclemarkers.json" >Basic Map - ServerCircleMakers.json</option>
+                    <option value="schemas/vppmapconfig.json" >VanillaPlusPlus Map - VPPMapConfig.json</option>
                     <option value="schemas/schanagcserver-settings.json" >Schana Global Chat - server-settings.json</option>
                     <option value="schemas/schanapmserver-settings.json" >Schana Party - server-settings.json</option>
                     <option value="schemas/cotwebhookks.json" >COT - Webhooks.json</option>
@@ -312,10 +315,9 @@
                     <option value="schemas/serverpanel.json" >Server Panel - ServerPanel.json</option>
                     <option value="schemas/dgammomaking.json" >Ammo Making - AmmoMaking.json</option>
                     <option value="schemas/carimbotconfig.json" >Carim Discord Bot - config.json</option>
-
                 </select>
-                <button style="margin: 10px; display: none;" id="GenerateJSON" onclick="GenerateJSON()" disabled="true"  >Code Block</button>
-                <button style="margin: 10px; margin-right: 20px;" id="UseEditor" onclick="UseSelectedEditor()" disabled="true" >Edit/Validate</button>
+                <button style="margin: 10px; display: none;" id="GenerateJSON" onclick="GenerateJSON()" >Code Block</button>
+                <button style="margin: 10px; margin-right: 20px;" id="UseEditor" onclick="UseSelectedEditor()" >Edit/Validate</button>
                 <textarea  id="copyFrom" style="display: block; position: absolute; left: -1000px; top: -1000px" ></textarea><button onclick="CopyJson()" style="margin: 10px; padding: 12px" title="Copy" id="CopyJson" ><i class="fas fa-copy"></i></button>
             </div>
         </section>
@@ -333,6 +335,7 @@
     </div>
 </section>
 
+<button style="margin: 10px;" id="LoadDefault" onclick="LoadDefault()" >Load Default</button>
         </main>
     </body>
 </html>

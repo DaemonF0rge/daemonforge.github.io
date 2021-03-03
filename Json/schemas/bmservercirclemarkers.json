@@ -1,5 +1,30 @@
 {
     "type": "array",
+    "default": [
+        {
+            "Name": "KUMYRNA SAMPLE",
+            "Pos": [
+                8345.6103515625,
+                292.302001953125,
+                5985.93017578125
+            ],
+            "Icon": "BasicMap\\gui\\images\\marker.paa",
+            "Is3DMarker": 0,
+            "Colour": [
+                212,
+                138,
+                251
+            ],
+            "Alpha": 180,
+            "Radius": 220,
+            "ShowCenterMarker": 0,
+            "HideIntersects": 1,
+            "HideOnPanel": 0,
+            "HideOnMap": 0,
+            "MaxRenderDistance": -1.0,
+            "MinRenderDistance": -1.0
+        }
+    ],
     "items": {
       "type": "object",
       "required": ["Name","Pos","Icon","Is3DMarker","Colour","Alpha","Radius","ShowCenterMarker","HideIntersects"],
