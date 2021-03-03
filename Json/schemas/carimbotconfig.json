@@ -1,0 +1,270 @@
+{
+  "type": "object",
+  "properties": {
+    "token": {
+      "type": "string",
+      "description": "Discord token for your bot that you can find at https://discordapp.com/developers/applications"
+    },
+    "presence_type": {
+      "type": "string",
+      "description": "Discord presence type from (playing, listening, watching) default: playing",
+      "enum": [
+        "playing",
+        "listening",
+        "watching"
+      ]
+    },
+    "presence": {
+      "type": "string",
+      "description": "Discord presence message for the bot to display"
+    },
+    "discord_member_count_channel_id": {
+      "type": "integer",
+      "description": "Discord Channel ID to display a count of members in the discord"
+    },
+    "discord_member_count_format": {
+      "type": "string",
+      "description": "Format for the discord member count, using {count} as a placeholder"
+    },
+    "user_channel_ids": {
+      "type": "array",
+      "description": "Discord Channel ID or list of IDs that can use the user commands",
+      "items": [
+        {
+          "type": "integer"
+        }
+      ]
+    },
+    "log_player_count_updates": {
+      "type": "boolean"
+    },
+    "cftools_application_id": {
+      "type": "string",
+      "description": "ApplicationID provided by cftools at https://network.cftools.de/cfapi/overview"
+    },
+    "cftools_client_id": {
+      "type": "string",
+      "description": "Client-ID provided by cftools at https://network.cftools.de/cfapi/overview"
+    },
+    "cftools_secret": {
+      "type": "string",
+      "description": "Secret provided by cftools when creating the application"
+    },
+    "debug": {
+      "type": "boolean",
+      "description": "Set the logging level to DEBUG for the locally running app. Equivalent to running with -v"
+    },
+    "custom_commands": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Whether the command is enabled"
+            },
+            "command": {
+              "type": "string",
+              "description": "Regex pattern that, if matched, will trigger the command"
+            },
+            "response": {
+              "type": "object",
+              "description": "Discord embed object as described by https://discord.com/developers/docs/resources/channel#embed-object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "color": {
+                  "type": "integer"
+                },
+                "thumbnail": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "url"
+                  ]
+                },
+                "author": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "icon_url": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "url",
+                    "icon_url"
+                  ]
+                }
+              },
+              "required": [
+                "title",
+                "description",
+                "url",
+                "color",
+                "thumbnail",
+                "author"
+              ]
+            }
+          },
+          "required": [
+            "enabled",
+            "command",
+            "response"
+          ]
+        }
+      ]
+    },
+    "servers": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "ip": {
+              "type": "string",
+              "description": "IP address of your DayZ server",
+              "pattern": "[1-2]{0,1}[0-9]{1,2}\\.[1-2]{0,1}[0-9]{1,2}\\.[1-2]{0,1}[0-9]{1,2}\\.[1-2]{0,1}[0-9]{1,2}"
+            },
+            "rcon_port": {
+              "type": "integer",
+              "description": "RCon port for your DayZ server (may be different from the game port)"
+            },
+            "rcon_password": {
+              "type": "string",
+              "description": "RCon password, found in the BattlEye profile directory in your server files"
+            },
+            "steam_port": {
+              "type": "integer",
+              "description": "Steam query port"
+            },
+            "admin_channel_id": {
+              "type": "integer",
+              "description": "Discord Channel ID that can send admin RCon commands and where logs are sent"
+            },
+            "chat_channel_id": {
+              "type": "integer",
+              "description": "Discord Channel ID where the linked DayZ to Discord chat will take place"
+            },
+            "chat_ignore_regex": {
+              "type": "string",
+              "description": "Pattern that, if matched, will not publish the message to the chat channel"
+            },
+            "chat_show_connect_disconnect_notices": {
+              "type": "boolean",
+              "description": "Send connect and disconnect notices to chat channel"
+            },
+            "player_count_channel_id": {
+              "type": "integer",
+              "description": "Discord Channel ID where the linked DayZ to Discord chat will take place"
+            },
+            "player_count_format": {
+              "type": "string",
+              "description": "Format for setting the channel name using {players}, {slots}, {queue}, and {time} as placeholders for the values"
+            },
+            "player_count_queue_format": {
+              "type": "string",
+              "description": "Format that will be appended to the player count only if the queue is greater than 0"
+            },
+            "player_count_update_interval": {
+              "type": "integer",
+              "description": "Time, in seconds, between player count update queries"
+            },
+            "log_rcon_messages": {
+              "type": "boolean",
+              "description": "Send all RCon messages to admin log channel"
+            },
+            "log_rcon_keep_alive": {
+              "type": "boolean",
+              "description": "Send RCon keep alive status messages to admin log channel"
+            },
+            "cftools_service_id": {
+              "type": "string",
+              "description": "Service ID cftools associates with the server"
+            },
+            "scheduled_commands": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "command": {
+                      "type": "string",
+                      "description": "RCon command to run with parameters. Also accepts 'safe_shutdown'. See the template for examples"
+                    },
+                    "delay": {
+                      "type": "integer",
+                      "description": "Only used for 'safe_shutdown'. Specifies the delay in seconds before the shutdown"
+                    },
+                    "interval": {
+                      "type": "integer",
+                      "description": "Interval in seconds between runs of the command"
+                    },
+                    "offset": {
+                      "type": "integer",
+                      "description": "Delay in seconds from bot startup to running the command, or offset from midnight if with_clock is true"
+                    },
+                    "required": [
+                      "command",
+                      "interval",
+                      "offset"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              ]
+            }
+          },
+          "required": [
+            "name",
+            "ip",
+            "rcon_port",
+            "rcon_password",
+            "steam_port",
+            "admin_channel_id",
+            "chat_channel_id",
+            "player_count_channel_id",
+            "player_count_format",
+            "player_count_queue_format",
+            "cftools_service_id"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": [
+    "token",
+    "presence_type",
+    "presence",
+    "discord_member_count_channel_id",
+    "discord_member_count_format",
+    "user_channel_ids",
+    "cftools_application_id",
+    "cftools_client_id",
+    "cftools_secret",
+    "servers"
+  ],
+  "additionalProperties": false
+}
