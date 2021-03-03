@@ -87,6 +87,7 @@ function DoUpdateSyntaxHighlight() {
         let pos = getCaretPosition(codeblock);
         let json = codeblock.innerHTML;
         json = json.replace(/(<([^>]+)>)/gi, "");
+        json = json.replace(/&nbsp;/gi, " ");
         let error = IsValidJSONString(json);
         let errpos;
         if (error ==="Valid"){
@@ -104,7 +105,7 @@ function DoUpdateSyntaxHighlight() {
             SelectedEditor.disabled = "true";
             copyJson.disabled = "true";
             errpos = String(error).match(/[0-9]{1,10}/);
-            console.log("errpos: " + errpos);
+            //console.log("errpos: " + errpos);
         }
         codeblock.innerHTML = syntaxHighlight(json, errpos);
         SetCaretPosition(codeblock,pos)
@@ -208,7 +209,7 @@ function IsValidJSONString(str) {
 function MakePretty(){
     let jsonText = codeblock.innerHTML;
     jsonText = jsonText.replace(/(<([^>]+)>)/gi, "");
-    jsonText = jsonText.replace(/&nbsp;/gi, "");
+    jsonText = jsonText.replace(/&nbsp;/gi, " ");
     try {
         let jsonObj = JSON.parse(jsonText);
         jsonText = JSON.stringify(jsonObj, undefined, 2);
