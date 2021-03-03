@@ -1,0 +1,92 @@
+{
+    "type": "object",
+    "required": [
+        "SERVERNAME",
+        "BUTTON1NAME",
+        "BUTTON1LINK",
+        "BUTTON2NAME",
+        "BUTTON2LINK",
+        "BUTTON3NAME",
+        "BUTTON3LINK",
+        "BUTTONTAB0NAME",
+        "BUTTONTAB1NAME",
+        "BUTTONTAB2NAME",
+        "BUTTONTAB3NAME",
+        "DISPLAYPLAYERINFO",
+        "DISPLAYPLAYERTAB",
+        "sServerTab0",
+        "sServerTab1",
+        "sServerTab2",
+        "sServerTab3"
+    ],
+    "properties": {
+      "SERVERNAME": {
+        "type": "string"
+      },
+      "BUTTON1NAME": {
+        "type": "string"
+      },
+      "BUTTON1LINK": {
+        "type": "string",
+        "pattern": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)"
+      },
+      "BUTTON2NAME": {
+        "type": "string"
+      },
+      "BUTTON2LINK": {
+        "type": "string",
+        "pattern": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)"
+      },
+      "BUTTON3NAME": {
+        "type": "string"
+      },
+      "BUTTON3LINK": {
+        "type": "string",
+        "pattern": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)"
+      },
+      "BUTTONTAB0NAME": {
+        "type": "string"
+      },
+      "BUTTONTAB1NAME": {
+        "type": "string"
+      },
+      "BUTTONTAB2NAME": {
+        "type": "string"
+      },
+      "BUTTONTAB3NAME": {
+        "type": "string"
+      },
+      "DISPLAYPLAYERINFO": {
+        "type": "number",
+        "enum": [0,1]
+      },
+      "DISPLAYPLAYERTAB": {
+        "type": "number",
+        "enum": [0,1]
+      },
+      "sServerTab0": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "sServerTab1": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "sServerTab2": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "sServerTab3": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }

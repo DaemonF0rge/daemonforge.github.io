@@ -58,7 +58,8 @@
         "type": "number"
       },
       "removeAfterHarvest": {
-        "type": "number"
+        "type": "number",
+        "enum": [0,1]
       },
       "tobacco_growtime": {
         "type": "number"
