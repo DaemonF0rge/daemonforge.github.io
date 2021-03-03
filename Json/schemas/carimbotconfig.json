@@ -220,14 +220,14 @@
                     "offset": {
                       "type": "integer",
                       "description": "Delay in seconds from bot startup to running the command, or offset from midnight if with_clock is true"
-                    },
+                    }
+                  },
                     "required": [
                       "command",
                       "interval",
                       "offset"
                     ],
                     "additionalProperties": false
-                  }
                 }
             }
           },
