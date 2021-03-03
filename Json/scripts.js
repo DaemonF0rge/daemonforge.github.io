@@ -91,7 +91,7 @@ function DoUpdateSyntaxHighlight() {
         let error = IsValidJSONString(json);
         let errpos;
         if (error ==="Valid"){
-            errorblock.innerHTML = "<i class=\"far fa-check-circle\"></i> " + error;
+            errorblock.innerHTML = "<i class=\"far fa-check-circle\"></i> JSON is Valid<br /><span class=\"disclaimer\">This is JSON Only validation to check the schema use the Edit/Validate Button</span>";
             errorblock.className = "success";
             prettyblock.disabled = null;
             editorblock.disabled = null;
