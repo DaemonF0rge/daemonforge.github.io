@@ -127,7 +127,7 @@
       },
       "DefaultAffinity": {
         "type": "object",
-        "required": [],
+        "required": ["Name", "DisplayName", "Image","ItemBlackList"],
         "properties": {
           "Name": {
             "type": "string"
@@ -142,7 +142,7 @@
             "type": "array",
             "items": {
               "type": "object",
-              "required": [],
+              "required": ["MinPoints","MaxPoints","Location","Items"],
               "properties": {
                 "MinPoints": {
                   "type": "number"
@@ -165,13 +165,16 @@
         }
       },
       "ShowLevelIcon": {
-        "type": "number"
+        "type": "number",
+        "enum":[0,1]
       },
       "LevelIconLocation": {
-        "type": "number"
+        "type": "number",
+        "enum":[0,1,2,3]
       },
       "NotifyLevelChange": {
-        "type": "number"
+        "type": "number",
+        "enum":[0,1]
       }
     }
   }

@@ -97,16 +97,14 @@
 					},
 					"ShowWarningMsg": {
 						"type": "number",
-						"maximum": 1,
-						"minimum": 0
+						"enum":[0,1]
 					},
 					"WarningMessage": {
 						"type": "string"
 					},
 					"ShowWelcomeMsg": {
 						"type": "number",
-						"maximum": 1,
-						"minimum": 0
+						"enum":[0,1]
 					},
 					"WelcomeMessage": {
 						"type": "string"
@@ -126,33 +124,27 @@
 					},
 					"OverrideSafeZone": {
 						"type": "number",
-						"maximum": 1,
-						"minimum": 0
+						"enum":[0,1]
 					},
 					"GodModPlayers": {
 						"type": "number",
-						"maximum": 1,
-						"minimum": 0
+						"enum":[0,1]
 					},
 					"PreventWeaponRaise": {
 						"type": "number",
-						"maximum": 1,
-						"minimum": 0
+						"enum":[0,1]
 					},
 					"PreventActions": {
 						"type": "number",
-						"maximum": 1,
-						"minimum": 0
+						"enum":[0,1]
 					},
 					"BlockTrader": {
 						"type": "number",
-						"maximum": 1,
-						"minimum": 0
+						"enum":[0,1]
 					},
 					"KillAggressors": {
 						"type": "number",
-						"maximum": 1,
-						"minimum": 0
+						"enum":[0,1]
 					},
 					"AggressorThreshold": {
 						"type": "number"
@@ -207,13 +199,16 @@
 							],
 							"properties": {
 								"X": {
-									"type": "number"
+									"type": "number",
+									"minimum": 0
 								},
 								"Y": {
-									"type": "number"
+									"type": "number",
+									"minimum": 0
 								},
 								"Z": {
-									"type": "number"
+									"type": "number",
+									"minimum": 0
 								},
 								"Orientation": {
 									"type": "number"
@@ -222,7 +217,8 @@
 									"type": "string"
 								},
 								"Skin": {
-									"type": "string"
+									"type": "string",
+									"enum": ["SurvivorM_Boris", "SurvivorM_Hassan", "SurvivorF_Frida", "SurvivorM_Jose", "SurvivorM_Cyril", "SurvivorF_Gabi", "SurvivorM_Indar","SurvivorM_Lewis","SurvivorF_Linda","SurvivorM_Taiki","SurvivorM_Mirek","SurvivorM_Oliver","SurvivorF_Irena","SurvivorF_Judy","SurvivorF_Keiko","SurvivorM_Niki","SurvivorM_Rolf","SurvivorM_Peter","SurvivorM_Kaito","SurvivorF_Naomi","SurvivorM_Francis","SurvivorM_Elias","SurvivorM_Manua","SurvivorM_Denis","SurvivorM_Quinn","SurvivorM_Guo","SurvivorM_Seth","SurvivorF_Maria","SurvivorF_Eva", "SurvivorF_Helga"]  
 								},
 								"WeaponInHands": {
 									"type": "string"
@@ -255,20 +251,21 @@
 									"type": "number"
 								},
 								"HitChance": {
-									"type": "number"
+									"type": "number",
+									"maximum": 1,
+									"minimum": 0
 								},
 								"RespawnTimer": {
-									"type": "number"
+									"type": "number",
+									"minimum": -1
 								},
 								"CanBeKilled": {
 									"type": "number",
-									"maximum": 1,
-									"minimum": 0
+									"enum":[0,1]
 								},
 								"RequireLineOfSight": {
 									"type": "number",
-									"maximum": 1,
-									"minimum": 0
+									"enum":[0,1]
 								}
 							}
 						}
@@ -330,13 +327,15 @@
 									"type": "number"
 								},
 								"ShowWarningMsg": {
-									"type": "number"
+									"type": "number",
+									"enum":[0,1]
 								},
 								"WarningMessage": {
 									"type": "string"
 								},
 								"ShowWelcomeMsg": {
-									"type": "number"
+									"type": "number",
+									"enum":[0,1]
 								},
 								"WelcomeMessage": {
 									"type": "string"
@@ -356,33 +355,27 @@
 								},
 								"OverrideSafeZone": {
 									"type": "number",
-									"maximum": 1,
-									"minimum": 0
+									"enum":[0,1]
 								},
 								"GodModPlayers": {
 									"type": "number",
-									"maximum": 1,
-									"minimum": 0
+									"enum":[0,1]
 								},
 								"PreventWeaponRaise": {
 									"type": "number",
-									"maximum": 1,
-									"minimum": 0
+									"enum":[0,1]
 								},
 								"PreventActions": {
 									"type": "number",
-									"maximum": 1,
-									"minimum": 0
+									"enum":[0,1]
 								},
 								"BlockTrader": {
 									"type": "number",
-									"maximum": 1,
-									"minimum": 0
+									"enum":[0,1]
 								},
 								"KillAggressors": {
 									"type": "number",
-									"maximum": 1,
-									"minimum": 0
+									"enum":[0,1]
 								},
 								"AggressorThreshold": {
 									"type": "number"
@@ -453,7 +446,8 @@
 												"type": "string"
 											},
 											"Skin": {
-												"type": "string"
+												"type": "string",
+												"enum": ["SurvivorM_Boris", "SurvivorM_Hassan", "SurvivorF_Frida", "SurvivorM_Jose", "SurvivorM_Cyril", "SurvivorF_Gabi", "SurvivorM_Indar","SurvivorM_Lewis","SurvivorF_Linda","SurvivorM_Taiki","SurvivorM_Mirek","SurvivorM_Oliver","SurvivorF_Irena","SurvivorF_Judy","SurvivorF_Keiko","SurvivorM_Niki","SurvivorM_Rolf","SurvivorM_Peter","SurvivorM_Kaito","SurvivorF_Naomi","SurvivorM_Francis","SurvivorM_Elias","SurvivorM_Manua","SurvivorM_Denis","SurvivorM_Quinn","SurvivorM_Guo","SurvivorM_Seth","SurvivorF_Maria","SurvivorF_Eva", "SurvivorF_Helga"]			  
 											},
 											"WeaponInHands": {
 												"type": "string"
@@ -495,13 +489,11 @@
 											},
 											"CanBeKilled": {
 												"type": "number",
-												"maximum": 1,
-												"minimum": 0
+												"enum":[0,1]
 											},
 											"RequireLineOfSight": {
 												"type": "number",
-												"maximum": 1,
-												"minimum": 0
+												"enum":[0,1]
 											}
 										}
 									}

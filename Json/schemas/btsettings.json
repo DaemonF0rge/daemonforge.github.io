@@ -37,7 +37,8 @@
       "ServerAdmins": {
         "type": "array",
         "items": {
-          "type": "string"
+          "type": "string",
+          "pattern": "[A-Za-z0-9\/_-]{43}[=]"
         }
       },
       "TentRadius": {
@@ -54,8 +55,7 @@
       },
       "RequireTerritory": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "PublicPermissions": {
         "type": "number",
@@ -71,8 +71,7 @@
       },
       "Notifications": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "NoBuildZones": {
         "type": "array",
@@ -94,8 +93,7 @@
             },
             "DrawOnMap": {
               "type": "number",
-              "maximum": 1,
-              "minimum": 0
+              "enum":[0,1]
             }
           }
         }

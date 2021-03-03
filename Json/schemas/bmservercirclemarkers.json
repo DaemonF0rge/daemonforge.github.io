@@ -1,0 +1,78 @@
+{
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": ["Name","Pos","Icon","Is3DMarker","Colour","Alpha","Radius","ShowCenterMarker","HideIntersects"],
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Pos": {
+          "type": "array",
+          "maxItems": 3,
+          "minItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "Icon": {
+          "type": "string"
+        },
+        "Is3DMarker": {
+          "type": "number",
+          "enum":[0,1]
+        },
+        "Colour": {
+          "type": "array",
+          "maxItems": 3,
+          "minItems": 3,
+          "items": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          }
+        },
+        "Alpha": {
+          "type": "number",
+          "maximum": 255,
+          "minimum": 0
+        },
+        "HideOnPanel": {
+          "type": "number",
+          "enum":[0,1]
+        },
+        "HideOnMap": {
+          "type": "number",
+          "enum":[0,1]
+        },
+        "Radius": {
+          "type": "number",
+          "minimum": 0
+        },
+        "ShowCenterMarker": {
+          "type": "number",
+          "enum":[0,1]
+        },
+        "HideIntersects": {
+          "type": "number",
+          "enum":[0,1]
+        },
+        "MaxRenderDistance": {
+          "type": "number",
+          "minimum": -1
+        },
+        "MinRenderDistance": {
+          "type": "number",
+          "minimum": -1
+        },
+        "CanEdit": {
+          "type": "number",
+          "enum":[0,1]
+        },
+        "Group": {
+          "type": "string"
+        }
+      }
+    }
+  }

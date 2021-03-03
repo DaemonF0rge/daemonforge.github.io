@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "required": ["ConfigVersion","EnableBattlEye","StopSpam","BattlEyeIcon","BattlEyeHeading","BattlEyeKeywords"],
+    "properties": {
+      "ConfigVersion": {
+        "type": "string",
+        "pattern": "[0-9]{1,2}"
+      },
+      "EnableBattlEye": {
+        "type": "number",
+        "enum":[0,1]
+      },
+      "StopSpam": {
+        "type": "number",
+        "enum":[0,1]
+      },
+      "BattlEyeIcon": {
+        "type": "string"
+      },
+      "BattlEyeHeading": {
+        "type": "string"
+      },
+      "BattlEyeKeywords": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }

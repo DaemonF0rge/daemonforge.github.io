@@ -1,0 +1,34 @@
+{
+    "type": "object",
+    "required": ["Locations"],
+    "properties": {
+      "Locations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["Name","Permission","Position","Radius"],
+          "properties": {
+            "Name": {
+              "type": "string"
+            },
+            "Permission": {
+              "type": "string"
+            },
+            "Position": {
+              "type": "array",
+              "maxItems": 3,
+              "minItems": 3,
+              "items": {
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "Radius": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    }
+  }

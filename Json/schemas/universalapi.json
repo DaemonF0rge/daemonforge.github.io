@@ -1,0 +1,20 @@
+{
+    "type": "object",
+    "required": ["ServerURL","ServerID","ServerAuth","QnAEnabled"],
+    "properties": {
+      "ServerURL": {
+        "type": "string",
+        "pattern": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)"
+      },
+      "ServerID": {
+        "type": "string"
+      },
+      "ServerAuth": {
+        "type": "string"
+      },
+      "QnAEnabled": {
+        "type": "number",
+        "enum": [0,1]
+      }
+    }
+  }

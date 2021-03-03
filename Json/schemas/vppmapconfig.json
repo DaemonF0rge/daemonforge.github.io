@@ -1,0 +1,60 @@
+{
+    "type": "object",
+    "required": ["M_STATIC_MARKER_ARRAY","m_CanUse3DMarkers","m_OwnPositionMarkerDisabled","m_ForceMapItemOnly"],
+    "properties": {
+      "M_STATIC_MARKER_ARRAY": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "M_MARKER_NAME": {
+              "type": "string"
+            },
+            "M_ICON_PATH": {
+              "type": "string"
+            },
+            "M_COLOR": {
+                "type": "array",
+                "maxItems": 3,
+                "minItems": 3,
+                "items": {
+                  "type": "number",
+                  "maximum": 255,
+                  "minimum": 0
+                }
+              },
+            "M_POSITION": {
+              "type": "array",
+              "maxItems": 3,
+              "minItems": 3,
+              "items": {
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "M_ISACTIVE": {
+              "type": "number",
+              "enum":[0,1]
+            },
+            "M_IS_3D_ACTIVE": {
+              "type": "number",
+              "enum":[0,1]
+            }
+          }
+        }
+      },
+      "m_CanUse3DMarkers": {
+        "type": "number",
+        "enum":[0,1]
+      },
+      "m_OwnPositionMarkerDisabled": {
+        "type": "number",
+        "enum":[0,1]
+      },
+      "m_ForceMapItemOnly": {
+        "type": "number",
+        "enum":[0,1]
+      }
+    }
+  }

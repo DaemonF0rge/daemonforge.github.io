@@ -1,0 +1,132 @@
+{
+    "type": "object",
+    "required": ["ColorDirect","ColorDirectPlayer","ColorGlobal","ColorGlobalPlayer","ColorServer","ColorAlert"],
+    "properties": {
+      "ColorDirect": {
+        "type": "object",
+        "required": ["R", "G","B"],
+        "properties": {
+          "R": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          },
+          "G": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          },
+          "B": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          }
+        }
+      },
+      "ColorDirectPlayer": {
+        "type": "object",
+        "required": ["R", "G","B"],
+        "properties": {
+          "R": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          },
+          "G": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          },
+          "B": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          }
+        }
+      },
+      "ColorGlobal": {
+        "type": "object",
+        "required": ["R", "G","B"],
+        "properties": {
+          "R": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          },
+          "G": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          },
+          "B": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          }
+        }
+      },
+      "ColorGlobalPlayer": {
+        "type": "object",
+        "required": ["R", "G","B"],
+        "properties": {
+          "R": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          },
+          "G": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          },
+          "B": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          }
+        }
+      },
+      "ColorServer": {
+        "type": "object",
+        "required": ["R", "G","B"],
+        "properties": {
+          "R": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          },
+          "G": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          },
+          "B": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          }
+        }
+      },
+      "ColorAlert": {
+        "type": "object",
+        "required": ["R", "G","B"],
+        "properties": {
+          "R": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          },
+          "G": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          },
+          "B": {
+            "type": "number",
+            "maximum": 255,
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }

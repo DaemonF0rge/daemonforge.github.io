@@ -125,7 +125,7 @@ function GenerateGUID(theId){
     
     let hash = CryptoJS.SHA256(theId);
     var text = hash.toString(CryptoJS.enc.Base64);
-    return text.replace('+', '-').replace('/', '_');
+    return text.replace(/[+]/g, '-').replace(/[\/]/g, '_')
     
 }
 

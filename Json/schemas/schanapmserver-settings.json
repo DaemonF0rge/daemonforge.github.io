@@ -1,0 +1,34 @@
+{
+    "type": "object",
+    "required": ["logPartiesFrequencySeconds","verbosity","maxPartySize","sendInfoFrequencySeconds","sendMarkerFrequencySeconds","maxMarkers", "maxPartyRefreshRate","adminIds"],
+    "properties": {
+      "logPartiesFrequencySeconds": {
+        "type": "number"
+      },
+      "verbosity": {
+        "type": "number"
+      },
+      "maxPartySize": {
+        "type": "number"
+      },
+      "sendInfoFrequencySeconds": {
+        "type": "number"
+      },
+      "sendMarkerFrequencySeconds": {
+        "type": "number"
+      },
+      "maxMarkers": {
+        "type": "number"
+      },
+      "maxPartyRefreshRate": {
+        "type": "number"
+      },
+      "adminIds": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern":"[A-Za-z0-9_-]{43}[=]"
+        }
+      }
+    }
+  }

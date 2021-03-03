@@ -1,0 +1,63 @@
+{
+    "type": "object",
+    "required": [
+        "ConfigVersion",
+        "Notification",
+        "HackableItems",
+        "ScriptLogging"
+    ],
+    "properties": {
+      "ConfigVersion": {
+        "type": "string",
+        "pattern": "[0-9]{1,2}"
+      },
+      "Notification": {
+        "type": "number",
+        "enum":[0,1,2]
+      },
+      "HackableItems": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "Type",
+            "StartTime",
+            "HackingTime",
+            "Batteries",
+            "TabletDamage",
+            "ChanceOfInterrupt"
+          ],
+          "properties": {
+            "Type": {
+              "type": "string"
+            },
+            "StartTime": {
+              "type": "number",
+              "minimum": 0
+            },
+            "HackingTime": {
+              "type": "number",
+              "minimum": 0
+            },
+            "Batteries": {
+              "type": "integer",
+              "enum":[0,1,2,3,4,5]
+            },
+            "TabletDamage": {
+              "type": "number",
+              "minimum": 0
+            },
+            "ChanceOfInterrupt": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        }
+      },
+      "ScriptLogging": {
+        "type": "number",
+        "enum":[0,1]
+      }
+    }
+  }

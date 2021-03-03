@@ -1,0 +1,145 @@
+{
+    "type": "object",
+    "required": [
+        "g_BBPRequireLandClaim",
+        "g_BBPLandClaimBlockDismantle",
+        "g_BBPLandClaimRadius",
+        "g_BBPAdminLandClaimRadius",
+        "g_BBPFloatingPlacement",
+        "g_BBPAdvanceRotation",
+        "g_BBPInventoryToggle",
+        "g_BBPBarbedWireRemoveOutside",
+        "g_BBPSetInfiniteLifetime",
+        "g_BBPEnableTimeDestructionMod",
+        "g_BBPRaidOnlyDoors",
+        "g_BBPTier1RaidTime",
+        "g_BBPTier2RaidTime",
+        "g_BBPTier3RaidTime",
+        "g_BBPTier1RaidToolDamage",
+        "g_BBPTier2RaidToolDamage",
+        "g_BBPTier3RaidToolDamage",
+        "g_BBPTier1RaidTools",
+        "g_BBPTier2RaidTools",
+        "g_BBPTier3RaidTools",
+        "g_BBPCementMixerTime",
+        "g_BBPCementMixerLocations"
+    ],
+    "properties": {
+      "g_BBPRequireLandClaim": {
+        "type": "number",
+        "enum":[0,1]
+      },
+      "g_BBPLandClaimBlockDismantle": {
+        "type": "number",
+        "enum":[0,1]
+      },
+      "g_BBPLandClaimRadius": {
+        "type": "number",
+        "minimum": 0
+      },
+      "g_BBPAdminLandClaimRadius": {
+        "type": "number",
+        "minimum": 0
+      },
+      "g_BBPFloatingPlacement": {
+        "type": "number",
+        "enum":[0,1]
+      },
+      "g_BBPAdvanceRotation": {
+        "type": "number",
+        "enum":[0,1]
+      },
+      "g_BBPInventoryToggle": {
+        "type": "number",
+        "enum":[0,1]
+      },
+      "g_BBPBarbedWireRemoveOutside": {
+        "type": "number",
+        "enum":[0,1]
+      },
+      "g_BBPSetInfiniteLifetime": {
+        "type": "number",
+        "enum":[0,1]
+      },
+      "g_BBPEnableTimeDestructionMod": {
+        "type": "number",
+        "enum":[0,1]
+      },
+      "g_BBPRaidOnlyDoors": {
+        "type": "number",
+        "enum":[0,1]
+      },
+      "g_BBPTier1RaidTime": {
+        "type": "number",
+        "minimum": 0
+      },
+      "g_BBPTier2RaidTime": {
+        "type": "number",
+        "minimum": 0
+      },
+      "g_BBPTier3RaidTime": {
+        "type": "number",
+        "minimum": 0
+      },
+      "g_BBPTier1RaidToolDamage": {
+        "type": "number",
+        "minimum": 0
+      },
+      "g_BBPTier2RaidToolDamage": {
+        "type": "number",
+        "minimum": 0
+      },
+      "g_BBPTier3RaidToolDamage": {
+        "type": "number",
+        "minimum": 0
+      },
+      "g_BBPTier1RaidTools": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "g_BBPTier2RaidTools": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "g_BBPTier3RaidTools": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "g_BBPCementMixerTime": {
+        "type": "number"
+      },
+      "g_BBPCementMixerLocations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["position","orientation"],
+          "properties": {
+            "position": {
+              "type": "array",
+              "maxItems": 3,
+              "minItems": 3,
+              "items": {
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "orientation": {
+              "type": "array",
+              "maxItems": 3,
+              "minItems": 3,
+              "items": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    }
+  }

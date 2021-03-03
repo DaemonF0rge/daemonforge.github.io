@@ -1,0 +1,181 @@
+{
+    "type": "object",
+    "required": [
+        "ConfigVersion",
+        "Interval",
+        "StartDelay",
+        "CaptureTime",
+        "EmptyEventTimeOut",
+        "CleanUpTime",
+        "PreStartDelay",
+        "Hills",
+        "RewardPools",
+        "ZombiesClassNames",
+        "NotificationsType",
+        "FullMapCheckTimer",
+        "EventTickTime",
+        "Logging"
+    ],
+    "properties": {
+      "LastCapturePoint": {
+        "type": "number"
+      },
+      "ConfigVersion": {
+        "type": "string",
+        "pattern": "[0-9]{1,2}"
+      },
+      "Interval": {
+        "type": "number",
+        "minimum": 15
+      },
+      "StartDelay": {
+        "type": "number",
+        "minimum": 15
+      },
+      "CaptureTime": {
+        "type": "number",
+        "minimum": 15
+      },
+      "EmptyEventTimeOut": {
+        "type": "number",
+        "minimum": 15
+      },
+      "CleanUpTime": {
+        "type": "number",
+        "minimum": 15
+      },
+      "PreStartDelay": {
+        "type": "number",
+        "minimum": 1
+      },
+      "Hills": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "Name",
+            "X",
+            "Y",
+            "Z",
+            "CaptureRadius",
+            "EventRadius",
+            "ZombieCount",
+            "Objects"
+        ],
+          "properties": {
+            "Name": {
+              "type": "string"
+            },
+            "X": {
+              "type": "number"
+            },
+            "Y": {
+              "type": "number"
+            },
+            "Z": {
+              "type": "number"
+            },
+            "CaptureRadius": {
+              "type": "number",
+              "minimum": 0
+            },
+            "EventRadius": {
+              "type": "number",
+              "minimum": 0
+            },
+            "ZombieCount": {
+              "type": "number",
+              "minimum": 0
+            },
+            "Objects": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                    "Item",
+                    "Position",
+                    "Orientation"
+                ],
+                "properties": {
+                  "Item": {
+                    "type": "string"
+                  },
+                  "Position": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    }
+                  },
+                  "Orientation": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "RewardPools": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "Name",
+            "RewardContainer",
+            "Rewards"
+          ],
+          "properties": {
+            "Name": {
+              "type": "string"
+            },
+            "RewardContainer": {
+              "type": "string"
+            },
+            "Rewards": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["Item","ItemAttachments"],
+                "properties": {
+                  "Item": {
+                    "type": "string"
+                  },
+                  "ItemAttachments": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ZombiesClassNames": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "NotificationsType": {
+        "type": "number",
+        "enum":[0,1]
+      },
+      "FullMapCheckTimer": {
+        "type": "number",
+        "minimum": 5
+      },
+      "EventTickTime": {
+        "type": "number",
+        "minimum": 1
+      },
+      "Logging": {
+        "type": "number",
+        "enum":[0,1]
+      }
+    }
+  }

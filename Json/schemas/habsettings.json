@@ -44,8 +44,7 @@
       },
       "Mode": {
         "type": "number",
-        "maximum": 2,
-        "minimum": 0
+        "enum":[0,1,2]
       },
       "NotificationMessageTime": {
         "type": "number",
@@ -53,13 +52,11 @@
       },
       "KillFeed": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "SucideFeed": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "KillFeedMessageColor": {
         "type": "array",
@@ -77,36 +74,30 @@
       },
       "AllowStatCommand": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "AllowHumanityCommand": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "AllowGUI": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "GUIHeading": {
         "type": "string"
       },
       "HideKillsInGUI": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "BanditCanRemoveMask": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "BanditCanRemoveArmBand": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "BanditMasks": {
         "type": "array",
@@ -122,13 +113,11 @@
       },
       "HeroCanRemoveMask": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "HeroCanRemoveArmBand": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "HeroMasks": {
         "type": "array",
@@ -144,63 +133,51 @@
       },
       "AffintyCantGoBelowZero": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "ResetAffinitiesOnDeath": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "ResetStatsOnDeath": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "DodTags_EnableHumanityOnDogTags": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "DodTags_EnableAffinityOnDogTags": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "Expansion_EnableIconOnPlayerTag": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "Expansion_ImageTypePlayerTag": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "Expansion_HideNameOnPlayerTag": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "ExceptionLogs": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "VerboseLogs": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "DebugLogs": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "DebugCommand": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "BambiSkins": {
         "type": "array",

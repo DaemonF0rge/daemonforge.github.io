@@ -1,0 +1,31 @@
+{
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": ["playerId","playerPerms"],
+      "properties": {
+        "playerId": {
+          "type": "string",
+          "pattern": "[1-9][0-9]{16}"
+        },
+        "playerPerms": {
+          "type": "object",
+          "required": ["CanOpenLocks","CanChangePasscodes","CanRemoveLocks"],
+          "properties": {
+            "CanOpenLocks": {
+              "type": "string",
+              "enum": ["true","false"]
+            },
+            "CanChangePasscodes": {
+              "type": "string",
+              "enum": ["true","false"]
+            },
+            "CanRemoveLocks": {
+              "type": "string",
+              "enum": ["true","false"]
+            }
+          }
+        }
+      }
+    }
+  }

@@ -1,0 +1,211 @@
+{
+    "type": "object",
+    "required": [
+        "configVersion",
+        "removeAfterHarvest",
+        "tobacco_growtime",
+        "tobacco_cropcount",
+        "tobaccoSeed_count",
+        "cannabisSkunk_growtime",
+        "cannabisSkunk_cropcount",
+        "cannabisSkunkSeed_count",
+        "cannabisKush_growtime",
+        "cannabisKush_cropcount",
+        "cannabisKushSeed_count",
+        "cannabisBlue_growtime",
+        "cannabisBlue_cropcount",
+        "cannabisBlueSeed_count",
+        "cannabisStardawg_growtime",
+        "cannabisStardawg_cropcount",
+        "cannabisStardawgSeed_count",
+        "cannabisFuture_growtime",
+        "cannabisFuture_cropcount",
+        "cannabisFutureSeed_count",
+        "cannabisS1_growtime",
+        "cannabisS1_cropcount",
+        "cannabisS1Seed_count",
+        "cannabisNomad_growtime",
+        "cannabisNomad_cropcount",
+        "cannabisNomadSeed_count",
+        "cannabisBlackFrost_growtime",
+        "cannabisBlackFrost_cropcount",
+        "cannabisBlackFrostSeed_count",
+        "pepper_growtime",
+        "pepper_cropcount",
+        "pepperSeed_count",
+        "tomato_growtime",
+        "tomato_cropcount",
+        "tomatoSeed_count",
+        "zucchini_growtime",
+        "zucchini_cropcount",
+        "zucchiniSeed_count",
+        "pumpkin_growtime",
+        "pumpkin_cropcount",
+        "pumpkinSeed_count",
+        "activateCigaretteSmokingEffect",
+        "smokingCigaretteEffectDuration",
+        "cigaretteCyclesToActivateEffect",
+        "activateJointSmokingEffect",
+        "smokingJointEffectDuration",
+        "jointCyclesToActivateEffect",
+        "weedHueIntensity",
+        "weedRadBlurXPower",
+        "weedRadBlurYPower",
+        "weedRotBlurPow"
+    ],
+    "properties": {
+      "configVersion": {
+        "type": "number"
+      },
+      "removeAfterHarvest": {
+        "type": "number"
+      },
+      "tobacco_growtime": {
+        "type": "number"
+      },
+      "tobacco_cropcount": {
+        "type": "number"
+      },
+      "tobaccoSeed_count": {
+        "type": "number"
+      },
+      "cannabisSkunk_growtime": {
+        "type": "number"
+      },
+      "cannabisSkunk_cropcount": {
+        "type": "number"
+      },
+      "cannabisSkunkSeed_count": {
+        "type": "number"
+      },
+      "cannabisKush_growtime": {
+        "type": "number"
+      },
+      "cannabisKush_cropcount": {
+        "type": "number"
+      },
+      "cannabisKushSeed_count": {
+        "type": "number"
+      },
+      "cannabisBlue_growtime": {
+        "type": "number"
+      },
+      "cannabisBlue_cropcount": {
+        "type": "number"
+      },
+      "cannabisBlueSeed_count": {
+        "type": "number"
+      },
+      "cannabisStardawg_growtime": {
+        "type": "number"
+      },
+      "cannabisStardawg_cropcount": {
+        "type": "number"
+      },
+      "cannabisStardawgSeed_count": {
+        "type": "number"
+      },
+      "cannabisFuture_growtime": {
+        "type": "number"
+      },
+      "cannabisFuture_cropcount": {
+        "type": "number"
+      },
+      "cannabisFutureSeed_count": {
+        "type": "number"
+      },
+      "cannabisS1_growtime": {
+        "type": "number"
+      },
+      "cannabisS1_cropcount": {
+        "type": "number"
+      },
+      "cannabisS1Seed_count": {
+        "type": "number"
+      },
+      "cannabisNomad_growtime": {
+        "type": "number"
+      },
+      "cannabisNomad_cropcount": {
+        "type": "number"
+      },
+      "cannabisNomadSeed_count": {
+        "type": "number"
+      },
+      "cannabisBlackFrost_growtime": {
+        "type": "number"
+      },
+      "cannabisBlackFrost_cropcount": {
+        "type": "number"
+      },
+      "cannabisBlackFrostSeed_count": {
+        "type": "number"
+      },
+      "pepper_growtime": {
+        "type": "number"
+      },
+      "pepper_cropcount": {
+        "type": "number"
+      },
+      "pepperSeed_count": {
+        "type": "number"
+      },
+      "tomato_growtime": {
+        "type": "number"
+      },
+      "tomato_cropcount": {
+        "type": "number"
+      },
+      "tomatoSeed_count": {
+        "type": "number"
+      },
+      "zucchini_growtime": {
+        "type": "number"
+      },
+      "zucchini_cropcount": {
+        "type": "number"
+      },
+      "zucchiniSeed_count": {
+        "type": "number"
+      },
+      "pumpkin_growtime": {
+        "type": "number"
+      },
+      "pumpkin_cropcount": {
+        "type": "number"
+      },
+      "pumpkinSeed_count": {
+        "type": "number"
+      },
+      "activateCigaretteSmokingEffect": {
+        "type": "number"
+      },
+      "smokingCigaretteEffectDuration": {
+        "type": "number"
+      },
+      "cigaretteCyclesToActivateEffect": {
+        "type": "number"
+      },
+      "activateJointSmokingEffect": {
+        "type": "number"
+      },
+      "smokingJointEffectDuration": {
+        "type": "number"
+      },
+      "jointCyclesToActivateEffect": {
+        "type": "number"
+      },
+      "weedHueIntensity": {
+        "type": "number"
+      },
+      "weedRadBlurXPower": {
+        "type": "number"
+      },
+      "weedRadBlurYPower": {
+        "type": "number"
+      },
+      "weedRotBlurPow": {
+        "type": "number"
+      }
+    }
+  }

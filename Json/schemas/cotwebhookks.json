@@ -1,0 +1,42 @@
+{
+    "type": "object",
+    "required": ["Connections"],
+    "properties": {
+      "Connections": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["Name", "ContextURL","Address","Types"],
+          "properties": {
+            "Name": {
+              "type": "string"
+            },
+            "ContextURL": {
+              "type": "string",
+              "pattern": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)"
+            },
+            "Address": {
+              "type": "string"
+            },
+            "Types": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["Name","Enabled"],
+                "properties": {
+                  "Name": {
+                    "type": "string",
+                    "enum": ["COTModule","JMWebhookModule","JMPlayerModule","JMPlayerModuleSet","JMPlayerModuleVehicle","JMPlayerModuleTeleport","JMPlayerModuleInventory","JMPlayerModulePF","JMObjectSpawnerModule","JMObjectSpawnerModuleDelete","JMObjectSpawnerModuleVector","JMObjectSpawnerModulePlayer","JMESPModule","JMESPModuleLog","JMESPModulePosition","JMESPModuleOrientation","JMESPModuleHealth","JMESPModuleDelete","JMESPModuleBB_Build","JMESPModuleBB_Dismantle","JMESPModuleBB_Repair","JMESPModuleMakeItemSet","JMESPModuleDuplicateAll","JMESPModuleDeleteAll","JMESPModuleMoveToCursorRelative","JMESPModuleMoveToCursorAbsolute","JMTeleportModule","JMTeleportModuleVector","JMTeleportModuleLocation","JMCameraModule","JMVehicleSpawnerModule","JMItemSetSpawnerModule","JMItemSetSpawnerModuleVector","JMItemSetSpawnerModulePlayer","JMWeatherOldModule","JMWeatherOldModuleDate","JMWeatherOldModuleWind","JMWeatherOldModuleOvercast","JMWeatherOldModuleFog","JMWeatherOldModuleRain","JMWeatherOldModuleStorm","JMMapModule","ServerStartup","ServerShutdown","PlayerJoin","PlayerLeave","PlayerDeath","PlayerDamage","AdminActive","ExpansionGlobalChatModule","ExpansionNotificationModule","ExpansionSafeZoneModule","ExpansionPartyModule","ExpansionMarkerModule","ExpansionMissionModule","ExpansionTerritoryModule","ExpansionInteriorBuildingModule","ExpansionWorldMappingModule","ExpansionSkinModule","ExpansionAutorunModule","ExpansionMonitorModule","ExpansionKillFeedModule","ExpansionKillFeedModuleKillfeed","ExpansionESPModificationModule","ExpansionCOTVehiclesModule","ExpansionCOTTerritoriesModule","ExpansionCOTAirdropModule","ExpansionCOTAirdropModuleSettingsUpdate","ExpansionCOTBaseBuildingModule","ExpansionCOTBaseBuildingModuleSettingsUpdate","ExpansionCOTBookModule","ExpansionCOTBookModuleSettingsUpdate","ExpansionCOTGeneralModule","ExpansionCOTGeneralModuleSettingsUpdate","ExpansionCOTMapModule","ExpansionCOTMapModuleSettingsUpdate","ExpansionCOTNotificationModule","ExpansionCOTNotificationModuleSettingsUpdate","ExpansionCOTPartyModule","ExpansionCOTPartyModuleSettingsUpdate","ExpansionCOTRaidModule","ExpansionCOTRaidModuleSettingsUpdate","ExpansionCOTSpawningModule","ExpansionCOTSpawningModuleSettingsUpdate","ExpansionCOTVehicleModule","ExpansionCOTVehicleModuleSettingsUpdate","ExpansionGameMissionSelecterModule","ExpansionRespawnHandlerModule"]
+                  },
+                  "Enabled": {
+                    "type": "number",
+                    "enum": [0,1]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

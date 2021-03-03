@@ -27,28 +27,23 @@
       },
       "UseSimple": {
         "type": "number",
-        "maximum": 2,
-        "minimum": 0
+        "enum":[0,1,2]
       },
       "KillFeed": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "SucideFeed": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "BanditCanRemoveMask": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "BanditCanRemoveArmBand": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "BanditMasks": {
         "type": "array",
@@ -64,13 +59,11 @@
       },
       "HeroCanRemoveMask": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "HeroCanRemoveArmBand": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "HeroMasks": {
         "type": "array",
@@ -98,8 +91,7 @@
       },
       "Expansion_EnableIconOnPlayerTag": {
         "type": "number",
-        "maximum": 1,
-        "minimum": 0
+        "enum":[0,1]
       },
       "Levels": {
         "type": "array",
@@ -184,33 +176,27 @@
             },
             "OverrideSafeZone": {
               "type": "number",
-              "maximum": 1,
-              "minimum": 0
+              "enum":[0,1]
             },
             "GodModPlayers": {
               "type": "number",
-              "maximum": 1,
-              "minimum": 0
+              "enum":[0,1]
             },
             "PreventWeaponRaise": {
               "type": "number",
-              "maximum": 1,
-              "minimum": 0
+              "enum":[0,1]
             },
             "PreventActions": {
               "type": "number",
-              "maximum": 1,
-              "minimum": 0
+              "enum":[0,1]
             },
             "PreventTrade": {
               "type": "number",
-              "maximum": 1,
-              "minimum": 0
+              "enum":[0,1]
             },
             "KillAggressors": {
               "type": "number",
-              "maximum": 1,
-              "minimum": 0
+              "enum":[0,1]
             },
             "RespawnTimer": {
               "type": "number",
@@ -218,8 +204,7 @@
             },
             "GuardDifficulty": {
               "type": "number",
-              "maximum": 5,
-              "minimum": 1
+              "enum":[0,1,2,3,4,5]
             },
             "Guards": {
               "type": "array",

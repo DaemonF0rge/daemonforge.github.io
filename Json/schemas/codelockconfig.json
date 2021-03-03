@@ -1,0 +1,75 @@
+{
+    "type": "object",
+    "required": [
+        "ActionRateLimit",
+        "UIRateLimit",
+        "PermissionReloadTime",
+        "RaidIncrements",
+        "GateRaidTime",
+        "TentRaidTime",
+        "CanAttachToGates",
+        "CanAttachToTents",
+        "CanRaidGates",
+        "CanRaidTents",
+        "DeleteLockonRaid",
+        "ToolDamageonRaid",
+        "OwnerOnlyDismantle",
+        "CanOpenAnywhere",
+        "CanCloseAnywhere"
+    ],
+    "properties": {
+      "ActionRateLimit": {
+        "type": "number"
+      },
+      "UIRateLimit": {
+        "type": "number"
+      },
+      "PermissionReloadTime": {
+        "type": "number"
+      },
+      "RaidIncrements": {
+        "type": "number"
+      },
+      "GateRaidTime": {
+        "type": "number"
+      },
+      "TentRaidTime": {
+        "type": "number"
+      },
+      "CanAttachToGates": {
+        "type": "string",
+        "enum": ["true","false"]
+      },
+      "CanAttachToTents": {
+        "type": "string",
+        "enum": ["true","false"]
+      },
+      "CanRaidGates": {
+        "type": "string",
+        "enum": ["true","false"]
+      },
+      "CanRaidTents": {
+        "type": "string",
+        "enum": ["true","false"]
+      },
+      "DeleteLockonRaid": {
+        "type": "string",
+        "enum": ["true","false"]
+      },
+      "ToolDamageonRaid": {
+        "type": "number"
+      },
+      "OwnerOnlyDismantle": {
+        "type": "string",
+        "enum": ["true","false"]
+      },
+      "CanOpenAnywhere": {
+        "type": "string",
+        "enum": ["true","false"]
+      },
+      "CanCloseAnywhere": {
+        "type": "string",
+        "enum": ["true","false"]
+      }
+    }
+  }
