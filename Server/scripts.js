@@ -104,6 +104,7 @@ async function LookUpServer(){
             console.log(data);
             if (data.status !== undefined){
                 ServerData.style.display="block";
+                let AllDonations = `<input id="copyfrom" type="text" style="display: inline-block; width: 320px; height: 24px; font-size: 0.8em" value="https://daemonforge.dev/Server/?ip=${theIp}&port=${thePort}" /> <button id="copyText" style="display: inline-block; margin-left: 4px; padding: 8px;  font-size: 1em" type="button" onclick="CopyServerLink()" title="Copy" ><i class="fa fa-copy"></i></button>`;
                 if (data.status == "online"){
                     statusicon.style.color = "green";
                     updateHtml("servername", data.name);
@@ -141,15 +142,44 @@ async function LookUpServer(){
                 for(mod of data.mods){
                     i++;
                     //console.log(mod)
-                    let description = ParseMarkup(mod.description);
-                    
+                    let parse = ParseMarkup(mod.description);
+                    let description = parse[0];
+                    let donationlink = parse[1];
+                    let donations = "";
+                    let creatorid = "creator"+i;
+                    //console.log(donationlink)
+                    if (donationlink !== undefined  && donationlink != null){
+                        AllDonations = AllDonations + `<br> ${mod.name} by <span id="${creatorid}dl"> </span> - `;
+                        donations = " - ";
+                        donationlink.forEach(element => {
+                            //console.log(element)
+                            let link;
+                            if (element.match(/https?:\/\//i)){
+                                link = element;
+                            } else {
+                                link = "https://" + element;
+                            }
+                            if (element.match(/paypal/i)){
+                                donations = donations + ` <a href="${link}" style="color: #fff;"><i class="fab fa-paypal"></i></a>`;
+                                AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #169BD7;"><i class="fab fa-paypal"></i></a>`;
+                            }
+                            if (element.match(/patreon/i)){
+                                donations = donations + ` <a href="${link}" style="color: #fff;"><i class="fab fa-patreon"></i></a>`;
+                                AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #E64413;"><i class="fab fa-patreon"></i></a>`;
+                            }
+                            if (element.match(/github/i)){
+                                donations = donations + ` <a href="${link}" style="color: #fff;"><i class="fab fa-github-square"></i></a>`;
+                                AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #fff;"><i class="fab fa-github-square"></i></a>`;
+                            }
+                        });
+                    }
+                    console.log(donations)
                     let niceSize = bytesToSize(mod.size);
-                    
                     var DateCreated = new Date(mod.created * 1000);
                     var LastUpdated = new Date(mod.updated * 1000);
                     contents+= `
                     <details style="width: 98%; margin: 2px;"> 
-                        <summary>${mod.name}</summary> 
+                        <summary style="font-size: 1.3em;">${mod.name}${donations}</summary>
                         <img class="modimage" src="${mod.image_url}"/>
                         <table style="1px solid #dbdbdb">
                             <tr>
@@ -183,13 +213,13 @@ async function LookUpServer(){
                     </details>
                     `;
                     newMods.push({id: mod.id, name: mod.name});
-                    let creatorid = "creator"+i;
                     fetch(`https://api.daemonforge.dev/user/${mod.creator}`, {
                         method: 'GET',
                         mode: 'cors'
-                    }).then( userresponse => userresponse.json().then( userdata => updateCreator(creatorid, userdata) ).catch(e=>console.log(e))).catch( e => console.log(e))
+                    }).then( userresponse => userresponse.json().then( userdata => {updateCreator(creatorid, userdata);updateCreator(creatorid+"dl", userdata)} ).catch(e=>console.log(e))).catch( e => console.log(e))
 
                 }
+                updateHtml("AllDonations", AllDonations);
                 data.mods = newMods; //Just to remove extra bloat from the resonses and to not encourch un nessasary use of /full
                 delete data.ModsDownloadSize;
                 updateHtml("ModData", contents);
@@ -349,8 +379,9 @@ function ParseMarkup(intext) {
 
         intext = intext.replace(/(\r\n){1,2}/g, "\n<br />");
 
+        let donationlinks = intext.match(/(https?:\/\/)?((www\.)?(paypal\.me)|((www\.)?(patreon\.com)|((www\.)?(github\.com\/sponsors))))(\/[a-zA-Z0-9]{2,32})/gi)
         //console.log(intext);
-        return intext;
+        return [intext, donationlinks];
 }
 
 function FormatTheDate(date){
@@ -392,7 +423,6 @@ function FormatTheDate(date){
 
 async function updateCreator(creatorElement, userdata){
     updateHtml(creatorElement, `<a href="${userdata.profileurl}"><author>${userdata.name}</author></a>`)
-
 }
 
 function syntaxHighlight(json) {
@@ -415,5 +445,28 @@ function syntaxHighlight(json) {
         }
         return '<span class="' + cls + '">' + match + '</span>';
     });
+}
+
+function CopyServerLink(){
+
+  /* Select the text field */
+  document.getElementById("copyfrom").select();
+  document.getElementById("copyfrom").setSelectionRange(0, 99999); /* For mobile devices */
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+}
+
+
+let queryString = window.location.search;
+let urlParams = new URLSearchParams(queryString);
+if (urlParams.has("ip")){
+    if(urlParams.has("port")){
+
+        port.value = urlParams.get("port");
+    }
+    ip.value = urlParams.get("ip");
+    setTimeout(LookUpServer, 1000);
 }
 
