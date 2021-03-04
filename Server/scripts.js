@@ -173,7 +173,7 @@ async function LookUpServer(){
                             }
                         });
                     }
-                    console.log(donations)
+                    //console.log(donations)
                     let niceSize = bytesToSize(mod.size);
                     var DateCreated = new Date(mod.created * 1000);
                     var LastUpdated = new Date(mod.updated * 1000);
@@ -379,7 +379,7 @@ function ParseMarkup(intext) {
 
         intext = intext.replace(/(\r\n){1,2}/g, "\n<br />");
 
-        let donationlinks = intext.match(/(https?:\/\/)?((www\.)?(paypal\.me)|((www\.)?(patreon\.com)|((www\.)?(github\.com\/sponsors))))(\/[a-zA-Z0-9]{2,32})/gi)
+        let donationlinks = intext.match(/(https?:\/\/)?(www\.)?((paypal\.me)|((patreon\.com)|(github\.com\/sponsors)))(\/[a-zA-Z0-9]{2,64})/gi)
         //console.log(intext);
         return [intext, donationlinks];
 }
