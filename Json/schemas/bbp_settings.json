@@ -204,15 +204,15 @@
       },
       "g_BBPTier1RaidTime": {
         "type": "number",
-        "minimum": 0
+        "minimum": 1
       },
       "g_BBPTier2RaidTime": {
         "type": "number",
-        "minimum": 0
+        "minimum": 1
       },
       "g_BBPTier3RaidTime": {
         "type": "number",
-        "minimum": 0
+        "minimum": 1
       },
       "g_BBPTier1RaidToolDamage": {
         "type": "number",
@@ -245,7 +245,8 @@
         }
       },
       "g_BBPCementMixerTime": {
-        "type": "number"
+        "type": "number",
+        "minimum": 1
       },
       "g_BBPCementMixerLocations": {
         "type": "array",
@@ -269,7 +270,8 @@
               "minItems": 3,
               "items": {
                 "type": "number",
-                "minimum": 0
+                "minimum": -360,
+                "maximum": 360
               }
             }
           }
