@@ -5,13 +5,13 @@
         <meta name="description" content="A site to query DayZ servers and get all the details including mods.">
         <meta name="keywords" content="Dayz, Steam Query, DayZ Servers">
         <meta name="author" content="Daemon Forge">
-        <script async src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous"></script>
         <script async src="https://kit.fontawesome.com/63bc495439.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
         <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' media="print" onload="this.media='all'"  />
-
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+        <script defer src="showdown-icons.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script async src="scripts.js"></script>
+        <script defer src="scripts.js"></script>
         <style>
             
              body {
@@ -156,7 +156,6 @@
         pre {
             text-align: left;
             display: block;
-            outline: 1px solid #ccc; 
             padding: 5px; 
             margin: 5px; 
         }
@@ -165,6 +164,9 @@
         .boolean { color: #2196F3; }
         .null { color: #CE93D8; }
         .key { color: #FF6E40; }
+        code {
+          display: inline-block;
+        }
         .donateLink {
           background-color: #161f27;
           background-color: var(--background);
@@ -181,6 +183,16 @@
           background-color: #324759;
           background-color: var(--button-hover);
           
+        }
+        .modheader {
+          color: #fff; 
+          float: right; 
+          margin: 0px 8px;
+          font-size: 1.25em;
+        }
+        .modheader:hover {
+          color: #bbb; 
+          font-size: 1.2em;
         }
         </style>
     </head>
@@ -214,6 +226,9 @@
             <table>
                 <tr>
                   <th  colspan="3" ><h2 ><span id="statusicon" style="color: green"><i class="fas fa-server"></i></span> <span id="servername">Server Name</span></h2></th>
+                </tr>
+                <tr id="ServerDescriptionRow" style="display: none;">
+                  <td colspan="3" id="ServerDescription"></td>
                 </tr>
                 <tr>
                   <td>IP Address</td>

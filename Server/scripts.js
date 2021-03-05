@@ -24,8 +24,12 @@ let allOfTheDom = [
                 "day_acceleration",
                 "night_acceleration",
                 "rawdata",
-                "rawRequest"
+                "rawRequest",
+                "ServerDescription"
             ];
+
+let queryString = window.location.search;
+let urlParams = new URLSearchParams(queryString);
 
 const NightRef = {
     namalsk: 15.90, //Same as chenarus but since the init.c by default reset the months to winter i rounded closered to january averages 
@@ -37,6 +41,8 @@ const NightRef = {
     deerilse: 11.68
 };
 
+const converter = new showdown.Converter({ extensions: ['icon'] });
+ 
 
 let ServerData = document.getElementById("ServerData");
 let ip = document.getElementById("ip");
@@ -45,6 +51,7 @@ let lookup = document.getElementById("lookup");
 let loading = document.getElementById("loading");
 let statusicon = document.getElementById("statusicon");
 let codeblock = document.getElementById("rawdata");
+let ServerDescriptionRow = document.getElementById("ServerDescriptionRow");
 
 function updateHtml(element, text){
     let DomObj = document.getElementById(element);
@@ -63,6 +70,7 @@ function Clear(){
     for(domele of allOfTheDom){
         updateHtml(domele, "&nbsp;")
     }
+    ServerDescriptionRow.style.display="none";
     loading.style.display="none";
     lookup.style.display="inline-block";
     ServerData.style.display = "none";
@@ -132,6 +140,13 @@ async function LookUpServer(){
                     updateHtml("query_port", data.query_port);
                     return;
                 }
+                let ServerName = data.name.match(/([a-zA-Z0-9' ]{5,32})(\||-|:)/ui);
+                if (ServerName){
+                    ServerName = ServerName[0].match(/([a-zA-Z0-9' ]{5,32})/ui);
+                    //console.log(ServerName)
+                    ServerName = ServerName[0]
+                    //console.log(ServerName);
+                }
                 theKeys = Object.keys(data);
                 for (key of theKeys){
                     updateHtml(key, data[key]);
@@ -142,36 +157,62 @@ async function LookUpServer(){
                 for(mod of data.mods){
                     i++;
                     //console.log(mod)
-                    let parse = ParseMarkup(mod.description);
-                    let description = parse[0];
-                    let donationlink = parse[1];
+                    ModName = mod.name;
+                    ModName = ModName.replace(/[ _]/g, "");
+                    ServerName = ServerName.replace(/[ _]/g, "");
+                    ModName = ModName.replace(/(server)?(mod)?(pack)?/gi, "");
+                    ServerName = ServerName.toLowerCase();
+                    ModName = ModName.toLowerCase();
+                    let TheServerDescription = "";
+                    let toCheck = mod.description;
+                    if (ServerName == ModName && urlParams.has("demo")){
+                        TheServerDescription = toCheck.match(/\[code=description\]((.|\r\n)*)\[\/code\]/giu);
+                        if (TheServerDescription){
+                            TheServerDescription = TheServerDescription[0].replace(/\[code=description\]/i, "").replace(/\[\/code\]/i, "");
+                            //console.log(TheServerDescription)
+                            TheServerDescription      = "Server Description<br />" + converter.makeHtml(TheServerDescription);
+                            ServerDescriptionRow.style.display = null;
+                            updateHtml("ServerDescription",TheServerDescription);
+                        } else {
+                            ServerDescriptionRow.style.display = null;
+                            updateHtml("ServerDescription", "Server Description<br />" + ParseMarkup(mod.description));
+                        }
+                    }
+                    let description = "";
+                    let donationlink = "";
                     let donations = "";
                     let creatorid = "creator"+i;
-                    //console.log(donationlink)
-                    if (donationlink !== undefined  && donationlink != null){
-                        AllDonations = AllDonations + `<br> ${mod.name} by <span id="${creatorid}dl"> </span> - `;
-                        donations = " - ";
-                        donationlink.forEach(element => {
-                            //console.log(element)
-                            let link;
-                            if (element.match(/https?:\/\//i)){
-                                link = element;
-                            } else {
-                                link = "https://" + element;
-                            }
-                            if (element.match(/paypal/i)){
-                                donations = donations + ` <a href="${link}" style="color: #fff;"><i class="fab fa-paypal"></i></a>`;
-                                AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #169BD7;"><i class="fab fa-paypal"></i></a>`;
-                            }
-                            if (element.match(/patreon/i)){
-                                donations = donations + ` <a href="${link}" style="color: #fff;"><i class="fab fa-patreon"></i></a>`;
-                                AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #E64413;"><i class="fab fa-patreon"></i></a>`;
-                            }
-                            if (element.match(/github/i)){
-                                donations = donations + ` <a href="${link}" style="color: #fff;"><i class="fab fa-github"></i></a>`;
-                                AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #fff;"><i class="fab fa-github"></i></a>`;
-                            }
-                        });
+                    if (mod.description !== undefined){
+                        let parse = ParseMarkup(mod.description);
+                        description = parse[0];
+                        donationlink = parse[1];
+                        
+                        //console.log(donationlink)
+                        if (donationlink !== undefined  && donationlink != null){
+                            AllDonations = AllDonations + `<br> ${mod.name} by <span id="${creatorid}dl"> </span> - `;
+                            donations = " ";
+                            donationlink.forEach(element => {
+                                //console.log(element)
+                                let link;
+                                if (element.match(/https?:\/\//i)){
+                                    link = element;
+                                } else {
+                                    link = "https://" + element;
+                                }
+                                if (element.match(/paypal/i)){
+                                    donations = donations + ` <a href="${link}" class="modheader"><i class="fab fa-paypal"></i></a>`;
+                                    AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #169BD7;"><i class="fab fa-paypal"></i></a>`;
+                                }
+                                if (element.match(/patreon/i)){
+                                    donations = donations + ` <a href="${link}"class="modheader"><i class="fab fa-patreon"></i></a>`;
+                                    AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #E64413;"><i class="fab fa-patreon"></i></a>`;
+                                }
+                                if (element.match(/github/i)){
+                                    donations = donations + ` <a href="${link}" class="modheader"><i class="fab fa-github"></i></a>`;
+                                    AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #fff;"><i class="fab fa-github"></i></a>`;
+                                }
+                            });
+                        }
                     }
                     //console.log(donations)
                     let niceSize = bytesToSize(mod.size);
@@ -237,7 +278,7 @@ async function LookUpServer(){
             loading.style.display="none";
             lookup.style.display="inline-block";
             dialog.showModal();
-            DialogText.innerHTML = "An Error has occured<br /><code>" + error + "</code>";
+            DialogText.innerHTML = "An Error has occured, try again. <br />If the issue persisit let me know via discord DaemonForge#5454 <br /><br /><code>" + error + "</code>";
         }
 
     } else {
@@ -266,114 +307,135 @@ function bytesToSize(bytes) {
  }
 
 function ParseMarkup(intext) {
+    //console.log(intext)
     intext = intext.replace(/</g, '&lt;');
+        for( let i = 0; i <= 6; i++ ){
+            intext = intext.replace(/\[img\]((.|\r\n)*)\[\/img\]/giu,function(x){
+                x = x.replace(/\[img\]/gi,function(x){
+                    return x.replace(/\[img\]/gi,"<img src=\"")
+                });
+                x = x.replace(/\[\/img\]/gi,function(x){return x.replace(/\[\/img\]/gi,"\" />")});
+                return x
+            });
 
-        intext = intext.replace(/\[[Ii][Mm][Gg]\]((.|\r\n)*)\[\/[Ii][Mm][Gg]\]/g,function(x){
-            x = x.replace(/\[[Ii][Mm][Gg]\]/g,function(x){
-                return x.replace(/\[[Ii][Mm][Gg]\]/g,"<img src=\"")
-            });
-            x = x.replace(/\[[\/][Ii][Mm][Gg]\]/g,function(x){return x.replace(/\[\/[Ii][Mm][Gg]\]/g,"\" />")});
-            return x
-        });
+                intext = intext.replace(/\[table\](.|\r\n)*\[\/table\]/gmiu,  function(x){ 
+                    //console.log("TableFound");
+                    //console.log(x);
+                    x = x.replace(/(\r\n)/g, "");
+                    x = x.replace(/\[\/table\]/gi, "</table>");
+                    x = x.replace(/\[table\]/gi,"<table style=\"margin: 3px 2%; width: 96%;\">")
+                    x = x.replace(/\[\/{0,1}th\]/gi,function(x){
+                            return x.replace("[","<").replace(/th\]/gi,"td>")
+                    });
+                    x = x.replace(/\[\/?th\]/gi,function(x){
+                            return x.replace("[","<").replace(/th\]/gi,"td>")
+                    });
+                    x = x.replace(/\[\/?th\]/gi,function(x){
+                            return x.replace("[","<").replace(/th\]/gi,"tr>")
+                    });
 
-            intext = intext.replace(/[\[][Tt][Aa][Bb][Ll][Ee][\]]((.|\r\n)*)[\[][\/][Tt][Aa][Bb][Ll][Ee][\]]/gm,  function(x){ 
-                   //console.log("TableFound");
-                   //console.log(x);
-                   x = x.replace(/(\r\n)/g, "");
-                   x = x.replace(/\[\/[Tt][Aa][Bb][Ll][Ee]\]/g, "</table>");
-                   x = x.replace(/\[[Tt][Aa][Bb][Ll][Ee]\]/g,"<table style=\"margin: 3px 2%; width: 96%;\">")
-                   x = x.replace(/\[\/{0,1}[Tt][Hh]\]/g,function(x){
-                          return x.replace("[","<").replace(/[Tt][Hh]\]/g,"td>")
-                   });
-                   x = x.replace(/\[\/{0,1}[Tt][Dd]\]/g,function(x){
-                          return x.replace("[","<").replace(/[Tt][Dd]\]/g,"td>")
-                   });
-                   x = x.replace(/\[[\/]{0,1}[Tt][Rr]\]/g,function(x){
-                          return x.replace("[","<").replace(/[Tt][Rr]\]/g,"tr>")
-                   });
+                    //console.log(x);
+                    return x;
+            });
 
-                   //console.log(x);
-                   return x;
-        });
-        intext = intext.replace(/\[[Cc][Oo][Dd][Ee](=description)?\]((.|\r\n)*)\[\/[Cc][Oo][Dd][Ee]\]/g,function(x){
-            x = x.replace(/(\r\n)}/g, "\n");
-            x = x.replace(/(\t)}/g, " &nbsp; &nbsp;&nbsp;");
-            x = x.replace(/[ ]{2}/g, " &nbsp;");
-            return x.replace(/\[[\/]{0,1}[Cc][Oo][Dd][Ee]{1}\]/g,function(x){
-                return x.replace("[","<").replace(/[Cc][Oo][Dd][Ee]\]/g,"code>")
+            intext = intext.replace(/\[list\](.|\r\n)*\[\/list\]/gmiu,  function(x){ 
+                //console.log(x);
+                x = x.replace(/\[\/list\]/gi, "</ul>");
+                x = x.replace(/\[list\]/gi,"<ul>")
+                x = x.replace(/\[\*\](.)*\r?\n/gi,function(x){
+                        x = x.replace(/\[\*\]/i,"<li>")
+                        return x.replace(/\r?\n/, "</li>\n");
+                });
+                x = x.replace(/\r\n\r\n/g, "<br />\n");
+                x = x.replace(/\r\n/g, "\n");
+                //console.log(x);
+                return x;
             });
-        });
-        intext = intext.replace(/\[[Ss][Pp][Oo][Ii][Ll][Ee][Rr]\]((.|\r\n)*)\[\/[Ss][Pp][Oo][Ii][Ll][Ee][Rr]\]/g, function(x){
-            x = x.replace("\[[Ss][Pp][Oo][Ii][Ll][Ee][Rr]\]","<span class=\"spoiler\">")
-            return x.replace(/\[[\/][Ss][Pp][Oo][Ii][Ll][Ee][Rr]{1}\]/g, "</span>");
-        });
-        
-        intext = intext.replace(/\[[hH][1-5]\]((.|\r\n)*)\[[\/][hH][1-5]\]/g,function(x){
-            return x.replace(/\[[\/]{0,1}[hH][1-5]\]/g,function(x){
-                return x.replace("[","<").replace("]",">").replace("5","6").replace("4","6").replace("3","5").replace("2","4").replace("1","3")
+
+            intext = intext.replace(/\[olist\](.|\r\n)*\[\/olist\]/gmiu,  function(x){ 
+                //console.log(x)
+                x = x.replace(/\[\/olist\]/gi, "</ol>");
+                x = x.replace(/\[olist\]/gi,"<ol>")
+                x = x.replace(/\[\*\](.)*\r?\n/gi,function(x){
+                        x = x.replace(/\[\*\]/i,"<li>")
+                        return x.replace(/\r?\n/, "</li>\n");
+                });
+                x = x.replace(/\r\n/g, "\n");
+                //console.log(x);
+                return x;
             });
-        });
-        intext = intext.replace(/\[[bB]\]((.|\r\n)*)\[[\/][bB]\]/g,function(x){
-            return x.replace(/\[[\/]{0,1}[bB]\]/g, function(x){
-                return x.replace("[","<").replace(/[bB]\]/g,"strong>")
+            intext = intext.replace(/\[code(=description)?\]((.|\r\n)*)\[\/code\]/giu,function(x){
+                x = x.replace(/(\r\n)}/g, "\n");
+                x = x.replace(/(\t)}/g, " &nbsp; &nbsp;&nbsp;");
+                x = x.replace(/[ ]{2}/g, " &nbsp;");
+                return x.replace(/\[\/?code(=description)?\]/gi,function(x){
+                    return x.replace("[","<").replace(/code(=description)?\]/gi,"code>")
+                });
             });
-        });
-        intext = intext.replace(/\[[iI]\]((.|\r\n)*)\[[\/][iI]\]/g,function(x){
-            return x.replace(/\[[\/]{0,1}[iI]\]/g,function(x){
-                return x.replace("[","<").replace(/[iI]\]/g,"em>")
-            });
-        });
-        intext = intext.replace(/\[[Uu]{1}\]((.|\r\n)*)\[[\/][Uu]\]/g,function(x){
-            return x.replace(/\[[\/]{0,1}[Uu]\]/g,function(x){
-                return x.replace("[","<").replace(/[Uu]\]/g,"u>")
-            });
-        });
-        intext = intext.replace(/\[[hH][rR]\][ ]{0,3}\[\/[hH][rR]\]/g, "<hr />");
-        
-        intext = intext.replace(/\[[Ss][Tt][Rr][Ii][Kk][Ke]\]((.|\r\n)*)\[\/[Ss][Tt][Rr][Ii][Kk][Ke]\]/g,function(x){
-            return x.replace(/\[\/{0,1}[Ss][Tt][Rr][Ii][Kk][Ke]\]/g,function(x){
-                return x.replace("[","<").replace(/[Ss][Tt][Rr][Ii][Kk][Ke]\]/g,"strike>")
-            });
-        });
-        intext = intext.replace(/\[[Uu][Rr][Ll]=(.)*\](.)*\[\/[Uu][Rr][Ll]\]/g, function(x){
-            //console.log("Phase 1: " + x);
-            x =  x.replace(/\[[Uu][Rr][Ll]=/, "<a style=\"display: inline;\" target=\"_blank\" href=\"")
-            x = x.replace(/\]/, "\" >");
-            x =  x.replace(/\[[\/][Uu][Rr][Ll]\]/, "</a>");
-            return x;
-        });
             
-        intext = intext.replace(/\[[Uu][Rr][Ll]=(.)*\](.)*\[\/[Uu][Rr][Ll]\]/g, function(x){
-            //console.log("Phase 2: " + x);
-            x =  x.replace(/\[[Uu][Rr][Ll]=/, "<a style=\"display: inline;\" target=\"_blank\" href=\"")
-            x = x.replace(/\]/, "\" >");
-            x =  x.replace(/\[[\/][Uu][Rr][Ll]\]/, "</a>");
-            return x;
-        });
+            intext = intext.replace(/\[quote=?([a-zA-Z0-9]{0,32})\]((.|\r?\n)*)\[\/quote\]/gmiu, function(x){
+                x = x.replace(/\[quote=?([a-zA-Z0-9]{0,32})\]/i,"<blockquote>")
+                return x.replace(/\[\/quote\]/i, "</blockquote>");
+            });
 
-        intext = intext.replace(/\[[Uu][Rr][Ll]=(.)*\](.)*\[\/[Uu][Rr][Ll]\]/g, function(x){
-            //console.log("Phase 3: " + x);
-            x =  x.replace(/\[[Uu][Rr][Ll]=/, "<a style=\"display: inline;\" target=\"_blank\" href=\"")
-            x = x.replace(/\]/, "\" >");
-            x =  x.replace(/\[[\/][Uu][Rr][Ll]\]/, "</a>");
-            return x;
-        });
+            intext = intext.replace(/\[spoiler\]((.|\r\n)*)\[\/spoiler\]/giu, function(x){
+                x = x.replace("\[spoiler\]","<span class=\"spoiler\">")
+                return x.replace(/\[\/spoiler\]/g, "</span>");
+            });
+            
+            
+            intext = intext.replace(/\[h[1-5]\](.|\r\n)*\[[\/]h[1-5]\]/giu,function(x){
+                return x.replace(/\[[\/]{0,1}[hH][1-5]\]/gi,function(x){
+                    return x.replace("[","<").replace("]",">").replace("5","6").replace("4","6").replace("3","5").replace("2","4").replace("1","3")
+                });
+            });
+            intext = intext.replace(/\[b\](.|\r\n)*\[\/b\]/giu,function(x){
+                return x.replace(/\[\/?b\]/gi, function(x){
+                    return x.replace("[","<").replace(/b\]/gi,"strong>")
+                });
+            });
+            intext = intext.replace(/\[i\](.|\r\n)*\[\/i\]/giu,function(x){
+                return x.replace(/\[\/?i\]/gi,function(x){
+                    return x.replace("[","<").replace(/i\]/gi,"em>")
+                });
+            });
+            intext = intext.replace(/\[u\](.|\r\n)*\[\/u\]/giu,function(x){
+                return x.replace(/\[\/?u\]/gi,function(x){
+                    return x.replace("[","<").replace(/u\]/gi,"u>")
+                });
+            });
+            intext = intext.replace(/\[hr\][ ]{0,3}\[\/hr\]/giu, "<hr />");
+            
+            intext = intext.replace(/\[strike\]((.|\r\n)*)\[\/strike\]/giu,function(x){
+                return x.replace(/\[\/?strike\]/gi,function(x){
+                    return x.replace("[","<").replace(/strike\]/gi,"strike>")
+                });
+            });
+            intext = intext.replace(/\[url=(.)*\](.)*\[\/url\]/giu, function(x){
+                //console.log("Phase 1: " + x);
+                x =  x.replace(/\[url=/i, "<a style=\"display: inline;\" target=\"_blank\" href=\"")
+                x = x.replace(/\]/, "\" >");
+                x =  x.replace(/\[\/url\]/i, "</a>");
+                return x;
+            });
+        }
 
-        intext = intext.replace(/\[[Uu][Rr][Ll]=(.)*\](.|\r\n)*\[\/[Uu][Rr][Ll]\]/gm, function(x){
+        intext = intext.replace(/\[url=(.)*\](.|\r\n)*\[\/url\]/gmiu, function(x){
             //console.log("Phase 4: " + x);
-            x =  x.replace(/\[[Uu][Rr][Ll]=/, "<a style=\"display: inline;\" target=\"_blank\" href=\"")
+            x =  x.replace(/\[url=/i, "<a style=\"display: inline;\" target=\"_blank\" href=\"")
             x = x.replace(/\]/, "\" >");
-            x =  x.replace(/\[[\/][Uu][Rr][Ll]\]/, "</a>");
+            x =  x.replace(/\[\/url\]/i, "</a>");
             return x;
         });
 
-        intext = intext.replace(/\[[Uu][Rr][Ll]=(.)*\](.|\r\n)*\[\/[Uu][Rr][Ll]\]/gm, function(x){
+        intext = intext.replace(/\[url=(.)*\](.|\r\n)*\[\/url\]/gmiu, function(x){
             //console.log("Phase 5: " + x);
-            x =  x.replace(/\[[Uu][Rr][Ll]=/, "<a style=\"display: inline;\" target=\"_blank\" href=\"")
+            x =  x.replace(/\[url=/i, "<a style=\"display: inline;\" target=\"_blank\" href=\"")
             x = x.replace(/\]/, "\" >");
-            x =  x.replace(/\[[\/][Uu][Rr][Ll]\]/, "</a>");
+            x =  x.replace(/\[\/url\]/i, "</a>");
             return x;
         });
+
 
         intext = intext.replace(/(\r\n){3,5}/g, "\n<br />\n<br />");
 
@@ -381,7 +443,16 @@ function ParseMarkup(intext) {
 
         let donationlinks = intext.match(/(https?:\/\/)?(www\.)?((paypal\.((com)|(me))\/pools\/[a-z])|(paypal\.me)|(patreon\.com)|(github\.com\/sponsors))(\/[a-zA-Z0-9]{2,64})/gi)
         //console.log(intext);
-        return [intext, donationlinks];
+        var result;
+        if (donationlinks !== undefined && donationlinks !== null ){
+            result = [];
+            donationlinks.forEach(function(item) {
+                if(result.indexOf(item) < 0) {
+                    result.push(item);
+                }
+            });
+        }
+        return [intext, result];
 }
 
 function FormatTheDate(date){
@@ -459,8 +530,6 @@ function CopyServerLink(){
 }
 
 
-let queryString = window.location.search;
-let urlParams = new URLSearchParams(queryString);
 if (urlParams.has("ip")){
     if(urlParams.has("port")){
 
