@@ -168,7 +168,7 @@ async function LookUpServer(){
                     let toCheck = mod.description;
                     if (ServerName == ModName && urlParams.has("demo")){
                         TheServerDescription = toCheck.match(/\[code=description\]((.|\r\n)*)\[\/code\]/giu);
-                        TheServerTitle = toCheck.match(/\[h[1-5](=title)?\](.*)\[\/h[1-5]\]/giu);
+                        TheServerTitle = toCheck.match(/\[h[1-5](=title)\](.*)\[\/h[1-5]\]/giu);
                         if (TheServerDescription){
                             TheServerDescription = TheServerDescription[0].replace(/\[code=description\]/i, "").replace(/\[\/code\]/i, "");
                             //console.log(TheServerDescription)
