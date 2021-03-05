@@ -168,8 +168,8 @@ async function LookUpServer(){
                                 AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #E64413;"><i class="fab fa-patreon"></i></a>`;
                             }
                             if (element.match(/github/i)){
-                                donations = donations + ` <a href="${link}" style="color: #fff;"><i class="fab fa-github-square"></i></a>`;
-                                AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #fff;"><i class="fab fa-github-square"></i></a>`;
+                                donations = donations + ` <a href="${link}" style="color: #fff;"><i class="fab fa-github"></i></a>`;
+                                AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #fff;"><i class="fab fa-github"></i></a>`;
                             }
                         });
                     }
@@ -295,7 +295,7 @@ function ParseMarkup(intext) {
                    //console.log(x);
                    return x;
         });
-        intext = intext.replace(/\[[Cc][Oo][Dd][Ee]\]((.|\r\n)*)\[\/[Cc][Oo][Dd][Ee]\]/g,function(x){
+        intext = intext.replace(/\[[Cc][Oo][Dd][Ee](=description)?\]((.|\r\n)*)\[\/[Cc][Oo][Dd][Ee]\]/g,function(x){
             x = x.replace(/(\r\n)}/g, "\n");
             x = x.replace(/(\t)}/g, " &nbsp; &nbsp;&nbsp;");
             x = x.replace(/[ ]{2}/g, " &nbsp;");
@@ -379,7 +379,7 @@ function ParseMarkup(intext) {
 
         intext = intext.replace(/(\r\n){1,2}/g, "\n<br />");
 
-        let donationlinks = intext.match(/(https?:\/\/)?(www\.)?((paypal\.me)|((patreon\.com)|(github\.com\/sponsors)))(\/[a-zA-Z0-9]{2,64})/gi)
+        let donationlinks = intext.match(/(https?:\/\/)?(www\.)?((paypal\.((com)|(me))\/pools\/[a-z])|(paypal\.me)|(patreon\.com)|(github\.com\/sponsors))(\/[a-zA-Z0-9]{2,64})/gi)
         //console.log(intext);
         return [intext, donationlinks];
 }
