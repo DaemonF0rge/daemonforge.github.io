@@ -172,15 +172,18 @@ async function LookUpServer(){
                         if (TheServerDescription){
                             TheServerDescription = TheServerDescription[0].replace(/\[code=description\]/i, "").replace(/\[\/code\]/i, "");
                             //console.log(TheServerDescription)
-                            TheServerDescription      = "Server Description<br />" + converter.makeHtml(TheServerDescription);
+                            TheServerDescription = TheServerDescription.replace(/</g, '&lt;');
+                            TheServerDescription      = "Parsed Server Description<br /><hr />" + converter.makeHtml(TheServerDescription);
                             ServerDescriptionRow.style.display = null;
                             updateHtml("ServerDescription",TheServerDescription);
                         } else {
                             ServerDescriptionRow.style.display = null;
-                            updateHtml("ServerDescription", "Server Description<br />" + ParseMarkup(mod.description));
+                            updateHtml("ServerDescription", "Parsed Server Description<br /><hr />" + ParseMarkup(mod.description));
                         }
                         if (TheServerTitle){
                             TheServerTitle = TheServerTitle[0].replace(/\[h[1-5]=title\]/i, "").replace(/\[\/h[1-5]\]/i, "");
+
+                            TheServerTitle = TheServerTitle.replace(/</g, '&lt;');
                             updateHtml("servername", TheServerTitle);
                         }
                     }
