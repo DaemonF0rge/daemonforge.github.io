@@ -164,9 +164,11 @@ async function LookUpServer(){
                     ServerName = ServerName.toLowerCase();
                     ModName = ModName.toLowerCase();
                     let TheServerDescription = "";
+                    let TheServerTitle = "";
                     let toCheck = mod.description;
                     if (ServerName == ModName && urlParams.has("demo")){
                         TheServerDescription = toCheck.match(/\[code=description\]((.|\r\n)*)\[\/code\]/giu);
+                        TheServerTitle = toCheck.match(/\[h[1-5](=title)?\](.*)\[\/h[1-5]\]/giu);
                         if (TheServerDescription){
                             TheServerDescription = TheServerDescription[0].replace(/\[code=description\]/i, "").replace(/\[\/code\]/i, "");
                             //console.log(TheServerDescription)
@@ -176,6 +178,10 @@ async function LookUpServer(){
                         } else {
                             ServerDescriptionRow.style.display = null;
                             updateHtml("ServerDescription", "Server Description<br />" + ParseMarkup(mod.description));
+                        }
+                        if (TheServerTitle){
+                            TheServerTitle = TheServerTitle[0].replace(/\[h[1-5]=title\]/i, "").replace(/\[\/h[1-5]\]/i, "");
+                            updateHtml("servername", TheServerTitle);
                         }
                     }
                     let description = "";
@@ -384,9 +390,9 @@ function ParseMarkup(intext) {
             });
             
             
-            intext = intext.replace(/\[h[1-5]\](.|\r\n)*\[[\/]h[1-5]\]/giu,function(x){
-                return x.replace(/\[[\/]{0,1}[hH][1-5]\]/gi,function(x){
-                    return x.replace("[","<").replace("]",">").replace("5","6").replace("4","6").replace("3","5").replace("2","4").replace("1","3")
+            intext = intext.replace(/\[h[1-5](=title)?\](.|\r?\n)*\[\/h[1-5]\]/giu,function(x){
+                return x.replace(/\[[\/]{0,1}[hH][1-5](=title)?\]/gi,function(x){
+                    return x.replace("[","<").replace(/(=title)?\]/,">").replace("5","6").replace("4","6").replace("3","5").replace("2","4").replace("1","3")
                 });
             });
             intext = intext.replace(/\[b\](.|\r\n)*\[\/b\]/giu,function(x){
