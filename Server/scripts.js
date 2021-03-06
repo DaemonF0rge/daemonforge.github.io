@@ -333,14 +333,14 @@ function ParseMarkup(intext) {
                     x = x.replace(/(\r\n)/g, "");
                     x = x.replace(/\[\/table\]/gi, "</table>");
                     x = x.replace(/\[table\]/gi,"<table style=\"margin: 3px 2%; width: 96%;\">")
-                    x = x.replace(/\[\/{0,1}th\]/gi,function(x){
-                            return x.replace("[","<").replace(/th\]/gi,"td>")
-                    });
                     x = x.replace(/\[\/?th\]/gi,function(x){
-                            return x.replace("[","<").replace(/th\]/gi,"td>")
+                            return x.replace("[","<").replace(/th\]/gi,"th>")
                     });
-                    x = x.replace(/\[\/?th\]/gi,function(x){
-                            return x.replace("[","<").replace(/th\]/gi,"tr>")
+                    x = x.replace(/\[\/?td\]/gi,function(x){
+                            return x.replace("[","<").replace(/td\]/gi,"td>")
+                    });
+                    x = x.replace(/\[\/?tr\]/gi,function(x){
+                            return x.replace("[","<").replace(/tr\]/gi,"tr>")
                     });
 
                     //console.log(x);
@@ -361,10 +361,10 @@ function ParseMarkup(intext) {
                 return x;
             });
 
-            intext = intext.replace(/\[olist\](.|\r\n)*\[\/olist\]/gmiu,  function(x){ 
+            intext = intext.replace(/\[olist\](.|\r?\n)*\[\/olist\]/gmiu,  function(x){ 
                 //console.log(x)
-                x = x.replace(/\[\/olist\]/gi, "</ol>");
-                x = x.replace(/\[olist\]/gi,"<ol>")
+                x = x.replace(/\[\/olist\]/i, "</ol>");
+                x = x.replace(/\[olist\]/i,"<ol>")
                 x = x.replace(/\[\*\](.)*\r?\n/gi,function(x){
                         x = x.replace(/\[\*\]/i,"<li>")
                         return x.replace(/\r?\n/, "</li>\n");
