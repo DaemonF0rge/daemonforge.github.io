@@ -148,6 +148,7 @@
         "minimum": 1
       },
       "Hills": {
+        "minItems": 1,
         "type": "array",
         "items": {
           "type": "object",
@@ -167,21 +168,27 @@
               "type": "string"
             },
             "X": {
-              "type": "number"
+              "type": "number",
+              "minimum": 0
             },
             "Y": {
-              "type": "number"
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1500
             },
             "Z": {
-              "type": "number"
+              "type": "number",
+              "minimum": 0
             },
             "CaptureRadius": {
               "type": "number",
-              "minimum": 0
+              "minimum": 1
             },
             "EventRadius": {
               "type": "number",
-              "minimum": 0
+              "exclusiveMinimum": {
+                  "$data": "1/CaptureRadius"
+              }
             },
             "ZombieCount": {
               "type": "number",
@@ -189,6 +196,7 @@
             },
             "Objects": {
               "type": "array",
+              "minItems": 1,
               "items": {
                 "type": "object",
                 "required": [
@@ -203,14 +211,21 @@
                   },
                   "Position": {
                     "type": "array",
+                    "maxItems": 3,
+                    "minItems": 3,
                     "items": {
-                      "type": "number"
+                      "type": "number",
+                      "minimum": 0
                     }
                   },
                   "Orientation": {
                     "type": "array",
+                    "maxItems": 3,
+                    "minItems": 3,
                     "items": {
-                      "type": "string"
+                      "type": "number",
+                      "minimum": -360,
+                      "maximum": 360
                     }
                   }
                 }
@@ -221,6 +236,7 @@
       },
       "RewardPools": {
         "type": "array",
+        "minItems": 1,
         "items": {
           "type": "object",
           "required": [
@@ -238,6 +254,7 @@
             },
             "Rewards": {
               "type": "array",
+              "minItems": 1,
               "items": {
                 "type": "object",
                 "required": ["Item","ItemAttachments"],
@@ -260,6 +277,7 @@
       },
       "ZombiesClassNames": {
         "type": "array",
+        "minItems": 1,
         "items": {
           "type": "string"
         }
