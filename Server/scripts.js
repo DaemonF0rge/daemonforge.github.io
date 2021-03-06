@@ -230,7 +230,7 @@ async function LookUpServer(){
                     contents+= `
                     <details style="width: 98%; margin: 2px;"> 
                         <summary style="font-size: 1.3em;">${mod.name}${donations}</summary>
-                        <img class="modimage" src="${mod.image_url}"/>
+                        <a style="text-align: center; margin: 12px; margin-bottom: 16px;" href="https://steamcommunity.com/sharedfiles/filedetails/?id=${mod.id}" ><img class="modimage" src="${mod.image_url}"/></a>
                         <table style="1px solid #dbdbdb">
                             <tr>
                                 <td>Creator</td>
@@ -318,12 +318,10 @@ function bytesToSize(bytes) {
 function ParseMarkup(intext) {
     //console.log(intext)
     intext = intext.replace(/</g, '&lt;');
-        for( let i = 0; i <= 6; i++ ){
-            intext = intext.replace(/\[img\]((.|\r\n)*)\[\/img\]/giu,function(x){
-                x = x.replace(/\[img\]/gi,function(x){
-                    return x.replace(/\[img\]/gi,"<img src=\"")
-                });
-                x = x.replace(/\[\/img\]/gi,function(x){return x.replace(/\[\/img\]/gi,"\" />")});
+        for( let i = 0; i <= 8; i++ ){
+            intext = intext.replace(/\[img\](.*)\[\/img\]/giu,function(x){
+                x = x.replace(/\[img\]/i,"<img src=\"");
+                x = x.replace(/\[\/img\]/i,"\" />");
                 return x
             });
 
