@@ -22,6 +22,8 @@ const Options = {
 let editor = new JSONEditor(container, Options)
 
 
+let queryString = window.location.search;
+let urlParams = new URLSearchParams(queryString);
 
 //codeblock.innerHTML = "{}"
 let CodeTimestamp;
@@ -331,3 +333,10 @@ function insertInto(txt, index, string) {
 
   return string + txt;
 };
+
+if (urlParams.has("schema")){
+  for (var i = 0; i < SelectedEditor.options.length; i++) {
+    if (SelectedEditor.options[i].value == urlParams.get("schema")) SelectedEditor.options[i].selected = true;
+  }
+  LoadDefault();
+}

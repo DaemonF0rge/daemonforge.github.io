@@ -1,0 +1,270 @@
+{
+    "type": "object",
+    "default":{
+        "ConfigVersion": "1",
+        "Crude": "Crude Smelter Setting",
+        "CrudeSmeltIronSmeltTemperature": 1550,
+        "CrudeTimeToSmeltIron": 1350,
+        "CrudeSmeltIronEfficiencyMin": 45,
+        "CrudeSmeltIronEfficiencyMax": 60,
+        "Crude_Smelter": "Setting Conti",
+        "CrudeTimeToSmeltPureIron": 1350,
+        "CrudeSmeltPureIronEfficiencyMin": 75,
+        "CrudeSmeltPureIronEfficiencyMax": 95,
+        "CrudeSmelterTimeToSmeltCharcoal": 187,
+        "CrudeSmelterHeatingRate": 8,
+        "CrudeSmelterCoolingRate": 15,
+        "CrudeCureClayItems": 187,
+        "Spacer2": "Ignore",
+        "Improved": "Smelter Setting",
+        "ImprovedSmeltIronSmeltTemperature": 1550,
+        "ImprovedTimeToSmeltIron": 1300,
+        "ImprovedSmeltIronEfficiencyMin": 65,
+        "ImprovedSmeltIronEfficiencyMax": 80,
+        "Improved_Smelter": "Setting Conti",
+        "ImprovedTimeToSmeltPureIron": 1350,
+        "ImprovedSmeltPureIronEfficiencyMin": 85,
+        "ImprovedSmeltPureIronEfficiencyMax": 99,
+        "ImprovedSmelterTimeToSmeltCharcoal": 187,
+        "ImprovedSmelterHeatingRate": 12,
+        "ImprovedSmelterCoolingRate": 7,
+        "ImprovedCureClayItems": 187,
+        "Forging": "Settings",
+        "SmithMetalTemp": 700,
+        "SmithNuggetDmg": 3,
+        "SmithNuggetTime": 15,
+        "SmithNailsTime": 24,
+        "SmithBarDmg": 6,
+        "SmithBarTime": 36,
+        "SmithIngotDmg": 8,
+        "SmithIngotTime": 64,
+        "CastNuggetConsumedNail": 20,
+        "CastIronNailProduced": 3,
+        "ImpureNuggetConsumedNail": 18,
+        "ImpureIronNialProduced": 5,
+        "PureNuggerConsumedNail": 16,
+        "PureIronNailProduced": 7
+    },
+    "required": ["ConfigVersion","CrudeSmeltIronSmeltTemperature","CrudeTimeToSmeltIron","CrudeSmeltIronEfficiencyMin","CrudeSmeltIronEfficiencyMax","CrudeTimeToSmeltPureIron","CrudeSmeltPureIronEfficiencyMin","CrudeSmeltPureIronEfficiencyMax","CrudeSmelterTimeToSmeltCharcoal","CrudeSmelterHeatingRate","CrudeSmelterCoolingRate","CrudeCureClayItems","Spacer2","Improved","ImprovedSmeltIronSmeltTemperature","ImprovedTimeToSmeltIron","ImprovedSmeltIronEfficiencyMin","ImprovedSmeltIronEfficiencyMax","Improved_Smelter","ImprovedTimeToSmeltPureIron","ImprovedSmeltPureIronEfficiencyMin","ImprovedSmeltPureIronEfficiencyMax","ImprovedSmelterTimeToSmeltCharcoal","ImprovedSmelterHeatingRate","ImprovedSmelterCoolingRate","ImprovedCureClayItems","Forging","SmithMetalTemp","SmithNuggetDmg","SmithNuggetTime","SmithNailsTime","SmithBarDmg","SmithBarTime","SmithIngotDmg","SmithIngotTime","CastNuggetConsumedNail","CastIronNailProduced","ImpureNuggetConsumedNail","ImpureIronNialProduced","PureNuggerConsumedNail","PureIronNailProduced"],
+    "additionalProperties": false,
+    "properties": {
+      "ConfigVersion": {
+        "type": "string"
+      },
+      "Crude": {
+        "type": "string"
+      },
+      "CrudeSmeltIronSmeltTemperature": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 1800
+      },
+      "CrudeTimeToSmeltIron": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 2400
+      },
+      "CrudeSmeltIronEfficiencyMin": {
+        "type": "number",
+        "exclusiveMaximum": {
+            "$data": "1/CrudeSmeltIronEfficiencyMax"
+        },
+        "minimum": 1
+      },
+      "CrudeSmeltIronEfficiencyMax": {
+        "type": "number",
+        "exclusiveMinimum": {
+            "$data": "1/CrudeSmeltIronEfficiencyMin"
+        },
+        "maximum": 100
+      },
+      "Crude_Smelter": {
+        "type": "string"
+      },
+      "CrudeTimeToSmeltPureIron": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 2400
+      },
+      "CrudeSmeltPureIronEfficiencyMin": {
+        "type": "number",
+        "exclusiveMaximum": {
+            "$data": "1/CrudeSmeltPureIronEfficiencyMax"
+        },
+        "minimum": 1
+      },
+      "CrudeSmeltPureIronEfficiencyMax": {
+        "type": "number",
+        "exclusiveMinimum": {
+            "$data": "1/CrudeSmeltPureIronEfficiencyMin"
+        },
+        "maximum": 100
+      },
+      "CrudeSmelterTimeToSmeltCharcoal": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 2400
+      },
+      "CrudeSmelterHeatingRate": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 300
+      },
+      "CrudeSmelterCoolingRate": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 300
+      },
+      "CrudeCureClayItems": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 300
+      },
+      "Spacer2": {
+        "type": "string"
+      },
+      "Improved": {
+        "type": "string"
+      },
+      "ImprovedSmeltIronSmeltTemperature": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 1800
+      },
+      "ImprovedTimeToSmeltIron": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 2400
+      },
+      "ImprovedSmeltIronEfficiencyMin": {
+        "type": "number",
+        "description": "The chance the output will be lower than the input",
+        "exclusiveMaximum": {
+            "$data": "1/ImprovedSmeltIronEfficiencyMax"
+        },
+        "minimum": 1
+      },
+      "ImprovedSmeltIronEfficiencyMax": {
+        "type": "number",
+        "exclusiveMinimum": {
+            "$data": "1/ImprovedSmeltIronEfficiencyMin"
+        },
+        "maximum": 100
+      },
+      "Improved_Smelter": {
+        "type": "string"
+      },
+      "ImprovedTimeToSmeltPureIron": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 2400
+      },
+      "ImprovedSmeltPureIronEfficiencyMin": {
+        "type": "number",
+        "mimimum": 1,
+        "exclusiveMaximum": {
+            "$data": "1/ImprovedSmeltPureIronEfficiencyMax"
+        }
+      },
+      "ImprovedSmeltPureIronEfficiencyMax": {
+        "type": "number",
+        "exclusiveMinimum": {
+            "$data": "1/ImprovedSmeltPureIronEfficiencyMin"
+        },
+        "maximum": 100
+      },
+      "ImprovedSmelterTimeToSmeltCharcoal": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 2400
+      },
+      "ImprovedSmelterHeatingRate": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 300
+      },
+      "ImprovedSmelterCoolingRate": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 300
+      },
+      "ImprovedCureClayItems": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 300
+      },
+      "Forging": {
+        "type": "string"
+      },
+      "SmithMetalTemp": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 1800
+      },
+      "SmithNuggetDmg": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 2000
+      },
+      "SmithNuggetTime": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 2400
+      },
+      "SmithNailsTime": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 2400
+      },
+      "SmithBarDmg": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 2000
+      },
+      "SmithBarTime": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 2400
+      },
+      "SmithIngotDmg": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 2000
+      },
+      "SmithIngotTime": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 2400
+      },
+      "CastNuggetConsumedNail": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 20
+      },
+      "CastIronNailProduced": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 100
+      },
+      "ImpureNuggetConsumedNail": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 20
+      },
+      "ImpureIronNialProduced": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 100
+      },
+      "PureNuggerConsumedNail": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 20
+      },
+      "PureIronNailProduced": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 120
+      }
+    }
+  }
