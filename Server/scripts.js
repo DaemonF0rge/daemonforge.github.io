@@ -41,6 +41,15 @@ const NightRef = {
     deerilse: 11.68
 };
 
+const fetch_retry = async (url, options, n) => {
+    try {
+        return await fetch(url, options)
+    } catch(err) {
+        if (n === 1) throw err;
+        return await fetch_retry(url, options, n - 1);
+    }
+};
+
 const converter = new showdown.Converter({ extensions: ['icon'] });
  
 
@@ -104,10 +113,10 @@ async function LookUpServer(){
     }
     if (theIp != "" && ValidateIPaddress(theIp) && ValidatePort(thePort)){
         try{
-            let data = await fetch("https://api.daemonforge.dev/server/" +theIp+"/"+thePort+"/full", {
+            let data = await fetch_retry("https://api.daemonforge.dev/server/" +theIp+"/"+thePort+"/full", {
                 method: 'GET',
                 mode: 'cors'
-            } ) .then( response => response.json() );
+            }, 3 ) .then( response => response.json() );
             Clear();
             console.log(data);
             if (data.status !== undefined){
@@ -263,10 +272,10 @@ async function LookUpServer(){
                     </details>
                     `;
                     newMods.push({id: mod.id, name: mod.name});
-                    fetch(`https://api.daemonforge.dev/user/${mod.creator}`, {
+                    fetch_retry(`https://api.daemonforge.dev/user/${mod.creator}`, {
                         method: 'GET',
                         mode: 'cors'
-                    }).then( userresponse => userresponse.json().then( userdata => {updateCreator(creatorid, userdata);updateCreator(creatorid+"dl", userdata)} ).catch(e=>console.log(e))).catch( e => console.log(e))
+                    }, 3).then( userresponse => userresponse.json().then( userdata => {updateCreator(creatorid, userdata);updateCreator(creatorid+"dl", userdata)} ).catch(e=>console.log(e))).catch( e => console.log(e))
 
                 }
                 updateHtml("AllDonations", AllDonations);
@@ -535,6 +544,7 @@ function CopyServerLink(){
   document.execCommand("copy");
 
 }
+
 
 
 if (urlParams.has("ip")){
