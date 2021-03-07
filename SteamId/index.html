@@ -8,7 +8,6 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
 	<script async src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous"></script>
-	<script async src="https://kit.fontawesome.com/63bc495439.js" crossorigin="anonymous"></script>
 	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' media="print" onload="this.media='all'"  />
 
 	<link href="./css/flag-icon.min.css" rel="stylesheet" media="print" onload="this.media='all'">
@@ -55,6 +54,7 @@
 	}
 	.lds-dual-ring {
 	  display: none;
+	  margin-top: 0px;
 	  width: 16px;
 	  height: 16px;
 	  padding-top: 10px;
@@ -109,10 +109,13 @@
 	  border-color: var(--border);
 	  padding: 10px 30px;
 	}
+	header{
+		padding: 16px;
+	}
 	</style>
 </head>
 <body>
-	<h1>Steam ID</h1>
+	<h1><button style="padding: 6px 8px; padding-bottom: 0px; margin-right: 16px;" onclick="window.location = '/'"><svg style="width:30px;height:32px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#EEE" ><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6a1.01 1.01 0 0 0-1.34 0l-8.36 7.53a.5.5 0 0 0 .33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z"/></svg></button>Steam ID</h1>
 	<p>
 		Find your Steam64ID
 	</p>
@@ -126,14 +129,14 @@
 		</div>
 		<div>
 		<label id="idlabel" for="id" style="display: none" >Steam ID: <span id="plink">(<a id="DbCheck" rel="noreferrer" target="_blank" href="http://steamcommunity.com/profiles/">Profile Link</a>)</span></label>
-		<input id="id" type="text" style="display: none;" readonly /><button id="copyText" type="button" onclick="CopyId()" style="display: none; padding: 10px" title="Copy" ><i class="fa fa-copy"></i> </button>
+		<input id="id" type="text" style="display: none;" readonly /><button id="copyText" type="button" onclick="CopyId()" style="display: none; padding: 4px; padding-top: 6px; padding-left: 6px;" title="Copy" ><svg xmlns="http://www.w3.org/2000/svg" style="padding: 0px 0px; margin: 0px 0px; width: 26px; height: 26px" viewBox="0 0 24 24" fill="white"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 7h11v14H8z" opacity=".7"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
 		</div>
 		<div>
 			<details id="MoreDetails" style="width: 340px; display: none;" > 
 			<summary>More Details</summary> 
 				<label for="guid">GUID:</label>
 				<div>
-				<input id="guid" type="text" style="display: inline-block; width: 264px" readonly /> <button id="copyGUID" type="button" onclick="Copyguid()" style="padding: 10px" title="Copy" ><i class="fas fa-copy"></i> </button>
+				<input id="guid" type="text" style="display: inline-block; width: 264px" readonly /> <button id="copyGUID" type="button" onclick="Copyguid()" style="padding: 4px; padding-top: 6px; padding-left: 6px;" title="Copy" ><svg xmlns="http://www.w3.org/2000/svg" style="padding: 0px 0px; margin: 0px 0px; width: 26px; height: 26px" viewBox="0 0 24 24" fill="white"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 7h11v14H8z" opacity=".7"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
 				</div>
 				<div>Country:</div><div style="background-color: var(--background); padding: 10px; width: 244px; margin-right: 6px; margin-bottom: 6px; padding: 10px; border: none; border-radius: 6px; outline: none;"> <span id="countryflag" class="flag-icon flag-icon-ca" ></span> <span id="countrycode">CA</span></div>
 			</details>
@@ -144,8 +147,8 @@
 		</div>
 	</form>
 		<div>
-			<button onclick="LoginSteam()" style="padding: 10px 12px;" >
-			<i class="fab fa-steam" style="padding-right: 3px" ></i> Login
+			<button onclick="LoginSteam()" style="display: flex; align-items: center; padding: 10px 12px; font-size: 20px;" >
+				<svg style="height:21px;margin-right:6px;width:21px"  xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" viewBox="0 0 256 259"><path d="M127.78 0C60.422 0 5.24 52.412 0 119.01l68.724 28.674a35.81 35.81 0 0 1 20.426-6.366c.683 0 1.356.018 2.02.055l30.565-44.709v-.627c0-26.903 21.69-48.796 48.353-48.796s48.353 21.893 48.353 48.796-21.69 48.805-48.353 48.805c-.369 0-.729-.009-1.098-.018l-43.592 31.377a36.6 36.6 0 0 1 .046 1.734c0 20.205-16.284 36.636-36.295 36.636-17.566 0-32.263-12.658-35.584-29.412L4.41 164.65c15.223 54.313 64.673 94.132 123.37 94.132 70.818 0 128.22-57.939 128.22-129.39C256 57.928 198.597.002 127.78.002zM80.353 196.33l-15.749-6.569c2.786 5.868 7.621 10.776 14.033 13.47 13.857 5.831 29.837-.803 35.612-14.798 2.795-6.772 2.814-14.245.046-21.035s-7.999-12.086-14.706-14.909c-6.67-2.795-13.811-2.694-20.085-.304l16.274 6.79c10.222 4.299 15.057 16.145 10.794 26.46-4.253 10.315-15.998 15.195-26.22 10.896zm121.96-100.29c0-17.926-14.457-32.521-32.217-32.521-17.769 0-32.226 14.595-32.226 32.521s14.457 32.512 32.226 32.512c17.76 0 32.217-14.586 32.217-32.512zm-56.37-.055c0-13.488 10.84-24.421 24.2-24.421 13.368 0 24.209 10.933 24.209 24.421s-10.84 24.421-24.209 24.421c-13.359 0-24.2-10.933-24.2-24.421z" fill="#dbdbdb"/></svg> Login
 			</button>
 		</div>
 	<br />
@@ -153,6 +156,7 @@
 	<div class="footer">
 		<p style="font-size: 12px; max-width: 330px; padding: 5px;" >No steam infromation is saved to any server.<br />This is created using GitHub Pages, and CloudFlare Workers by DaemonForge, source code can be found on my <a rel="noreferrer" target="_blank" href="https://github.com/daemonforge/daemonforge.github.io">GitHub</a>.</p>
 	</div>
+	
 <script>
 
 </script>

@@ -1,6 +1,4 @@
-
-
-let element = document.getElementById("steamname");
+let steamname = document.getElementById("steamname");
 let id = document.getElementById("id");
 let idlabel = document.getElementById("idlabel");
 let DbCheck = document.getElementById("DbCheck");
@@ -18,8 +16,8 @@ let DialogHeader = document.getElementById("DialogHeader");
 let DialogText = document.getElementById("DialogText");
 	
 function GetSteamId(){
-	element.style.animation = null;
-	if (element.value != "" && element.value.length > 1){
+	steamname.style.animation = null;
+	if (steamname.value != "" && steamname.value.length > 1){
 		plink.style.display = "none";
 		id.value = "";
 		CountryCode.innerHTML = "";
@@ -29,8 +27,8 @@ function GetSteamId(){
 		clear.style.display = "none";
 		SteamAvatar.style.display = "none";
 		copyText.style.display = "none";
-		//console.log("GetSteamID: " + element.value);
-		fetch("https://daemonforge.dev/SteamId/api/?name=" + element.value)
+		//console.log("GetSteamID: " + steamname.value);
+		fetch("https://daemonforge.dev/SteamId/api/?name=" + steamname.value)
 		.then(res => {
 			return res.json();
 		})
@@ -66,14 +64,14 @@ function GetSteamId(){
 			loading.style.display = "none";
 		});
 	} else{
-		element.offsetWidth;
-		element.style.animation = "border-pulsate 4s";
+		steamname.offsetWidth;
+		steamname.style.animation = "border-pulsate 4s";
 		Clear();
 	}
 }
 
 function Clear(){
-	element.value = "";
+	steamname.value = "";
 	id.value = "";
 	copyText.style.display = "none";
 	plink.style.display = "none";
@@ -109,8 +107,8 @@ function Copyguid() {
 
 }
 
-element.addEventListener("keydown", function(event) {
-  element.style.animation = null;
+steamname.addEventListener("keydown", function(event) {
+  steamname.style.animation = null;
   if (event.keyCode === 13) {
     GetSteamId();
   }
@@ -154,7 +152,7 @@ if (urlParams.has("SteamId")){
 		SteamAvatar.style.display = "inline-block";
 	}
 	if (urlParams.has("Name")){
-		element.value = urlParams.get("Name");
+		steamname.value = urlParams.get("Name");
 		SteamAvatar.style.display = "inline-block";
 	}
 	if (urlParams.has("country")){
