@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css" />
+    <script defer src="https://unpkg.com/papaparse@latest/papaparse.min.js"></script>
+    <script defer src="scripts.js" ></script>
+    <link rel="stylesheet" href="stlye.css">
+    <style>
+        
+        @keyframes border-pulsate {
+                0%   { 
+                    border: 2px solid rgba(180, 0, 0, 0.0);
+                }
+                10%  { 
+                    border: 2px solid rgba(180, 0, 0, 0.70);
+                }
+                20%  { 
+                    border: 2px solid rgba(180, 0, 0, 0.30);
+                }
+                30%  { 
+                    border: 2px solid rgba(180, 0, 0, 0.60);
+                }
+                40%  { 
+                    border: 2px solid rgba(180, 0, 0, 0.20);
+                }
+                50% { 
+                    border: 2px solid rgba(180, 0, 0, 0.50);
+                }
+                60% { 
+                    border: 2px solid rgba(180, 0, 0, 0.10);
+                }
+                75% { 
+                    border: 2px solid rgba(180, 0, 0, 0.40);
+                }
+                100% { 
+                    border: 2px solid rgba(180, 0, 0, 0.0);
+                }
+            }
+    </style>
+</head>
+<body>
+    <h1>Hideout Leader Boards Look Up(Previous Wipe)</h1>
+    <a href="https://daemonforge.github.io/SteamId/" target="popup"  onclick="window.open('https://daemonforge.github.io/SteamId/','popup','width=401,height=500'); return false;">Find My Id</a>
+    <br />
+    <input type="text" id="steamid" style="display:inline-block ;" placeholder="Steam 64ID" /> 
+    <button style="display:inline-block; padding: 4px 6px; padding-bottom: 1px; padding-right: 3px;" onclick="Search()"><svg style="width: 31px; height: 31px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" ><path fill="#DDD" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
+    <div id="error"></div>
+    <table id="table" style="display: none;" >
+        <tr>
+            <td>Name: </td>
+            <td colspan="2" id="PlayerName"></td>
+        </tr>
+        <tr>
+            <td>Exp: </td>
+            <td colspan="2" id="Exp"></td>
+        </tr>
+        <tr>
+            <td>KDR: </td>
+            <td colspan="2" id="KDR"></td>
+        </tr>
+        <tr>
+            <td>Accuracy: </td>
+            <td colspan="2" id="Accuracy"></td>
+        </tr>
+        <tr>
+            <td>PLAYER_KILL: </td>
+            <td colspan="2" id="PLAYER_KILL"></td>
+        </tr>
+        <tr>
+            <td>Total_Animals_Hunted: </td>
+            <td colspan="2" id="Total_Animals_Hunted"></td>
+        </tr>
+        <tr>
+            <td>Total_Built: </td>
+            <td colspan="2" id="Total_Built"></td>
+        </tr>
+        <tr>
+            <td>Zombies_Killed: </td>
+            <td colspan="2" id="Zombies_Killed"></td>
+        </tr>
+        <tr>
+            <td>ANIMAL_KILL_BEAR: </td>
+            <td colspan="2" id="ANIMAL_KILL_BEAR"></td>
+        </tr>
+        <tr>
+            <td>ANIMAL_KILL_COW: </td>
+            <td colspan="2" id="ANIMAL_KILL_COW"></td>
+        </tr>
+        <tr>
+            <td>ANIMAL_KILL_DEER: </td>
+            <td colspan="2" id="ANIMAL_KILL_DEER"></td>
+        </tr>
+        <tr>
+            <td>ANIMAL_KILL_GOAT: </td>
+            <td colspan="2" id="ANIMAL_KILL_GOAT"></td>
+        </tr>
+        <tr>
+            <td>ANIMAL_KILL_HEN: </td>
+            <td colspan="2" id="ANIMAL_KILL_HEN"></td>
+        </tr>
+        <tr>
+            <td>ANIMAL_KILL_PIG: </td>
+            <td colspan="2" id="ANIMAL_KILL_PIG"></td>
+        </tr>
+        <tr>
+            <td>ANIMAL_KILL_WOLF: </td>
+            <td colspan="2" id="ANIMAL_KILL_WOLF"></td>
+        </tr>
+
+        <tr>
+            <td>BANDAGE_SELF: </td>
+            <td colspan="2" id="BANDAGE_SELF"></td>
+        </tr>
+        <tr>
+            <td>BANDAGE_TARGET: </td>
+            <td colspan="2" id="BANDAGE_TARGET"></td>
+        </tr>
+        <tr>
+            <td>BLEED_OUT: </td>
+            <td colspan="2" id="BLEED_OUT"></td>
+        </tr>
+        <tr>
+            <td>BLOOD_SELF: </td>
+            <td colspan="2" id="BLOOD_SELF"></td>
+        </tr>
+        <tr>
+            <td>BODIES_BURIED: </td>
+            <td colspan="2" id="BODIES_BURIED"></td>
+        </tr>
+        <tr>
+            <td>BUILT_BBPTIER1: </td>
+            <td colspan="2" id="BUILT_BBPTIER1"></td>
+        </tr>
+        <tr>
+            <td>BUILT_BBPTIER2: </td>
+            <td colspan="2" id="BUILT_BBPTIER2"></td>
+        </tr>
+        <tr>
+            <td>BUILT_BBPTIER3: </td>
+            <td colspan="2" id="BUILT_BBPTIER3"></td>
+        </tr>
+        <tr>
+            <td>BUILT_FENCE: </td>
+            <td colspan="2" id="BUILT_FENCE"></td>
+        </tr>
+        <tr>
+            <td>BUILT_WATCHTOWER: </td>
+            <td colspan="2" id="BUILT_WATCHTOWER"></td>
+        </tr>
+        <tr>
+            <td>CARCRASH_DEATH: </td>
+            <td colspan="2" id="CARCRASH_DEATH"></td>
+        </tr>
+        <tr>
+            <td>CLEAN_WEAPON: </td>
+            <td colspan="2" id="CLEAN_WEAPON"></td>
+        </tr>
+        <tr>
+            <td>CPR_TARGET: </td>
+            <td colspan="2" id="CPR_TARGET"></td>
+        </tr>
+        <tr>
+            <td>CUTS: </td>
+            <td colspan="2" id="CUTS"></td>
+        </tr>
+        <tr>
+            <td>DOOR_LOCKED: </td>
+            <td colspan="2" id="DOOR_LOCKED"></td>
+        </tr>
+        <tr>
+            <td>Distance Traveled Total: </td>
+            <td colspan="2" id="DistanceTraveledHistorical"></td>
+        </tr>
+        <tr>
+            <td>EVENT_KINGOFTHEHILL: </td>
+            <td colspan="2" id="EVENT_KINGOFTHEHILL"></td>
+        </tr>
+        <tr>
+            <td>HACK_BBPTIER1: </td>
+            <td colspan="2" id="HACK_BBPTIER1"></td>
+        </tr>
+        <tr>
+            <td>HACK_BBPTIER2: </td>
+            <td colspan="2" id="HACK_BBPTIER2"></td>
+        </tr>
+        <tr>
+            <td>HACK_BBPTIER3: </td>
+            <td colspan="2" id="HACK_BBPTIER3"></td>
+        </tr>
+
+        <tr>
+            <td>HACK_FENCE: </td>
+            <td colspan="2" id="HACK_FENCE"></td>
+        </tr>
+
+        <tr>
+            <td>HACK_TENT: </td>
+            <td colspan="2" id="HACK_TENT"></td>
+        </tr>
+        <tr>
+            <td>HARVESTED_BLUEWEED: </td>
+            <td colspan="2" id="HARVESTED_BLUEWEED"></td>
+        </tr>
+        <tr>
+            <td>HARVESTED_COCA: </td>
+            <td colspan="2" id="HARVESTED_COCA"></td>
+        </tr>
+        <tr>
+            <td>HARVESTED_KUSH: </td>
+            <td colspan="2" id="HARVESTED_KUSH"></td>
+        </tr>
+        <tr>
+            <td>HARVESTED_PEPPER: </td>
+            <td colspan="2" id="HARVESTED_PEPPER"></td>
+        </tr>
+        <tr>
+            <td>HARVESTED_PUMKIN: </td>
+            <td colspan="2" id="HARVESTED_PUMKIN"></td>
+        </tr>
+        <tr>
+            <td>HARVESTED_TABACCO: </td>
+            <td colspan="2" id="HARVESTED_TABACCO"></td>
+        </tr>
+        <tr>
+            <td>HARVESTED_TOMATO: </td>
+            <td colspan="2" id="HARVESTED_TOMATO"></td>
+        </tr>
+        <tr>
+            <td>HARVESTED_WEED: </td>
+            <td colspan="2" id="HARVESTED_WEED"></td>
+        </tr>
+        <tr>
+            <td>HARVESTED_ZUCCHINI: </td>
+            <td colspan="2" id="HARVESTED_ZUCCHINI"></td>
+        </tr>
+        <tr>
+            <td>HEADSHOT: </td>
+            <td colspan="2" id="HEADSHOT"></td>
+        </tr>
+        <tr>
+            <td>LongestKill: </td>
+            <td colspan="2" id="LongestKill"></td>
+        </tr>
+        <tr>
+            <td>LongestShot: </td>
+            <td colspan="2" id="LongestShot"></td>
+        </tr>
+        <tr>
+            <td>LongestSurvivedTime: </td>
+            <td colspan="2" id="LongestSurvivedTime"></td>
+        </tr>
+        <tr>
+            <td>PLAYER_DEATH: </td>
+            <td colspan="2" id="PLAYER_DEATH"></td>
+        </tr>
+        <tr>
+            <td>RAID_FENCE: </td>
+            <td colspan="2" id="RAID_FENCE"></td>
+        </tr>
+
+        <tr>
+            <td>RAID_WATCHTOWER: </td>
+            <td colspan="2" id="RAID_WATCHTOWER"></td>
+        </tr>
+        <tr>
+            <td>SALINE_SELF: </td>
+            <td colspan="2" id="SALINE_SELF"></td>
+        </tr>
+        <tr>
+            <td>SALINE_TARGET: </td>
+            <td colspan="2" id="SALINE_TARGET"></td>
+        </tr>
+        <tr>
+            <td>SHOTS_FIRED: </td>
+            <td colspan="2" id="SHOTS_FIRED"></td>
+        </tr>
+        <tr>
+            <td>SHOTS_HIT: </td>
+            <td colspan="2" id="SHOTS_HIT"></td>
+        </tr>
+        <tr>
+            <td>SUCIDE_DEATH: </td>
+            <td colspan="2" id="SUCIDE_DEATH"></td>
+        </tr>
+        <tr>
+            <td>Unknown2 Death: </td>
+            <td colspan="2" id="TBD_DEATH"></td>
+        </tr>
+        <tr>
+            <td>TREES_CUT: </td>
+            <td colspan="2" id="TREES_CUT"></td>
+        </tr>
+        <tr>
+            <td>UNKNOWN_BLEEDDEATH: </td>
+            <td colspan="2" id="UNKNOWN_BLEEDDEATH"></td>
+        </tr>
+        <tr>
+            <td>UNKNOWN_DEATH: </td>
+            <td colspan="2" id="UNKNOWN_DEATH"></td>
+        </tr>
+        <tr>
+            <td>ZMB_DEATH: </td>
+            <td colspan="2" id="ZMB_DEATH"></td>
+        </tr>
+        <tr>
+            <td>ZMB_KILL: </td>
+            <td colspan="2" id="ZMB_KILL"></td>
+        </tr>
+        <tr>
+            <td>ZMB_MIL_KILL: </td>
+            <td colspan="2" id="ZMB_MIL_KILL"></td>
+        </tr>
+    </table>
+</body>
+</html>
