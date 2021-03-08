@@ -1,18 +1,23 @@
 let table = document.getElementById("table");
 let error = document.getElementById("error");
 let id = document.getElementById("steamid");
-
-async function LoadData(guid){
-    return Papa.parse("https://daemonforge.dev/HideoutLeaderboards/data.csv", {
+let Leaderboards = document.getElementById("Leaderboards");
+let lbData = document.getElementById("lbData");
+let data = [];
+Papa.parse("http://localhost/HideoutLeaderboards/data.csv", {
             download: true,
             worker: true,
+            header: true,
+            dynamicTyping: true,
 	        complete: function(results) {
-		        //console.log("Row:", results.data);
-                let data = results.data;
-                
-                let obj = {};
-                let row = data.find(o => o[0] === guid);
-                if (row === null || row === undefined){
+                data = results.data;
+                Sort('Exp');
+            }
+        });
+async function LoadData(guid){
+    let obj = data.find(o => o['GUID'] === guid);
+                console.log(obj)
+                if (obj === null || obj === undefined){
                     id.style.animation = null;
                     id.offsetWidth;
                     id.style.animation = "border-pulsate 4s";
@@ -20,18 +25,13 @@ async function LoadData(guid){
                     error.innerHTML = "ID Not Found in the database";
 
                 } else {
-                    let header = data[0];
-
-                    for (let i = 0; i < row.length; i++) {
-                        updateHtml(header[i], row[i])
-                        obj[header[i]] = row[i];
+                    for (const [key, value] of Object.entries(obj)) {
+                        updateHtml(key, value)
                     }
-                    console.log(row)
+                    //console.log(obj)
                     error.style.display = "none";
                     table.style.display = "block";
-                }
-            }
-        });
+                } 
 }
 function updateHtml(element, text){
     let DomObj = document.getElementById(element);
@@ -65,3 +65,42 @@ async function Search(){
     }
 
 }
+
+function dynamicSort(property) {
+    var sortOrder = -1;
+    return function (a,b) {
+        /* next line works with strings and numbers, 
+         * and you may want to customize it to your needs
+         */
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+    }
+}
+
+
+function Sort(property){
+    data.sort(dynamicSort(property))
+    console.log(data);
+    let i = 1;
+    lbData.innerHTML = "";
+    for (const obj of data) {
+        lbData.innerHTML += `
+            <tr>
+                <td>${i}</td>
+                <td>${obj.PlayerName}</td>
+                <td>${obj.Exp}</td>
+                <td>${obj.PLAYER_KILL}</td>
+                <td>${obj.Total_Deaths}</td>
+                <td>${Math.round(obj.KDR * 1000) / 1000}</td>
+                <td><div class="tooltip">${Math.round(obj.Accuracy * 10000) / 100}%
+                <span class="tooltiptext tooltip-right">Fired: ${obj.SHOTS_FIRED}<br />Hit: ${obj.SHOTS_HIT}</span>
+              </div></td>
+                <td>${obj.HEADSHOT}</td>
+            </tr>
+            `;
+        if (i++ >= 100){
+            break;
+        }
+    }
+}
+

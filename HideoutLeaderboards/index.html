@@ -11,7 +11,6 @@
     <script defer src="scripts.js" ></script>
     <link rel="stylesheet" href="stlye.css">
     <style>
-        
         @keyframes border-pulsate {
                 0%   { 
                     border: 2px solid rgba(180, 0, 0, 0.0);
@@ -41,9 +40,104 @@
                     border: 2px solid rgba(180, 0, 0, 0.0);
                 }
             }
+            .sortable{
+                display: inline-block;
+                padding: 1px 3px;
+                margin: 0px 0px;
+            }
+            .tooltip {
+                position: relative;
+                display: inline-block;
+                border-bottom: 1px dotted #ccc;
+            }
+
+            .tooltip .tooltiptext {
+                visibility: hidden;
+                position: absolute;
+                width: 120px;
+                background-color: #555;
+                color: #fff;
+                text-align: center;
+                padding: 5px 0;
+                border-radius: 6px;
+                z-index: 1;
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+
+            .tooltip:hover .tooltiptext {
+                visibility: visible;
+                opacity: 1;
+            }
+
+            .tooltip-right {
+            top: -5px;
+            left: 125%;  
+            }
+
+            .tooltip-right::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                right: 100%;
+                margin-top: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: transparent #555 transparent transparent;
+            }
+
+            .tooltip-bottom {
+            top: 135%;
+            left: 50%;  
+            margin-left: -60px;
+            }
+
+            .tooltip-bottom::after {
+                content: "";
+                position: absolute;
+                bottom: 100%;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: transparent transparent #555 transparent;
+            }
+
+            .tooltip-top {
+            bottom: 125%;
+            left: 50%;  
+            margin-left: -60px;
+            }
+
+            .tooltip-top::after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: #555 transparent transparent transparent;
+            }
+
+            .tooltip-left {
+            top: -5px;
+            bottom:auto;
+            right: 128%;  
+            }
+            .tooltip-left::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 100%;
+                margin-top: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: transparent transparent transparent #555;
+            }
     </style>
 </head>
-<body>
+<body style="max-width: 905px;">
     <h1>Hideout Leader Boards Look Up(Previous Wipe)</h1>
     <a href="https://daemonforge.github.io/SteamId/" target="popup">Find My Id</a>
     <br />
@@ -51,270 +145,252 @@
     <button style="display:inline-block; padding: 4px 6px; padding-bottom: 1px; padding-right: 3px;" onclick="Search()"><svg style="width: 31px; height: 31px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" ><path fill="#DDD" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
     <div id="error"></div>
     <table id="table" style="display: none;" >
+        <thead>
         <tr>
-            <td>Name: </td>
-            <td colspan="2" id="PlayerName"></td>
-        </tr>
-        <tr>
+            <td colspan="3" id="PlayerName" style="font-weight: bold;"></td>
             <td>Exp: </td>
             <td colspan="2" id="Exp"></td>
         </tr>
+        </thead>
         <tr>
             <td>KDR: </td>
             <td colspan="2" id="KDR"></td>
-        </tr>
-        <tr>
             <td>Accuracy: </td>
             <td colspan="2" id="Accuracy"></td>
         </tr>
         <tr>
             <td>PLAYER_KILL: </td>
             <td colspan="2" id="PLAYER_KILL"></td>
-        </tr>
-        <tr>
             <td>Total_Animals_Hunted: </td>
             <td colspan="2" id="Total_Animals_Hunted"></td>
         </tr>
         <tr>
             <td>Total_Built: </td>
             <td colspan="2" id="Total_Built"></td>
-        </tr>
-        <tr>
             <td>Zombies_Killed: </td>
             <td colspan="2" id="Zombies_Killed"></td>
         </tr>
         <tr>
             <td>ANIMAL_KILL_BEAR: </td>
             <td colspan="2" id="ANIMAL_KILL_BEAR"></td>
-        </tr>
-        <tr>
             <td>ANIMAL_KILL_COW: </td>
             <td colspan="2" id="ANIMAL_KILL_COW"></td>
         </tr>
+
         <tr>
             <td>ANIMAL_KILL_DEER: </td>
             <td colspan="2" id="ANIMAL_KILL_DEER"></td>
-        </tr>
-        <tr>
             <td>ANIMAL_KILL_GOAT: </td>
             <td colspan="2" id="ANIMAL_KILL_GOAT"></td>
         </tr>
+
         <tr>
             <td>ANIMAL_KILL_HEN: </td>
             <td colspan="2" id="ANIMAL_KILL_HEN"></td>
-        </tr>
-        <tr>
             <td>ANIMAL_KILL_PIG: </td>
             <td colspan="2" id="ANIMAL_KILL_PIG"></td>
         </tr>
+
         <tr>
             <td>ANIMAL_KILL_WOLF: </td>
             <td colspan="2" id="ANIMAL_KILL_WOLF"></td>
-        </tr>
-
-        <tr>
             <td>BANDAGE_SELF: </td>
             <td colspan="2" id="BANDAGE_SELF"></td>
         </tr>
+
+
         <tr>
             <td>BANDAGE_TARGET: </td>
             <td colspan="2" id="BANDAGE_TARGET"></td>
-        </tr>
-        <tr>
             <td>BLEED_OUT: </td>
             <td colspan="2" id="BLEED_OUT"></td>
         </tr>
+
         <tr>
             <td>BLOOD_SELF: </td>
             <td colspan="2" id="BLOOD_SELF"></td>
-        </tr>
-        <tr>
             <td>BODIES_BURIED: </td>
             <td colspan="2" id="BODIES_BURIED"></td>
         </tr>
+
         <tr>
             <td>BUILT_BBPTIER1: </td>
             <td colspan="2" id="BUILT_BBPTIER1"></td>
-        </tr>
-        <tr>
             <td>BUILT_BBPTIER2: </td>
             <td colspan="2" id="BUILT_BBPTIER2"></td>
         </tr>
+
         <tr>
             <td>BUILT_BBPTIER3: </td>
             <td colspan="2" id="BUILT_BBPTIER3"></td>
-        </tr>
-        <tr>
             <td>BUILT_FENCE: </td>
             <td colspan="2" id="BUILT_FENCE"></td>
         </tr>
+
         <tr>
             <td>BUILT_WATCHTOWER: </td>
             <td colspan="2" id="BUILT_WATCHTOWER"></td>
-        </tr>
-        <tr>
             <td>CARCRASH_DEATH: </td>
             <td colspan="2" id="CARCRASH_DEATH"></td>
         </tr>
+
         <tr>
             <td>CLEAN_WEAPON: </td>
             <td colspan="2" id="CLEAN_WEAPON"></td>
-        </tr>
-        <tr>
             <td>CPR_TARGET: </td>
             <td colspan="2" id="CPR_TARGET"></td>
         </tr>
+
         <tr>
             <td>CUTS: </td>
             <td colspan="2" id="CUTS"></td>
-        </tr>
-        <tr>
             <td>DOOR_LOCKED: </td>
             <td colspan="2" id="DOOR_LOCKED"></td>
         </tr>
+
         <tr>
             <td>Distance Traveled Total: </td>
             <td colspan="2" id="DistanceTraveledHistorical"></td>
-        </tr>
-        <tr>
             <td>EVENT_KINGOFTHEHILL: </td>
             <td colspan="2" id="EVENT_KINGOFTHEHILL"></td>
         </tr>
+
         <tr>
             <td>HACK_BBPTIER1: </td>
             <td colspan="2" id="HACK_BBPTIER1"></td>
-        </tr>
-        <tr>
             <td>HACK_BBPTIER2: </td>
             <td colspan="2" id="HACK_BBPTIER2"></td>
         </tr>
+
         <tr>
             <td>HACK_BBPTIER3: </td>
             <td colspan="2" id="HACK_BBPTIER3"></td>
-        </tr>
-
-        <tr>
             <td>HACK_FENCE: </td>
             <td colspan="2" id="HACK_FENCE"></td>
         </tr>
 
+
+
         <tr>
             <td>HACK_TENT: </td>
             <td colspan="2" id="HACK_TENT"></td>
-        </tr>
-        <tr>
             <td>HARVESTED_BLUEWEED: </td>
             <td colspan="2" id="HARVESTED_BLUEWEED"></td>
         </tr>
+
         <tr>
             <td>HARVESTED_COCA: </td>
             <td colspan="2" id="HARVESTED_COCA"></td>
-        </tr>
-        <tr>
             <td>HARVESTED_KUSH: </td>
             <td colspan="2" id="HARVESTED_KUSH"></td>
         </tr>
+
         <tr>
             <td>HARVESTED_PEPPER: </td>
             <td colspan="2" id="HARVESTED_PEPPER"></td>
-        </tr>
-        <tr>
             <td>HARVESTED_PUMKIN: </td>
             <td colspan="2" id="HARVESTED_PUMKIN"></td>
         </tr>
+
         <tr>
             <td>HARVESTED_TABACCO: </td>
             <td colspan="2" id="HARVESTED_TABACCO"></td>
-        </tr>
-        <tr>
             <td>HARVESTED_TOMATO: </td>
             <td colspan="2" id="HARVESTED_TOMATO"></td>
         </tr>
+
         <tr>
             <td>HARVESTED_WEED: </td>
             <td colspan="2" id="HARVESTED_WEED"></td>
-        </tr>
-        <tr>
             <td>HARVESTED_ZUCCHINI: </td>
             <td colspan="2" id="HARVESTED_ZUCCHINI"></td>
         </tr>
+
         <tr>
             <td>HEADSHOT: </td>
             <td colspan="2" id="HEADSHOT"></td>
-        </tr>
-        <tr>
             <td>LongestKill: </td>
             <td colspan="2" id="LongestKill"></td>
         </tr>
+
         <tr>
             <td>LongestShot: </td>
             <td colspan="2" id="LongestShot"></td>
-        </tr>
-        <tr>
             <td>LongestSurvivedTime: </td>
             <td colspan="2" id="LongestSurvivedTime"></td>
         </tr>
+
         <tr>
             <td>PLAYER_DEATH: </td>
             <td colspan="2" id="PLAYER_DEATH"></td>
-        </tr>
-        <tr>
             <td>RAID_FENCE: </td>
             <td colspan="2" id="RAID_FENCE"></td>
         </tr>
 
+
         <tr>
             <td>RAID_WATCHTOWER: </td>
             <td colspan="2" id="RAID_WATCHTOWER"></td>
-        </tr>
-        <tr>
             <td>SALINE_SELF: </td>
             <td colspan="2" id="SALINE_SELF"></td>
         </tr>
+
         <tr>
             <td>SALINE_TARGET: </td>
             <td colspan="2" id="SALINE_TARGET"></td>
-        </tr>
-        <tr>
             <td>SHOTS_FIRED: </td>
             <td colspan="2" id="SHOTS_FIRED"></td>
         </tr>
+
         <tr>
             <td>SHOTS_HIT: </td>
             <td colspan="2" id="SHOTS_HIT"></td>
-        </tr>
-        <tr>
             <td>SUCIDE_DEATH: </td>
             <td colspan="2" id="SUCIDE_DEATH"></td>
         </tr>
+
         <tr>
             <td>Unknown2 Death: </td>
             <td colspan="2" id="TBD_DEATH"></td>
-        </tr>
-        <tr>
             <td>TREES_CUT: </td>
             <td colspan="2" id="TREES_CUT"></td>
         </tr>
+
         <tr>
             <td>UNKNOWN_BLEEDDEATH: </td>
             <td colspan="2" id="UNKNOWN_BLEEDDEATH"></td>
-        </tr>
-        <tr>
             <td>UNKNOWN_DEATH: </td>
             <td colspan="2" id="UNKNOWN_DEATH"></td>
         </tr>
+
         <tr>
             <td>ZMB_DEATH: </td>
             <td colspan="2" id="ZMB_DEATH"></td>
-        </tr>
-        <tr>
             <td>ZMB_KILL: </td>
             <td colspan="2" id="ZMB_KILL"></td>
         </tr>
+
         <tr>
             <td>ZMB_MIL_KILL: </td>
-            <td colspan="2" id="ZMB_MIL_KILL"></td>
+            <td colspan="5" id="ZMB_MIL_KILL"></td>
         </tr>
     </table>
+    <div style="overflow-x: auto; overflow-y: visible; width: 100%;">
+        <table id="Leaderboards" style="width: 900px; overflow-y: visible;" >
+            <thead>
+                <tr>
+                    <th style="width: 6%;">Rank </th>
+                    <th style="width: 20%;">Name</th>
+                    <th style="width: 10%;">Exp <button class="sortable" onclick="Sort('Exp')"> <svg  style="width: 12px; height: 12px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/></svg></button></th>
+                    <th style="width: 10%;">Kills <button class="sortable" onclick="Sort('PLAYER_KILL')"> <svg style="width: 12px; height: 12px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/></svg></button></th>
+                    <th style="width: 11%;">Deaths <button class="sortable" onclick="Sort('Total_Deaths')"> <svg style="width: 12px; height: 12px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/></svg></button></th>
+                    <th style="width: 9%;">KDR <button class="sortable" onclick="Sort('KDR')"> <svg style="width: 12px; height: 12px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/></svg></button></th>
+                    <th style="width: 14%;">Accuracy <button class="sortable" onclick="Sort('Accuracy')"> <svg style="width: 12px; height: 12px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/></svg></button></th>
+                    <th style="width: 15%;">Headshots <button class="sortable" onclick="Sort('HEADSHOT')"> <svg style="width: 12px; height: 12px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/></svg></button></th>
+                </tr>
+            </thead>
+            <tbody id="lbData"  style="overflow-y: visible;"></tbody>
+        </table>
+    </div>
 </body>
 </html>
