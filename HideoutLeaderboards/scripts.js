@@ -4,7 +4,7 @@ let id = document.getElementById("steamid");
 let Leaderboards = document.getElementById("Leaderboards");
 let lbData = document.getElementById("lbData");
 let data = [];
-Papa.parse("https://localhost/HideoutLeaderboards/data.csv", {
+Papa.parse("https://daemonforge.dev/HideoutLeaderboards/data.csv", {
             download: true,
             worker: true,
             header: true,
@@ -80,7 +80,7 @@ function dynamicSort(property) {
 
 function Sort(property){
     data.sort(dynamicSort(property))
-    console.log(data);
+    //console.log(data);
     let i = 1;
     lbData.innerHTML = "";
     for (const obj of data) {
