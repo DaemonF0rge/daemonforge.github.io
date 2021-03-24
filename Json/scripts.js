@@ -347,7 +347,9 @@ async function FixJson(){
       DoUpdateSyntaxHighlight();
     } catch (e) {
       let errors = resdata.errors;
+      let i = 0;
       errors.forEach( item => {
+        if (i++ > 10) return;
         errorblock.innerHTML+= `\r\n${item.message}`
       });
       
