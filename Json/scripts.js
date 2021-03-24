@@ -343,6 +343,7 @@ async function FixJson(){
     try {
       let jsonObj = JSON.parse(fixed);
       fixed = JSON.stringify(jsonObj, undefined, 2);
+      codeblock.innerHTML = fixed;
       DoUpdateSyntaxHighlight();
     } catch (e) {
       let errors = resdata.errors;
