@@ -92,7 +92,7 @@ function DoUpdateSyntaxHighlight() {
             copyJson.disabled = null;
             SelectedEditor.disabled = null;
         } else {
-            errorblock.innerHTML = "<i class=\"fas fa-exclamation-triangle\"></i> " + error;
+            errorblock.innerHTML = `<i class="fas fa-exclamation-triangle"></i>${error}<button id="Fix" onclick="FixJson()" style="display: inline-block; margin-left: 12px;">Fix</button>`;
             errorblock.className = "error";
             prettyblock.disabled = "true";
             editorblock.disabled = "true";
@@ -320,6 +320,34 @@ async function LoadDefault() {
       DialogText.innerHTML = `Sorry no valid default json for the selected schema(${SelectedEditor.options[SelectedEditor.selectedIndex].innerHTML})`;
     }
   }
+}
+
+async function FixJson(){
+  //console.log("Fixing")
+  let jsonText = "";
+  if (state == "code"){
+    jsonText = codeblock.innerHTML;
+    jsonText = jsonText.replace(/(<([^>]+)>)/gi, "");
+  }
+  let data = { data: jsonText};
+  //console.log(JSON.stringify(data));
+  try {
+    let res = await fetch("https://daemonforge.dev/Json/Fix", { 
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    //console.log(res)
+    resdata = await res.json();
+    let fixed = resdata.fixed;
+    
+    let jsonObj = JSON.parse(fixed);
+    fixed = JSON.stringify(jsonObj, undefined, 2);
+    codeblock.innerHTML = syntaxHighlight(fixed);
+  } catch (e) {
+
+    console.log(e);
+  }
+
 }
 
 function CloseDialog(){
