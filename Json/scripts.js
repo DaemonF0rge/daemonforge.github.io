@@ -92,7 +92,7 @@ function DoUpdateSyntaxHighlight() {
             copyJson.disabled = null;
             SelectedEditor.disabled = null;
         } else {
-            errorblock.innerHTML = `<i class="fas fa-exclamation-triangle"></i>${error}<button id="Fix" onclick="FixJson()" style="display: inline-block; margin-left: 12px;">Fix</button>`;
+            errorblock.innerHTML = `<i class="fas fa-exclamation-triangle"></i>${error}<button id="Fix" onclick="FixJson()" style="display: inline-block; margin-left: 12px;">Try Auto Fix</button>`;
             errorblock.className = "error";
             prettyblock.disabled = "true";
             editorblock.disabled = "true";
@@ -339,10 +339,18 @@ async function FixJson(){
     //console.log(res)
     resdata = await res.json();
     let fixed = resdata.fixed;
-    
-    let jsonObj = JSON.parse(fixed);
-    fixed = JSON.stringify(jsonObj, undefined, 2);
-    codeblock.innerHTML = syntaxHighlight(fixed);
+    //console.log(fixed);
+    try {
+      let jsonObj = JSON.parse(fixed);
+      fixed = JSON.stringify(jsonObj, undefined, 2);
+      DoUpdateSyntaxHighlight();
+    } catch (e) {
+      let errors = resdata.errors;
+      errors.forEach( item => {
+        errorblock.innerHTML=+ `\r\n${item.message}`
+      });
+      
+    }
   } catch (e) {
 
     console.log(e);
