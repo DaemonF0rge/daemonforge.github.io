@@ -347,7 +347,7 @@ async function FixJson(){
     } catch (e) {
       let errors = resdata.errors;
       errors.forEach( item => {
-        errorblock.innerHTML=+ `\r\n${item.message}`
+        errorblock.innerHTML+= `\r\n${item.message}`
       });
       
     }
