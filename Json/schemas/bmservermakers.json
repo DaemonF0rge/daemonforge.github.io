@@ -82,11 +82,11 @@
           "minimum": 0
         },
         "HideOnPanel": {
-          "type": "string",
+          "type": "number",
           "enum":[0,1]
         },
         "HideOnMap": {
-          "type": "string",
+          "type": "number",
           "enum":[0,1]
         },
         "MaxRenderDistance": {
