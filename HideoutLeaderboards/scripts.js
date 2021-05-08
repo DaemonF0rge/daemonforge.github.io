@@ -4,7 +4,7 @@ let id = document.getElementById("steamid");
 let Leaderboards = document.getElementById("Leaderboards");
 let lbData = document.getElementById("lbData");
 let data = [];
-Papa.parse("https://daemonforge.dev/HideoutLeaderboards/data.csv", {
+Papa.parse("https://daemonforge.dev/HideoutLeaderboards/data2.csv", {
             download: true,
             worker: true,
             header: true,
