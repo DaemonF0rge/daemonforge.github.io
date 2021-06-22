@@ -120,6 +120,10 @@
 				<input class="BuildPermInput" id="DEPLOYSPECIALCheckBox" type="checkbox" onclick="UpdateValuesTerritoy();"/>
 				<label class="BuildPermLabel" for="DEPLOYSPECIALCheckBox" onclick="UpdateValuesTerritoy();">Deploy Special Items</label>
 			</section>
+			<section class="TheSliderCheckbox">
+				<input class="BuildPermInput" id="REMOVECARCOVERCheckBox" type="checkbox" onclick="UpdateValuesTerritoy();"/>
+				<label class="BuildPermLabel" for="REMOVECARCOVERCheckBox" onclick="UpdateValuesTerritoy();">Remove Car Cover</label>
+			</section>
 		</div>
 		<div>
 			<label for="TerritoryValue">Value:</label>
@@ -143,6 +147,7 @@
 			var AddMemberCheckbox = document.getElementById("ADDMEMBERCheckBox");
 			var RemoveMemberCheckbox = document.getElementById("REMOVEMEMBERCheckBox");
 			var DeploySpecialCheckbox = document.getElementById("DEPLOYSPECIALCheckBox");
+			var RemoveCarCoverCheckbox = document.getElementById("REMOVECARCOVERCheckBox");
 			var PermissionBox = document.getElementById("TerritoryValue");
 			function UpdateValuesTerritoy() {
 				var Permission = 0;
@@ -178,6 +183,9 @@
 					if (DeploySpecialCheckbox.checked == true) {
 						Permission = Permission + 128;
 					}
+					if (RemoveCarCoverCheckbox.checked == true) {
+						Permission = Permission + 256;
+					}
 					PermissionBox.value = Permission;
 				}
 			}
@@ -190,6 +198,7 @@
 				AddMemberCheckbox.checked = false;
 				RemoveMemberCheckbox.checked = false;
 				DeploySpecialCheckbox.checked = false;
+				RemoveCarCoverCheckbox.checked = false;
 				PermissionBox.value = 0;
 			}
 		</script>
