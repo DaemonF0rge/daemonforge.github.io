@@ -123,7 +123,7 @@
     },
     "Misc": {
       "type": "array",
-      "description": "	Not yet implemented.",
+      "description": "Not yet implemented.",
       "items": {
         "type": "string"
       }
@@ -135,7 +135,7 @@
       "description": "The clothes on the AI are randomly assigned a health, between the first and second number.",
       "items": {
         "type": "integer",
-        "minimum": 0,
+        "minimum": 0
       }
     },
     "WeaponMelee": {
