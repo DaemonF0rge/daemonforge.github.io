@@ -1,0 +1,216 @@
+{
+  "type": "object",
+  "required": ["Shirts", "Pants", "Shoes", "BackPacks", "Vests", "Headgear","Gloves","Misc","ClothesHealth","WeaponMelee","WeaponRifle","WeaponRifleMagCount","WeaponHandgun","WeaponHandgunMagCount","WeaponHealth","Loot","LootRandom","LootHealth"],
+  "default": {
+		"Shirts": [
+			"eAIShirt"
+		],
+		"Pants": [
+			"SlacksPants_Blue"
+		],
+		"Shoes": [
+			"HikingBootsLow_Blue"
+		],
+		"BackPacks": [
+			"TaloonBag_Blue"
+		],
+		"Vests": [
+			"SmershVest"
+		],
+		"Headgear": [
+			"BaseballCap_Blue"
+		],
+		"Gloves": [
+			"SurgicalGloves_Blue"
+		],
+		"Misc": [
+			"CivilianBelt"
+		],
+		"ClothesHealth": [
+			75,
+			100
+		],
+		"WeaponMelee": [
+			"MeleeBat"
+		],
+		"WeaponRifle": [
+			"M4A1",
+			"SVD",
+			"AKM"
+		],
+		"WeaponRifleMagCount": [
+			1,
+			3
+		],
+		"WeaponHandgun": [
+			"MakarovIJ70"
+		],
+		"WeaponHandgunMagCount": [
+			1,
+			3
+		],
+		"WeaponHealth": [
+			75,
+			100
+		],
+		"Loot": [
+			"SodaCan_Cola",
+			"Screwdriver",
+			"ChernarusMap",
+			"NailBox",
+			"PeachesCan",
+			"Pot",
+			"Potato",
+			"Pliers"
+		],
+		"LootRandom": [
+			"Screwdriver"
+		],
+		"LootHealth": [
+			75,
+			100
+		]
+	},
+  "properties": {
+    "Shirts": {
+      "type": "array",
+      "description": "A list of classnames of shirts, whichthe AI will be given one of at random.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Pants": {
+      "type": "array",
+      "description": "A list of classnames of Pants, whichthe AI will be given one of at random.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Shoes": {
+      "type": "array",
+      "description": "A list of classnames of Shoes, whichthe AI will be given one of at random.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "BackPacks": {
+      "type": "array",
+      "description": "A list of classnames of BackPacks, whichthe AI will be given one of at random.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Vests": {
+      "type": "array",
+      "description": "A list of classnames of Vests, whichthe AI will be given one of at random.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Headgear": {
+      "type": "array",
+      "description": "A list of classnames of Headgear, whichthe AI will be given one of at random.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Gloves": {
+      "type": "array",
+      "description": "A list of classnames of Gloves, whichthe AI will be given one of at random.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Misc": {
+      "type": "array",
+      "description": "	Not yet implemented.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ClothesHealth": {
+      "type": "array",
+      "maxItems": 2,
+      "minItems": 2,
+      "description": "The clothes on the AI are randomly assigned a health, between the first and second number.",
+      "items": {
+        "type": "integer",
+        "minimum": 0,
+      }
+    },
+    "WeaponMelee": {
+      "type": "array",
+      "description": "Not yet implemented.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "WeaponRifle": {
+      "type": "array",
+      "description": "The primary weapon which the AI spawn with, chosen at random from the list. Make sure it is a magazine fed weapon.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "WeaponRifleMagCount": {
+      "type": "array",
+      "description": "The amount of magazines randomly given to the AI, between the first number and second number. All magazines are filled.",
+      "maxItems": 2,
+      "minItems": 2,
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "WeaponHandgun": {
+      "type": "array",
+      "description": "Not yet implemented.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "WeaponHandgunMagCount": {
+      "type": "array",
+      "description": "Not yet implemented.",
+      "maxItems": 2,
+      "minItems": 2,
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "WeaponHealth": {
+      "type": "array",
+      "description": "The Weapon on the AI are randomly assigned a health, between the first and second number.",
+      "maxItems": 2,
+      "minItems": 2,
+      "items": {
+        "type": "integer"
+      }
+    },
+    "Loot": {
+      "type": "array",
+      "description": "For now, the AI is given 2 items from your loot table at random when it spawns. A more sophisticated loot system will be implemented in the future.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "LootRandom": {
+      "type": "array",
+      "items": {
+        "type": "string"
+		
+      }
+    },
+    "LootHealth": {
+      "type": "array",
+      "description": "The Loot on the AI are randomly assigned a health, between the first and second number.",
+      "maxItems": 2,
+      "minItems": 2,
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      }
+    }
+  }
+}
