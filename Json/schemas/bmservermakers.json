@@ -101,6 +101,9 @@
           "type": "number",
           "enum":[0,1]
         },
+        "MapToShowOn": {
+          "type": "string"
+        },
         "Group": {
           "type": "string"
         }
