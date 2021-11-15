@@ -150,9 +150,10 @@ async function LookUpServer(){
                     return;
                 }
                 let ServerName = data.name.match(/([a-zA-Z0-9' ]{5,32})(\||-|:)/ui);
+                console.log(data.name)
                 if (ServerName){
                     ServerName = ServerName[0].match(/([a-zA-Z0-9' ]{5,32})/ui);
-                    //console.log(ServerName)
+                    console.log(ServerName)
                     ServerName = ServerName[0]
                     //console.log(ServerName);
                 }
@@ -170,14 +171,14 @@ async function LookUpServer(){
                     ModName = ModName.replace(/[ _]/g, "");
                     if (ServerName !== undefined && ServerName !== null) {
                         ServerName = ServerName.replace(/[ _]/g, "");
+                        ServerName = ServerName.toLowerCase();
                     }
                     ModName = ModName.replace(/(server)?(mod)?(pack)?/gi, "");
-                    ServerName = ServerName.toLowerCase();
                     ModName = ModName.toLowerCase();
                     let TheServerDescription = "";
                     let TheServerTitle = "";
                     let toCheck = mod.description;
-                    if (ServerName == ModName && urlParams.has("demo")){
+                    if (ServerName !== undefined && ServerName !== null && ServerName == ModName && urlParams.has("demo")){
                         TheServerDescription = toCheck.match(/\[code=description\]((.|\r\n)*)\[\/code\]/giu);
                         TheServerTitle = toCheck.match(/\[h[1-5](=title)\](.*)\[\/h[1-5]\]/giu);
                         if (TheServerDescription){
