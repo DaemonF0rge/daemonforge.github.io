@@ -168,7 +168,9 @@ async function LookUpServer(){
                     //console.log(mod)
                     ModName = mod.name;
                     ModName = ModName.replace(/[ _]/g, "");
-                    ServerName = ServerName.replace(/[ _]/g, "");
+                    if (ServerName !== undefined && ServerName !== null) {
+                        ServerName = ServerName.replace(/[ _]/g, "");
+                    }
                     ModName = ModName.replace(/(server)?(mod)?(pack)?/gi, "");
                     ServerName = ServerName.toLowerCase();
                     ModName = ModName.toLowerCase();
