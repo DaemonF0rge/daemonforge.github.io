@@ -156,6 +156,8 @@ async function LookUpServer(){
                     console.log(ServerName)
                     ServerName = ServerName[0]
                     //console.log(ServerName);
+                } else {
+                    ServerName = data.name;
                 }
                 theKeys = Object.keys(data);
                 for (key of theKeys){
@@ -167,119 +169,120 @@ async function LookUpServer(){
                 for(mod of data.mods){
                     i++;
                     //console.log(mod)
-                    ModName = mod.name;
-                    ModName = ModName.replace(/[ _]/g, "");
-                    if (ServerName !== undefined && ServerName !== null) {
-                        ServerName = ServerName.replace(/[ _]/g, "");
-                        ServerName = ServerName.toLowerCase();
-                    }
-                    ModName = ModName.replace(/(server)?(mod)?(pack)?/gi, "");
-                    ModName = ModName.toLowerCase();
-                    let TheServerDescription = "";
-                    let TheServerTitle = "";
-                    let toCheck = mod.description;
-                    if (ServerName !== undefined && ServerName !== null && ServerName == ModName && urlParams.has("demo")){
-                        TheServerDescription = toCheck.match(/\[code=description\]((.|\r\n)*)\[\/code\]/giu);
-                        TheServerTitle = toCheck.match(/\[h[1-5](=title)\](.*)\[\/h[1-5]\]/giu);
-                        if (TheServerDescription){
-                            TheServerDescription = TheServerDescription[0].replace(/\[code=description\]/i, "").replace(/\[\/code\]/i, "");
-                            //console.log(TheServerDescription)
-                            TheServerDescription = TheServerDescription.replace(/</g, '&lt;');
-                            TheServerDescription      = "Parsed Server Description<br /><hr />" + converter.makeHtml(TheServerDescription);
-                            ServerDescriptionRow.style.display = null;
-                            updateHtml("ServerDescription",TheServerDescription);
-                        } else {
-                            ServerDescriptionRow.style.display = null;
-                            updateHtml("ServerDescription", "Parsed Server Description<br /><hr />" + ParseMarkup(mod.description));
+                    if (mod.name !== "") {
+                        ModName = mod.name;
+                        ModName = ModName.replace(/[ _]/g, "");
+                        if (ServerName !== undefined && ServerName !== null) {
+                            ServerName = ServerName.replace(/[ _]/g, "");
+                            ServerName = ServerName.toLowerCase();
                         }
-                        if (TheServerTitle){
-                            TheServerTitle = TheServerTitle[0].replace(/\[h[1-5]=title\]/i, "").replace(/\[\/h[1-5]\]/i, "");
+                        ModName = ModName.replace(/(server)?(mod)?(pack)?/gi, "");
+                        ModName = ModName.toLowerCase();
+                        let TheServerDescription = "";
+                        let TheServerTitle = "";
+                        let toCheck = mod.description;
+                        if (ServerName !== undefined && ServerName !== null && ServerName == ModName && urlParams.has("demo")){
+                            TheServerDescription = toCheck.match(/\[code=description\]((.|\r\n)*)\[\/code\]/giu);
+                            TheServerTitle = toCheck.match(/\[h[1-5](=title)\](.*)\[\/h[1-5]\]/giu);
+                            if (TheServerDescription){
+                                TheServerDescription = TheServerDescription[0].replace(/\[code=description\]/i, "").replace(/\[\/code\]/i, "");
+                                //console.log(TheServerDescription)
+                                TheServerDescription = TheServerDescription.replace(/</g, '&lt;');
+                                TheServerDescription      = "Parsed Server Description<br /><hr />" + converter.makeHtml(TheServerDescription);
+                                ServerDescriptionRow.style.display = null;
+                                updateHtml("ServerDescription",TheServerDescription);
+                            } else {
+                                ServerDescriptionRow.style.display = null;
+                                updateHtml("ServerDescription", "Parsed Server Description<br /><hr />" + ParseMarkup(mod.description));
+                            }
+                            if (TheServerTitle){
+                                TheServerTitle = TheServerTitle[0].replace(/\[h[1-5]=title\]/i, "").replace(/\[\/h[1-5]\]/i, "");
 
-                            TheServerTitle = TheServerTitle.replace(/</g, '&lt;');
-                            updateHtml("servername", TheServerTitle);
+                                TheServerTitle = TheServerTitle.replace(/</g, '&lt;');
+                                updateHtml("servername", TheServerTitle);
+                            }
                         }
-                    }
-                    let description = "";
-                    let donationlink = "";
-                    let donations = "";
-                    let creatorid = "creator"+i;
-                    if (mod.description !== undefined){
-                        let parse = ParseMarkup(mod.description);
-                        description = parse[0];
-                        donationlink = parse[1];
-                        
-                        //console.log(donationlink)
-                        if (donationlink !== undefined  && donationlink != null){
-                            AllDonations = AllDonations + `<br> ${mod.name} by <span id="${creatorid}dl"> </span> - `;
-                            donations = " ";
-                            donationlink.forEach(element => {
-                                //console.log(element)
-                                let link;
-                                if (element.match(/https?:\/\//i)){
-                                    link = element;
-                                } else {
-                                    link = "https://" + element;
-                                }
-                                if (element.match(/paypal/i)){
-                                    donations = donations + ` <a href="${link}" class="modheader"><i class="fab fa-paypal"></i></a>`;
-                                    AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #169BD7;"><i class="fab fa-paypal"></i></a>`;
-                                }
-                                if (element.match(/patreon/i)){
-                                    donations = donations + ` <a href="${link}"class="modheader"><i class="fab fa-patreon"></i></a>`;
-                                    AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #E64413;"><i class="fab fa-patreon"></i></a>`;
-                                }
-                                if (element.match(/github/i)){
-                                    donations = donations + ` <a href="${link}" class="modheader"><i class="fab fa-github"></i></a>`;
-                                    AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #fff;"><i class="fab fa-github"></i></a>`;
-                                }
-                            });
+                        let description = "";
+                        let donationlink = "";
+                        let donations = "";
+                        let creatorid = "creator"+i;
+                        if (mod.description !== undefined){
+                            let parse = ParseMarkup(mod.description);
+                            description = parse[0];
+                            donationlink = parse[1];
+                            
+                            //console.log(donationlink)
+                            if (donationlink !== undefined  && donationlink != null){
+                                AllDonations = AllDonations + `<br> ${mod.name} by <span id="${creatorid}dl"> </span> - `;
+                                donations = " ";
+                                donationlink.forEach(element => {
+                                    //console.log(element)
+                                    let link;
+                                    if (element.match(/https?:\/\//i)){
+                                        link = element;
+                                    } else {
+                                        link = "https://" + element;
+                                    }
+                                    if (element.match(/paypal/i)){
+                                        donations = donations + ` <a href="${link}" class="modheader"><i class="fab fa-paypal"></i></a>`;
+                                        AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #169BD7;"><i class="fab fa-paypal"></i></a>`;
+                                    }
+                                    if (element.match(/patreon/i)){
+                                        donations = donations + ` <a href="${link}"class="modheader"><i class="fab fa-patreon"></i></a>`;
+                                        AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #E64413;"><i class="fab fa-patreon"></i></a>`;
+                                    }
+                                    if (element.match(/github/i)){
+                                        donations = donations + ` <a href="${link}" class="modheader"><i class="fab fa-github"></i></a>`;
+                                        AllDonations = AllDonations + ` <a href="${link}" class="donateLink" style="color: #fff;"><i class="fab fa-github"></i></a>`;
+                                    }
+                                });
+                            }
                         }
+                        //console.log(donations)
+                        let niceSize = bytesToSize(mod.size);
+                        var DateCreated = new Date(mod.created * 1000);
+                        var LastUpdated = new Date(mod.updated * 1000);
+                        contents+= `
+                        <details style="width: 98%; margin: 2px;"> 
+                            <summary style="font-size: 1.3em;">${mod.name}${donations}</summary>
+                            <a style="text-align: center; margin: 12px; margin-bottom: 16px;" href="https://steamcommunity.com/sharedfiles/filedetails/?id=${mod.id}" ><img class="modimage" src="${mod.image_url}"/></a>
+                            <table style="1px solid #dbdbdb">
+                                <tr>
+                                    <td>Creator</td>
+                                    <td colspan="2" id="creator${i}" >${mod.creator}</td>
+                                </tr>
+                                <tr>
+                                    <td>Mod Id</td>
+                                    <td colspan="2" >${mod.id}</td>
+                                </tr>
+                                <tr>
+                                <td>File Size</td>
+                                <td colspan="2" >${niceSize}</td>
+                                </tr>
+                                <tr>
+                                <td>Created</td>
+                                <td colspan="2" >${FormatTheDate(DateCreated)}</td>
+                                </tr>
+                                <tr>
+                                <td>Last Updated</td>
+                                <td colspan="2" >${FormatTheDate(LastUpdated)}</td>
+                                </tr>
+                                <tr>
+                                <td>Subscriptions</td>
+                                <td colspan="2" >${mod.subscriptions}</td>
+                                </tr>
+                            </table>
+                            <article>
+                                ${description}
+                            </article>
+                        </details>
+                        `;
+                        newMods.push({id: mod.id, name: mod.name});
+                        fetch_retry(`https://api.daemonforge.dev/user/${mod.creator}`, {
+                            method: 'GET',
+                            mode: 'cors'
+                        }, 3).then( userresponse => userresponse.json().then( userdata => {updateCreator(creatorid, userdata);updateCreator(creatorid+"dl", userdata)} ).catch(e=>console.log(e))).catch( e => console.log(e))
                     }
-                    //console.log(donations)
-                    let niceSize = bytesToSize(mod.size);
-                    var DateCreated = new Date(mod.created * 1000);
-                    var LastUpdated = new Date(mod.updated * 1000);
-                    contents+= `
-                    <details style="width: 98%; margin: 2px;"> 
-                        <summary style="font-size: 1.3em;">${mod.name}${donations}</summary>
-                        <a style="text-align: center; margin: 12px; margin-bottom: 16px;" href="https://steamcommunity.com/sharedfiles/filedetails/?id=${mod.id}" ><img class="modimage" src="${mod.image_url}"/></a>
-                        <table style="1px solid #dbdbdb">
-                            <tr>
-                                <td>Creator</td>
-                                <td colspan="2" id="creator${i}" >${mod.creator}</td>
-                            </tr>
-                            <tr>
-                                <td>Mod Id</td>
-                                <td colspan="2" >${mod.id}</td>
-                            </tr>
-                            <tr>
-                            <td>File Size</td>
-                            <td colspan="2" >${niceSize}</td>
-                            </tr>
-                            <tr>
-                            <td>Created</td>
-                            <td colspan="2" >${FormatTheDate(DateCreated)}</td>
-                            </tr>
-                            <tr>
-                            <td>Last Updated</td>
-                            <td colspan="2" >${FormatTheDate(LastUpdated)}</td>
-                            </tr>
-                            <tr>
-                            <td>Subscriptions</td>
-                            <td colspan="2" >${mod.subscriptions}</td>
-                            </tr>
-                        </table>
-                        <article>
-                            ${description}
-                        </article>
-                    </details>
-                    `;
-                    newMods.push({id: mod.id, name: mod.name});
-                    fetch_retry(`https://api.daemonforge.dev/user/${mod.creator}`, {
-                        method: 'GET',
-                        mode: 'cors'
-                    }, 3).then( userresponse => userresponse.json().then( userdata => {updateCreator(creatorid, userdata);updateCreator(creatorid+"dl", userdata)} ).catch(e=>console.log(e))).catch( e => console.log(e))
-
                 }
                 updateHtml("AllDonations", AllDonations);
                 data.mods = newMods; //Just to remove extra bloat from the resonses and to not encourch un nessasary use of /full
